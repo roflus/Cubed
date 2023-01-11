@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/20 13:44:01 by rharing       #+#    #+#                 */
-/*   Updated: 2022/04/12 12:20:27 by rharing       ########   odam.nl         */
+/*   Updated: 2023/01/11 14:55:15 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+void	ft_error(char *string, int exit_code);
+
 #endif 

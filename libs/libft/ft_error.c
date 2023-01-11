@@ -1,41 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   cub3D.h                                            :+:    :+:            */
+/*   ft_error.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/01/11 16:07:55 by rharing       ########   odam.nl         */
+/*   Created: 2023/01/11 14:26:04 by rharing       #+#    #+#                 */
+/*   Updated: 2023/01/11 14:55:03 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-#include <libft.h>
-#include <MLX42/MLX42.h>
-#include <fcntl.h>
-#include "get_next_line.h"
-
-typedef struct s_map
+void	ft_error(char *string, int exit_code)
 {
-    int fd;
-    char *north;
-    char *south;
-    char *east;
-    char *west;
-    
-}   t_map;
-
-
-typedef struct s_vars
-{
-    
-    int     test;
-
-    t_map   *map;
-}      t_vars;
-
-
-#endif
+	ft_putendl_fd(string, 2);
+	exit(exit_code);
+}

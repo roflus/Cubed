@@ -3,10 +3,13 @@ LIBFT_DIR = ./libs/libft
 LIBFT = $(LIBFT_DIR)/libft.a
 MLX_DIR = ./libs/mlx
 MLX_LIB = $(MLX_DIR)/libmlx42.a
+GNL_DIR = ./src/getnextline
 FLAGS = -Wall -Werror -Wextra -g 
 LFLAGS = -framework Cocoa -framework OpenGL -framework IOKit
-INC = -I ./includes -I $(MLX_DIR)/include -I $(LIBFT_DIR)
-SRC = ./src/main.c
+INC = -I ./includes -I $(MLX_DIR)/include -I $(LIBFT_DIR) -I $(GNL_DIR)
+SRC = ./src/main.c \
+	$(GNL_DIR)/get_next_line.c \
+	$(GNL_DIR)/get_next_line_utils.c
 
 OBJ = $(SRC:%.c=%.o)
 

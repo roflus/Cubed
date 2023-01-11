@@ -1,41 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   cub3D.h                                            :+:    :+:            */
+/*   get_next_line.h                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/01/11 16:07:55 by rharing       ########   odam.nl         */
+/*   Created: 2022/01/20 13:43:39 by rharing       #+#    #+#                 */
+/*   Updated: 2022/01/20 13:43:43 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-#include <libft.h>
-#include <MLX42/MLX42.h>
-#include <fcntl.h>
-#include "get_next_line.h"
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
 
-typedef struct s_map
-{
-    int fd;
-    char *north;
-    char *south;
-    char *east;
-    char *west;
-    
-}   t_map;
-
-
-typedef struct s_vars
-{
-    
-    int     test;
-
-    t_map   *map;
-}      t_vars;
-
+char	*get_next_line(int fd);
+size_t	ft_strlen(const char *s);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+char	*ft_strdup(const char *s1);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strchr(const char *s, int c);
 
 #endif
