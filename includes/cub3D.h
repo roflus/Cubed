@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/01/11 16:07:55 by rharing       ########   odam.nl         */
+/*   Updated: 2023/01/11 16:47:04 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,9 @@
 
 typedef struct s_map
 {
-    int fd;
-    char *north;
-    char *south;
-    char *east;
-    char *west;
-    
+    int     fd;
+    char    **data;
+    char    **map;
 }   t_map;
 
 
@@ -33,7 +30,6 @@ typedef struct s_vars
 {
     
     int     test;
-
     t_map   *map;
 }      t_vars;
 
