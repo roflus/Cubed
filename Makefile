@@ -5,14 +5,14 @@ MLX_DIR = ./libs/mlx
 MLX_LIB = $(MLX_DIR)/libmlx42.a
 FLAGS = -Wall -Werror -Wextra -g 
 LFLAGS = -framework Cocoa -framework OpenGL -framework IOKit
-INC = -I ./includes
+INC = -I ./includes -I $(MLX_DIR)/include -I $(LIBFT_DIR)
 SRC = ./src/main.c
 
 OBJ = $(SRC:%.c=%.o)
 
 all: $(NAME)
 $(NAME): $(MLX_LIB) $(LIBFT) $(OBJ)
-	gcc  $(OBJ) $(MLX_LIB) -lglfw3 $(LIBFT) $(LFLAGS) -o $(NAME) 
+	gcc  $(OBJ) $(INC) $(MLX_LIB) -lglfw3 $(LIBFT) $(LFLAGS) -o $(NAME) 
 
 %.o: %.c
 	gcc  $(INC) $(FLAGS) -c $< -o $@
