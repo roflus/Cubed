@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:40:40 by rharing       #+#    #+#                 */
-/*   Updated: 2023/01/12 13:39:35 by rharing       ########   odam.nl         */
+/*   Updated: 2023/01/12 13:41:41 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static void	create_map(t_vars *vars, char *mapline)
 {
 	if (check_empty_line_map(mapline) == false)
-		ft_error("No newline in map", 2);
+		ft_error("Error\nNo newline in map", 2);
 	vars->map->map = ft_split(mapline, '\n');
 	if (vars->map->map == NULL)
-		ft_error("Malloc map failed", 2);
+		ft_error("Error\nMalloc map failed", 2);
 }
 
 static void	mapinput(t_vars *vars)
@@ -29,7 +29,7 @@ static void	mapinput(t_vars *vars)
 
 	mapline = ft_calloc(1, 1);
 	if (mapline == NULL)
-		ft_error("Malloc failed", 2);
+		ft_error("Error\nMalloc failed", 2);
 	while (mapline)
 	{
 		temp = get_next_line(vars->map->fd);
@@ -54,7 +54,7 @@ static void	get_data(t_vars *vars)
 	k = 0;
 	vars->map->data = ft_calloc(6, sizeof(char *));
 	if (vars->map->data == NULL)
-		ft_error("Malloc error", 2);
+		ft_error("Error\nMalloc error", 2);
 	while (i < 8)
 	{
 		temp1 = get_next_line(vars->map->fd);
@@ -72,7 +72,7 @@ void	open_map(t_vars *vars, char *map)
 {
 	vars->map->fd = open(map, O_RDONLY);
 	if (vars->map->fd < 0)
-		ft_error("Can't open file", 2);
+		ft_error("Error\nCan't open file", 2);
 	get_data(vars);
 	mapinput(vars);
 }

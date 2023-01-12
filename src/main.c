@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/01/12 13:37:24 by rharing       ########   odam.nl         */
+/*   Updated: 2023/01/12 13:41:55 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ int	main(int argc, char **argv)
 	t_vars	*vars;
 
 	if (argc != 2)
-		ft_error("Wrong amount of arguments", 2);
+		ft_error("Error\nWrong amount of arguments", 2);
 	if (arg_check(argv) == false)
-		ft_error("File is not .cub", 2);
+		ft_error("Error\nFile is not .cub", 2);
 	vars = ft_calloc(1, sizeof(vars));
 	vars->map = ft_calloc(1, sizeof(vars->map));
 	open_map(vars, argv[1]);
