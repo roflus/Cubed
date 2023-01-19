@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   cub3D.h                                            :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rharing <rharing@student.42.fr>              +#+                     */
+/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/01/12 13:35:06 by rharing       ########   odam.nl         */
+/*   Updated: 2023/01/19 13:39:15 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,14 @@ bool	check_empty_line_map(char *mapline);
  */
 void	open_map(t_vars *vars, char *map);
 
+/**
+ * @brief Check Cardinal Data in map
+ * Loop through first 4 lines of vars->map->data
+ * To check for NO, SO  WE and EA
+ * @param vars 
+ * @return true 
+ * @return false 
+ */
+
+bool check_data(t_vars *vars);
 #endif

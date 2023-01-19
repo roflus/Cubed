@@ -10,6 +10,7 @@ INC = -I ./includes -I $(MLX_DIR)/include -I $(LIBFT_DIR) -I $(GNL_DIR)
 SRC = ./src/main.c \
 	./src/map_check.c \
 	./src/read_map.c \
+	./src/cardinal_check.c \
 	$(GNL_DIR)/get_next_line.c \
 	$(GNL_DIR)/get_next_line_utils.c
 

@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   map_check.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rharing <rharing@student.42.fr>              +#+                     */
+/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/12 12:33:23 by rharing       #+#    #+#                 */
-/*   Updated: 2023/01/12 12:39:44 by rharing       ########   odam.nl         */
+/*   Updated: 2023/01/19 14:41:03 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,27 @@ bool	check_empty_line_map(char *mapline)
 		i++;
 	}
 	return (true);
+}
+
+bool check_map(t_vars *vars)
+{
+	int i;
+	int k;
+	int player_count;
+
+	i = 0;
+	k = 0;
+	player_count = 0;
+	// check first only space and 1
+	// check last only space and 1 (Same function?)
+
+	// check on space, 1, 0 and NSEW
+	// check if space and 1 come for 0 and there is no 0 after last one
+	// count player, if NSEW= 2 map fails
+
+
+	while (vars->map->map[i] != '\0')
+	{
+		if (vars->map->map[i])
+	}
 }

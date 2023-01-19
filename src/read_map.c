@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   read_map.c                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rharing <rharing@student.42.fr>              +#+                     */
+/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:40:40 by rharing       #+#    #+#                 */
-/*   Updated: 2023/01/12 13:41:41 by rharing       ########   odam.nl         */
+/*   Updated: 2023/01/19 14:30:46 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,17 @@ static void	mapinput(t_vars *vars)
 	mapline = ft_calloc(1, 1);
 	if (mapline == NULL)
 		ft_error("Error\nMalloc failed", 2);
+	while (1)
+	{
+		temp = get_next_line(vars->map->fd);
+		if (ft_strncmp(temp, "\n", 1) != 0)
+		{
+			mapline = ft_strdup(temp);
+			free(temp);
+			break;
+		}
+		free(temp);
+	}
 	while (mapline)
 	{
 		temp = get_next_line(vars->map->fd);
@@ -55,21 +66,31 @@ static void	get_data(t_vars *vars)
 	vars->map->data = ft_calloc(6, sizeof(char *));
 	if (vars->map->data == NULL)
 		ft_error("Error\nMalloc error", 2);
-	while (i < 8)
+	while (1)
 	{
 		temp1 = get_next_line(vars->map->fd);
 		if (ft_strncmp(temp1, "\n", 1) != 0)
 		{
 			vars->map->data[k] = ft_strdup(temp1);
+			if (k == 5)
+			{
+				free(temp1);
+				break;
+			}
 			k++;
 		}
 		free(temp1);
 		i++;
 	}
+	if (check_data(vars) == false)
+		ft_error("Cardinal Data not valid", 2);
 }
 
 void	open_map(t_vars *vars, char *map)
 {
+	int 	i;
+	i = 0;
+
 	vars->map->fd = open(map, O_RDONLY);
 	if (vars->map->fd < 0)
 		ft_error("Error\nCan't open file", 2);
