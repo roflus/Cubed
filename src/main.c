@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   main.c                                             :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rharing <rharing@student.42.fr>              +#+                     */
+/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/01/12 13:41:55 by rharing       ########   odam.nl         */
+/*   Updated: 2023/01/19 17:31:28 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	main(int argc, char **argv)
 	vars = ft_calloc(1, sizeof(vars));
 	vars->map = ft_calloc(1, sizeof(vars->map));
 	open_map(vars, argv[1]);
+	printf("MAP IS CORRECT\n");
 	mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
 	if (!mlx)
 		exit(EXIT_FAILURE);

@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/01/19 13:39:15 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/01/19 17:29:54 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 typedef struct s_map
 {
 	int		fd;
+	int		array_count;
 	char	**data;
 	char	**map;
 }	t_map;
@@ -67,4 +68,15 @@ void	open_map(t_vars *vars, char *map);
  */
 
 bool check_data(t_vars *vars);
+
+/**
+ * @brief Check if the map is valid without errors
+ * Start with checking the first and last line
+ * Check if their are not any invalid characters in the map
+ * Check if there is 1 player
+ * Check is the map is closed with walls
+ * @param vars 
+ */
+void check_map(t_vars *vars);
+
 #endif
