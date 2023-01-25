@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/01/19 17:29:54 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/01/25 10:51:18 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_map
 {
 	int		fd;
 	int		array_count;
+	char	pos;
 	char	**data;
 	char	**map;
 }	t_map;

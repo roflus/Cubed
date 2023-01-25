@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/01/19 17:31:28 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/01/25 11:08:51 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ bool	arg_check(char **argv)
 
 int	main(int argc, char **argv)
 {
-	mlx_t	*mlx;
+	//mlx_t	*mlx;
 	t_vars	*vars;
 
 	if (argc != 2)
@@ -63,14 +63,14 @@ int	main(int argc, char **argv)
 	vars->map = ft_calloc(1, sizeof(vars->map));
 	open_map(vars, argv[1]);
 	printf("MAP IS CORRECT\n");
-	mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
-	if (!mlx)
-		exit(EXIT_FAILURE);
-	g_img = mlx_new_image(mlx, 128, 128);
-	memset(g_img->pixels, 255, g_img->width * g_img->height * sizeof(int));
-	mlx_image_to_window(mlx, g_img, 0, 0);
-	mlx_loop_hook(mlx, &hook, mlx);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
+	//mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
+	//if (!mlx)
+	//	exit(EXIT_FAILURE);
+	//g_img = mlx_new_image(mlx, 128, 128);
+	//memset(g_img->pixels, 255, g_img->width * g_img->height * sizeof(int));
+	//mlx_image_to_window(mlx, g_img, 0, 0);
+	//mlx_loop_hook(mlx, &hook, mlx);
+	//mlx_loop(mlx);
+	//mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
 }
