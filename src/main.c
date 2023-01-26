@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   main.c                                             :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
+/*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/01/25 11:08:51 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/01/26 18:42:55 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,30 @@ bool	arg_check(char **argv)
 	return (false);
 }
 
+void	init_vars(t_vars *vars)
+{
+	vars->test = 0;
+	vars->map.array_count = 0;
+	vars->map.data = NULL;
+	vars->map.fd = 0;
+	vars->map.map = NULL;
+	vars->map.pos = 0;
+	vars->map.data = (char **)malloc(7 * sizeof(char *));
+	if (vars->map.data == NULL)
+		ft_error("Error\nMalloc error", 2);
+}
+
 int	main(int argc, char **argv)
 {
 	//mlx_t	*mlx;
-	t_vars	*vars;
+	t_vars	vars;
 
 	if (argc != 2)
 		ft_error("Error\nWrong amount of arguments", 2);
 	if (arg_check(argv) == false)
 		ft_error("Error\nFile is not .cub", 2);
-	vars = ft_calloc(1, sizeof(vars));
-	vars->map = ft_calloc(1, sizeof(vars->map));
-	open_map(vars, argv[1]);
+	init_vars(&vars);
+	open_file(&vars, argv[1]);
 	printf("MAP IS CORRECT\n");
 	//mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
 	//if (!mlx)

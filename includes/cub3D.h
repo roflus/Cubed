@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   cub3D.h                                            :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
+/*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/01/25 10:51:18 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/01/26 18:29:31 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,42 @@ typedef struct s_map
 typedef struct s_vars
 {
 	int		test;
-	t_map	*map;
+	int		playercount;
+	t_map	map;
 }	t_vars;
+
+/*-------------------------------open_file.c----------------------------*/
+
+/**
+ * @brief Opens map.cub file to read.
+ * get_data(vars) -> read first 6 data lines and writes them to
+ * char ** vars->map->data.
+ * get_map(vars) -> read the map part of file and writes it to a 
+ * string, then splits it to char **vars->map->map
+ * @param vars
+ * @param map
+ */
+void	open_file(t_vars *vars, char *map);
+
+/*-------------------------------parse_data.c---------------------------*/
+
+/**
+ * @brief get_data(vars) -> read first 6 data lines and writes them to
+ * char ** vars->map->data.
+ * 
+ * @param vars 
+ */
+void	get_data(t_vars *vars);
+
+/*-------------------------------parse_map.c----------------------------*/
+
+/**
+ * @brief read the map part of file and writes it to a 
+ * string, then splits it to char **vars->map->map
+ * 
+ * @param vars 
+ */
+void	get_map(t_vars *vars);
 
 /*-------------------------------map_check.c----------------------------*/
 
@@ -46,30 +80,6 @@ typedef struct s_vars
  */
 bool	check_empty_line_map(char *mapline);
 
-/*-------------------------------read_map.c-----------------------------*/
-
-/**
- * @brief Opens map.cub file to read.
- * get_data(vars) -> read first 6 data lines and writes them to
- * char ** vars->map->data.
- * mapinput(vars) -> read the map part of file and writes it to a 
- * string, then splits it to char **vars->map->map
- * @param vars
- * @param map
- */
-void	open_map(t_vars *vars, char *map);
-
-/**
- * @brief Check Cardinal Data in map
- * Loop through first 4 lines of vars->map->data
- * To check for NO, SO  WE and EA
- * @param vars 
- * @return true 
- * @return false 
- */
-
-bool check_data(t_vars *vars);
-
 /**
  * @brief Check if the map is valid without errors
  * Start with checking the first and last line
@@ -78,6 +88,87 @@ bool check_data(t_vars *vars);
  * Check is the map is closed with walls
  * @param vars 
  */
-void check_map(t_vars *vars);
+void	check_map(t_vars *vars);
+
+/*-------------------------------cardinal_check.c-----------------------*/
+
+/**
+ * @brief Check Cardinal Data in map
+ * Loop through first 4 lines of vars->map->data
+ * To check for NO, SO  WE and EA
+ * And check for F(floor) and C(ceiling).
+ * @param vars 
+ * @return true 
+ * @return false 
+ */
+bool	check_data(t_vars *vars);
+
+/*-------------------------------char_check.c---------------------------*/
+
+/**
+ * @brief Loop trough map and check if every character is either a 1, 0
+ * ' ' or N,E,S,W. Also checks for only one starting position.
+ * 
+ * @param vars 
+ * @return true 
+ * @return false 
+ */
+bool	check_char_map(t_vars *vars);
+
+/**
+ * @brief Check if every 0 and player starting pos is surrounded by either
+ * another 0 or 1.
+ * 
+ * @param vars
+ * @return true 
+ * @return false 
+ */
+bool	check_empty(t_vars *vars);
+
+/*---------------------------floor_ceiling_check.c----------------------*/
+
+/**
+ * @brief Check if Floor data is parsed correctly.
+ * 
+ * @param vars 
+ * @return true 
+ * @return false 
+ */
+bool	check_floor(t_vars *vars);
+
+/**
+ * @brief Check if Ceiling data is parsed correctly.
+ * 
+ * @param vars 
+ * @return true 
+ * @return false 
+ */
+bool	check_ceiling(t_vars *vars);
+
+/*-------------------------------walls_check.c--------------------------*/
+
+/**
+ * @brief Map must be surrounded by walls, checks every string if map begins
+ * and ends with a 1(wall).
+ * @param vars 
+ * @return true 
+ * @return false 
+ */
+bool	check_walls(t_vars *vars);
+
+/**
+ * @brief Map must be surrounded by walls, checks first and last string of map,
+ * if it consist only of 1's(walls) of ' '(space) returns true.
+ * @param vars 
+ * @return true 
+ * @return false 
+ */
+bool	check_first_last(t_vars *vars);
+
+
+
+/*-------------------------------DELETEWHENFINISHED--------------------------*/
+void	print_mapdata(t_vars *vars);
+void	print_map(t_vars *vars);
 
 #endif
