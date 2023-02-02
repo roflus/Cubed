@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   cub3D.h                                            :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rharing <rharing@student.42.fr>              +#+                     */
+/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/01/26 18:29:31 by rharing       ########   odam.nl         */
+/*   Updated: 2023/02/02 13:52:33 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <MLX42/MLX42.h>
 # include <fcntl.h>
 # include "get_next_line.h"
+# define MAPPIXEL 64
 
 typedef struct s_map
 {
@@ -27,11 +28,23 @@ typedef struct s_map
 	char	**map;
 }	t_map;
 
+typedef struct s_player
+{
+	int playerX;
+	int playerY;
+	
+}	t_player;
+
+
 typedef struct s_vars
 {
-	int		test;
-	int		playercount;
-	t_map	map;
+	int			test;
+	int			playercount;
+	mlx_t		*mlx;
+	mlx_image_t	*player1;
+
+	t_map		map;
+	t_player	player;
 }	t_vars;
 
 /*-------------------------------open_file.c----------------------------*/
