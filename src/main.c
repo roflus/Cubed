@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/02 14:03:18 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/02 16:36:10 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <memory.h>
+#include <math.h>
 #define WIDTH 1000	
 #define HEIGHT 1000
-
-
 
 void	hook(void *param)
 {
@@ -51,6 +50,7 @@ bool	arg_check(char **argv)
 	return (false);
 }
 
+
 void	init_vars(t_vars *vars)
 {
 	vars->test = 0;
@@ -61,19 +61,46 @@ void	init_vars(t_vars *vars)
 	vars->map.map = NULL;
 	vars->map.pos = 0;
 	vars->map.data = (char **)malloc(7 * sizeof(char *));
-
+	vars->player.playdeltaX = 0;
+	vars->player.playdeltaY = 0;
+	vars->player.playerAngel = 90;
 	vars->player.playerX = 0;
 	vars->player.playerY = 0;
 	if (vars->map.data == NULL)
 		ft_error("Error\nMalloc error", 2);
 }
 
+static void draw_map(t_vars *vars)
+{
+	int i = 0;
+	int k;
+
+	while (vars->map.map[i] != NULL)
+	{
+		k = 0;
+		while (k < ft_strlen(vars->map.map[i]))
+		{
+			if (vars->map.map[i][k] == '1')
+				mlx_image_to_window(vars->mlx, vars->wall, (k * MAPPIXEL), (i * MAPPIXEL));
+			else if (vars->map.map[i][k] == '0')
+				mlx_image_to_window(vars->mlx, vars->empty, (k * MAPPIXEL), (i * MAPPIXEL));
+			k++;
+		}
+		i++;
+	}
+}
+
+
+
 int	main(int argc, char **argv)
 {
 	//mlx_t	*mlx;
-	mlx_image_t	*empty;
-	mlx_image_t	*wall;
+	//mlx_image_t	*empty;
+	//mlx_image_t	*wall;
 	//mlx_image_t	*player;
+	mlx_texture_t* texture;
+
+
 	t_vars	vars;
 
 	if (argc != 2)
@@ -86,14 +113,43 @@ int	main(int argc, char **argv)
 	if (!vars.mlx)
 		exit(EXIT_FAILURE);
 	vars.player1 = mlx_new_image(vars.mlx, 12, 12);
-	wall = mlx_new_image(vars.mlx, MAPPIXEL, MAPPIXEL);
-	empty = mlx_new_image(vars.mlx, MAPPIXEL, MAPPIXEL);
-	memset(vars.player1->pixels, 255, vars.player1->width * vars.player1->height * sizeof(int));
-	memset(wall->pixels, 255, wall->width * wall->height * sizeof(int));
-	memset(empty->pixels, 255, empty->width * empty->height * sizeof(int));
-	mlx_image_to_window(vars.mlx, vars.player1, (vars.player.playerX * MAPPIXEL), (vars.player.playerY * MAPPIXEL));
-	mlx_image_to_window(vars.mlx, empty, (0), (0));
-	mlx_image_to_window(vars.mlx, wall, (128), (0));
+	vars.wall = mlx_new_image(vars.mlx, MAPPIXEL, MAPPIXEL);
+	vars.empty = mlx_new_image(vars.mlx, MAPPIXEL, MAPPIXEL);
+	//memset(vars.player1->pixels, 255, vars.player1->width * vars.player1->height * sizeof(int));
+	//memset(vars.wall->pixels, 150, vars.wall->width * vars.wall->height * sizeof(int));
+
+	int i = 0;
+	int k = 0;
+	while (i < 12)
+	{
+		k = 0;
+		while (k < 12)
+		{
+			mlx_put_pixel(vars.player1, k, i, 0x7D2AFA);
+			k++;
+		}
+		i++;
+	}
+	i = 0;
+	k = 0;
+	while (i < 64)
+	{
+		k = 0;
+		while (k < 64)
+		{
+			mlx_put_pixel(vars.wall, k, i, 267833369);
+			k++;
+		}
+		i++;
+	}
+	memset(vars.empty->pixels, 255, vars.empty->width * vars.empty->height * sizeof(int));
+	
+	
+
+	draw_map(&vars);
+	mlx_image_to_window(vars.mlx, vars.player1, (vars.player.playerX * MAPPIXEL + 32), (vars.player.playerY * MAPPIXEL + 32));
+
+
 	mlx_loop_hook(vars.mlx, &hook, &vars);
 	mlx_loop(vars.mlx);
 	mlx_terminate(vars.mlx);

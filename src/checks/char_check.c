@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/26 17:56:21 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/02 13:16:18 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/02 15:29:20 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static bool	check_player_count(t_vars *vars, int i, int k)
 	{
 		pos = vars->map.map[i][k];
 		vars->map.pos = pos;
-		vars->player.playerX = i;
-		vars->player.playerY = k;
+		vars->player.playerX = k;
+		vars->player.playerY = i;
 		return (true);
 	}
 	return (false);
