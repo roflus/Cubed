@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/02 17:17:21 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/02 17:24:42 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,12 @@
 void	hook(void *param)
 {
 	t_vars *vars;
-	
-	// Start Angle begint naar rechts. Geen idee waarom.
+
+	//N = 3*PI/2
+	//S = PI/2
+	//W = PI
+	//E = 0
+
 	vars = param;
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(vars->mlx);
@@ -86,9 +90,9 @@ void	init_vars(t_vars *vars)
 	vars->map.map = NULL;
 	vars->map.pos = 0;
 	vars->map.data = (char **)malloc(7 * sizeof(char *));
+	vars->player.playerAngel = (3*PI/2);
 	vars->player.playdeltaX = cos(vars->player.playerAngel) * 5;
 	vars->player.playdeltaY = sin(vars->player.playerAngel) * 5;
-	vars->player.playerAngel = 0;
 	vars->player.playerX = 0;
 	vars->player.playerY = 0;
 	if (vars->map.data == NULL)
