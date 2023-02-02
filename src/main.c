@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/02 16:36:10 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/02 17:17:21 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,48 @@
 #include <math.h>
 #define WIDTH 1000	
 #define HEIGHT 1000
+#define PI 3.14159265359
 
 void	hook(void *param)
 {
 	t_vars *vars;
 	
-
+	// Start Angle begint naar rechts. Geen idee waarom.
 	vars = param;
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(vars->mlx);
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_UP))
-		vars->player1->instances[0].y -= 5;
+	{
+		vars->player1->instances[0].x += vars->player.playdeltaX;
+		vars->player1->instances[0].y += vars->player.playdeltaY;
+	}
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_DOWN))
-		vars->player1->instances[0].y += 5;
+	{
+		vars->player1->instances[0].x -= vars->player.playdeltaX;
+		vars->player1->instances[0].y -= vars->player.playdeltaY;
+	}
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_LEFT))
-		vars->player1->instances[0].x -= 5;
+	{
+		vars->player.playerAngel -= 0.1;
+		if (vars->player.playerAngel < 0)
+		{
+			vars->player.playerAngel += (2*PI);
+		}
+		vars->player.playdeltaX = cos(vars->player.playerAngel) * 5;
+		vars->player.playdeltaY = sin(vars->player.playerAngel) * 5;
+		printf("This is Angle = %f\n", vars->player.playerAngel);
+	}	
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_RIGHT))
-		vars->player1->instances[0].x += 5;
+	{
+		vars->player.playerAngel += 0.1;
+		if (vars->player.playerAngel > (2*PI))
+		{
+			vars->player.playerAngel -= (2*PI);
+		}
+		vars->player.playdeltaX = cos(vars->player.playerAngel) * 5;
+		vars->player.playdeltaY = sin(vars->player.playerAngel) * 5;
+		printf("This is Angle = %f\n", vars->player.playerAngel);
+	}
 }
 
 bool	arg_check(char **argv)
@@ -61,9 +86,9 @@ void	init_vars(t_vars *vars)
 	vars->map.map = NULL;
 	vars->map.pos = 0;
 	vars->map.data = (char **)malloc(7 * sizeof(char *));
-	vars->player.playdeltaX = 0;
-	vars->player.playdeltaY = 0;
-	vars->player.playerAngel = 90;
+	vars->player.playdeltaX = cos(vars->player.playerAngel) * 5;
+	vars->player.playdeltaY = sin(vars->player.playerAngel) * 5;
+	vars->player.playerAngel = 0;
 	vars->player.playerX = 0;
 	vars->player.playerY = 0;
 	if (vars->map.data == NULL)
