@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/09 13:57:30 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/09 15:01:47 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ void	hook(void *param)
 	//W = PI
 	//E = 0
 
+
+
+	
+
 	vars = param;
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(vars->mlx);
@@ -37,11 +41,15 @@ void	hook(void *param)
 	{
 		vars->player1->instances[0].x += vars->player.playdeltaX;
 		vars->player1->instances[0].y += vars->player.playdeltaY;
+		vars->line1->instances[0].x += vars->player.playdeltaX;
+		vars->line1->instances[0].y += vars->player.playdeltaY;
 	}
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_DOWN))
 	{
 		vars->player1->instances[0].x -= vars->player.playdeltaX;
 		vars->player1->instances[0].y -= vars->player.playdeltaY;
+		vars->line1->instances[0].x -= vars->player.playdeltaX;
+		vars->line1->instances[0].y -= vars->player.playdeltaY;
 	}
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_LEFT))
 	{
@@ -52,8 +60,24 @@ void	hook(void *param)
 		}
 		vars->player.playdeltaX = cos(vars->player.playerAngel) * 5;
 		vars->player.playdeltaY = sin(vars->player.playerAngel) * 5;
-		vars->line->instances[0].x -= vars->player.playdeltaX;
-		vars->line->instances[0].y -= vars->player.playdeltaY;
+		
+		mlx_delete_image(vars->mlx, vars->line1);
+		vars->line1 = mlx_new_image(vars->mlx, 6, 6);
+		
+		int i = 0;
+		int k = 0;
+		while (i < 6)
+		{
+			k = 0;
+			while (k < 6)
+			{
+				mlx_put_pixel(vars->line1, k, i, 0x7D2AFA);
+				k++;
+			}
+			i++;
+		}
+
+		mlx_image_to_window(vars->mlx, vars->line1, (vars->player1->instances[0].x + 6) + (vars->player.playdeltaX * 10), ((vars->player1->instances[0].y + 6) + (vars->player.playdeltaY * 10)));
 		printf("This is Angle = %f\n", vars->player.playerAngel);
 	}	
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_RIGHT))
@@ -63,25 +87,28 @@ void	hook(void *param)
 		{
 			vars->player.playerAngel -= (2*PI);
 		}
+
+		mlx_delete_image(vars->mlx, vars->line1);
+		vars->line1 = mlx_new_image(vars->mlx, 6, 6);
+		
+		int i = 0;
+		int k = 0;
+		while (i < 6)
+		{
+			k = 0;
+			while (k < 6)
+			{
+				mlx_put_pixel(vars->line1, k, i, 0x7D2AFA);
+				k++;
+			}
+			i++;
+		}
+		mlx_image_to_window(vars->mlx, vars->line1, (vars->player1->instances[0].x + 6) + (vars->player.playdeltaX * 10), ((vars->player1->instances[0].y + 6) + (vars->player.playdeltaY * 10)));
+
 		vars->player.playdeltaX = cos(vars->player.playerAngel) * 5;
 		vars->player.playdeltaY = sin(vars->player.playerAngel) * 5;
-		vars->line->instances[0].x += vars->player.playdeltaX;
-		vars->line->instances[0].y += vars->player.playdeltaY;
 		printf("This is Angle = %f\n", vars->player.playerAngel);
 	}
-
-
-	//int i = 0;
-	//while (i < 100)
-	//{
-	//	mlx_put_pixel(vars->line, 0, (i), 0x7D2AFA);
-	//	i++;
-	//}
-
-
-
-
-
 
 }
 
@@ -137,14 +164,8 @@ static void draw_map(t_vars *vars)
 	}
 }
 
-
-
 int	main(int argc, char **argv)
 {
-	//mlx_t	*mlx;
-	//mlx_image_t	*empty;
-	//mlx_image_t	*wall;
-	//mlx_image_t	*player;
 	mlx_texture_t* texture;
 
 
@@ -161,8 +182,6 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	vars.player1 = mlx_new_image(vars.mlx, 12, 12);
 	vars.line = mlx_new_image(vars.mlx, 2, 100);
-	//vars.line1 = mlx_new_image(vars.mlx, 2, 100);
-	//vars.line2 = mlx_new_image(vars.mlx, 2, 100);
 	vars.wall = mlx_new_image(vars.mlx, MAPPIXEL, MAPPIXEL);
 	vars.empty = mlx_new_image(vars.mlx, MAPPIXEL, MAPPIXEL);
 	//memset(vars.player1->pixels, 255, vars.player1->width * vars.player1->height * sizeof(int));
@@ -194,38 +213,19 @@ int	main(int argc, char **argv)
 	}
 	memset(vars.empty->pixels, 255, vars.empty->width * vars.empty->height * sizeof(int));
 	
-	i = 0;
-	while (i < 100)
-	{
-		mlx_put_pixel(vars.line, 0, (i), 0x7D2AFA);
-		i++;
-	}
-
 	//i = 0;
 	//while (i < 100)
 	//{
-	//	mlx_put_pixel(vars.line, (vars.player.playerX + (vars.player.playdeltaX - i)), (vars.player.playerY + (vars.player.playdeltaY - i)), 0x7D2AFA);
+	//	mlx_put_pixel(vars.line, 0, (i), 0x7D2AFA);
 	//	i++;
 	//}
 
+	vars.line1 = mlx_new_image(vars.mlx, 6, 6);
+
+
 	draw_map(&vars);
 	mlx_image_to_window(vars.mlx, vars.player1, (vars.player.playerX * MAPPIXEL + 32), (vars.player.playerY * MAPPIXEL + 32));
-	mlx_image_to_window(vars.mlx, vars.line, (vars.player.playerX * MAPPIXEL + 32), (vars.player.playerY * MAPPIXEL + 32 - 100));
-
-
-	
-	
-
-
-
-
-	
-
-
-
-
-
-
+	//mlx_image_to_window(vars.mlx, vars.line, (vars.player.playerX * MAPPIXEL + 32), (vars.player.playerY * MAPPIXEL + 32 - 100));
 
 	mlx_loop_hook(vars.mlx, &hook, &vars);
 	mlx_loop(vars.mlx);
