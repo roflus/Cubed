@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/09 15:01:47 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/09 18:13:03 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ void	hook(void *param)
 	//S = PI/2
 	//W = PI
 	//E = 0
-
-
-
-	
-
 	vars = param;
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(vars->mlx);
@@ -41,15 +36,24 @@ void	hook(void *param)
 	{
 		vars->player1->instances[0].x += vars->player.playdeltaX;
 		vars->player1->instances[0].y += vars->player.playdeltaY;
-		vars->line1->instances[0].x += vars->player.playdeltaX;
-		vars->line1->instances[0].y += vars->player.playdeltaY;
+		int i = 0;
+		while (i < 4)
+		{
+			vars->line1->instances[i].x += vars->player.playdeltaX;
+			vars->line1->instances[i].y += vars->player.playdeltaY;
+			i++;
+		}
 	}
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_DOWN))
 	{
 		vars->player1->instances[0].x -= vars->player.playdeltaX;
 		vars->player1->instances[0].y -= vars->player.playdeltaY;
-		vars->line1->instances[0].x -= vars->player.playdeltaX;
-		vars->line1->instances[0].y -= vars->player.playdeltaY;
+		int i = 0;
+		while (i < 4)
+		{
+			vars->line1->instances[i].x -= vars->player.playdeltaX;
+			vars->line1->instances[i].y -= vars->player.playdeltaY;
+		}
 	}
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_LEFT))
 	{
@@ -76,9 +80,13 @@ void	hook(void *param)
 			}
 			i++;
 		}
-
-		mlx_image_to_window(vars->mlx, vars->line1, (vars->player1->instances[0].x + 6) + (vars->player.playdeltaX * 10), ((vars->player1->instances[0].y + 6) + (vars->player.playdeltaY * 10)));
-		printf("This is Angle = %f\n", vars->player.playerAngel);
+		i = 0;
+		while (i < 4)
+		{
+			mlx_image_to_window(vars->mlx, vars->line1, (vars->player1->instances[0].x + 6) + (vars->player.playdeltaX * (5 + (i * 5))), ((vars->player1->instances[0].y + 6) + (vars->player.playdeltaY * (5 + (i * 5)))));
+			i++;
+		}
+		//printf("This is Angle = %f\n", vars->player.playerAngel);
 	}	
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_RIGHT))
 	{
@@ -89,8 +97,9 @@ void	hook(void *param)
 		}
 
 		mlx_delete_image(vars->mlx, vars->line1);
-		vars->line1 = mlx_new_image(vars->mlx, 6, 6);
-		
+		vars->line1 = mlx_new_image(vars->mlx, 1000, 1000);
+		vars->player.playdeltaX = cos(vars->player.playerAngel) * 5;
+		vars->player.playdeltaY = sin(vars->player.playerAngel) * 5;
 		int i = 0;
 		int k = 0;
 		while (i < 6)
@@ -103,13 +112,13 @@ void	hook(void *param)
 			}
 			i++;
 		}
-		mlx_image_to_window(vars->mlx, vars->line1, (vars->player1->instances[0].x + 6) + (vars->player.playdeltaX * 10), ((vars->player1->instances[0].y + 6) + (vars->player.playdeltaY * 10)));
-
-		vars->player.playdeltaX = cos(vars->player.playerAngel) * 5;
-		vars->player.playdeltaY = sin(vars->player.playerAngel) * 5;
-		printf("This is Angle = %f\n", vars->player.playerAngel);
+		i = 0;
+		while (i < 4)
+		{
+			mlx_image_to_window(vars->mlx, vars->line1, (vars->player1->instances[0].x + 6) + (vars->player.playdeltaX * (5 + (i * 5))), ((vars->player1->instances[0].y + 6) + (vars->player.playdeltaY * (5 + (i * 5)))));
+			i++;
+		}
 	}
-
 }
 
 bool	arg_check(char **argv)
@@ -167,8 +176,6 @@ static void draw_map(t_vars *vars)
 int	main(int argc, char **argv)
 {
 	mlx_texture_t* texture;
-
-
 	t_vars	vars;
 
 	if (argc != 2)
@@ -184,8 +191,9 @@ int	main(int argc, char **argv)
 	vars.line = mlx_new_image(vars.mlx, 2, 100);
 	vars.wall = mlx_new_image(vars.mlx, MAPPIXEL, MAPPIXEL);
 	vars.empty = mlx_new_image(vars.mlx, MAPPIXEL, MAPPIXEL);
+	memset(vars.empty->pixels, 255, vars.empty->width * vars.empty->height * sizeof(int));
 	//memset(vars.player1->pixels, 255, vars.player1->width * vars.player1->height * sizeof(int));
-	//memset(vars.wall->pixels, 150, vars.wall->width * vars.wall->height * sizeof(int));
+	draw_map(&vars);
 
 	int i = 0;
 	int k = 0;
@@ -211,21 +219,27 @@ int	main(int argc, char **argv)
 		}
 		i++;
 	}
-	memset(vars.empty->pixels, 255, vars.empty->width * vars.empty->height * sizeof(int));
-	
-	//i = 0;
-	//while (i < 100)
-	//{
-	//	mlx_put_pixel(vars.line, 0, (i), 0x7D2AFA);
-	//	i++;
-	//}
-
 	vars.line1 = mlx_new_image(vars.mlx, 6, 6);
 
-
-	draw_map(&vars);
+	i = 0;
+	k = 0;
+	while (i < 6)
+	{
+		k = 0;
+		while (k < 6)
+		{
+			mlx_put_pixel(vars.line1, k, i, 0x7D2AFA);
+			k++;
+		}
+		i++;
+	}
 	mlx_image_to_window(vars.mlx, vars.player1, (vars.player.playerX * MAPPIXEL + 32), (vars.player.playerY * MAPPIXEL + 32));
-	//mlx_image_to_window(vars.mlx, vars.line, (vars.player.playerX * MAPPIXEL + 32), (vars.player.playerY * MAPPIXEL + 32 - 100));
+	i = 0;
+	while (i < 4)
+	{
+		mlx_image_to_window(vars.mlx, vars.line1, (vars.player1->instances[0].x + 6) + (vars.player.playdeltaX * (5 + (i * 5))), ((vars.player1->instances[0].y + 6) + (vars.player.playdeltaY * (5 + (i * 5)))));
+		i++;
+	}
 
 	mlx_loop_hook(vars.mlx, &hook, &vars);
 	mlx_loop(vars.mlx);
