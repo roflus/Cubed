@@ -26,7 +26,7 @@ OBJ = $(SRC:%.c=%.o)
 
 all: $(NAME)
 $(NAME): $(MLX_LIB) $(LIBFT) $(OBJ)
-	gcc  $(OBJ) $(INC) $(MLX_LIB) -fsanitize=address -lglfw3 $(LIBFT) $(LFLAGS) -o $(NAME) 
+	gcc  $(OBJ) $(INC) $(MLX_LIB) -lglfw3 $(LIBFT) $(LFLAGS) -o $(NAME) 
 
 %.o: %.c
 	gcc  $(INC) -c $< -o $@

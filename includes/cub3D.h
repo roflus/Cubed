@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/02 16:34:53 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/09 13:49:33 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ typedef struct s_vars
 	mlx_image_t	*player1;
 	mlx_image_t	*empty;
 	mlx_image_t	*wall;
+	mlx_image_t	*line;
+	//mlx_image_t	*line1;
+	//mlx_image_t	*line2;
 
 
 	t_map		map;
