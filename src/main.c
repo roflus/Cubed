@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   main.c                                             :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
+/*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/09 18:13:03 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/10 16:28:22 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,15 @@ static void draw_map(t_vars *vars)
 	}
 }
 
+void	test_textures(t_vars *vars)
+{
+	mlx_image_to_window(vars->mlx, vars->walls.north_img, 0, 0);
+	mlx_image_to_window(vars->mlx, vars->walls.east_img, 20, 20);
+	mlx_image_to_window(vars->mlx, vars->walls.south_img, 10, 10);
+	mlx_image_to_window(vars->mlx, vars->walls.west_img, 30, 30);
+}
+
+
 int	main(int argc, char **argv)
 {
 	mlx_texture_t* texture;
@@ -187,6 +196,8 @@ int	main(int argc, char **argv)
 	vars.mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
 	if (!vars.mlx)
 		exit(EXIT_FAILURE);
+	get_textures(&vars);
+	test_textures(&vars);
 	vars.player1 = mlx_new_image(vars.mlx, 12, 12);
 	vars.line = mlx_new_image(vars.mlx, 2, 100);
 	vars.wall = mlx_new_image(vars.mlx, MAPPIXEL, MAPPIXEL);

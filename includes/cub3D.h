@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   cub3D.h                                            :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
+/*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/09 14:41:51 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/10 16:07:58 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,17 @@ typedef struct s_player
 	float playerAngel;
 }	t_player;
 
+typedef struct s_walls
+{
+	mlx_image_t		*north_img;
+	mlx_image_t		*east_img;
+	mlx_image_t		*south_img;
+	mlx_image_t		*west_img;
+	mlx_texture_t	*north_t;
+	mlx_texture_t	*east_t;
+	mlx_texture_t	*south_t;
+	mlx_texture_t	*west_t;
+}	t_walls;
 
 typedef struct s_vars
 {
@@ -49,11 +60,20 @@ typedef struct s_vars
 	mlx_image_t	*line;
 	mlx_image_t	*line1;
 
-
+	t_walls		walls;
 	t_map		map;
 	t_player	player;
 }	t_vars;
 
+
+/*-------------------------------open_file.c----------------------------*/
+
+/**
+ * @brief Get the textures object for every cardinal.
+ * 
+ * @param vars 
+ */
+void	get_textures(t_vars *vars);
 /*-------------------------------open_file.c----------------------------*/
 
 /**
