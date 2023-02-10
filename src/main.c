@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/10 16:28:22 by rharing       ########   odam.nl         */
+/*   Updated: 2023/02/10 16:34:47 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,8 +177,8 @@ void	test_textures(t_vars *vars)
 {
 	mlx_image_to_window(vars->mlx, vars->walls.north_img, 0, 0);
 	mlx_image_to_window(vars->mlx, vars->walls.east_img, 20, 20);
-	mlx_image_to_window(vars->mlx, vars->walls.south_img, 10, 10);
-	mlx_image_to_window(vars->mlx, vars->walls.west_img, 30, 30);
+	mlx_image_to_window(vars->mlx, vars->walls.south_img, 40, 40);
+	mlx_image_to_window(vars->mlx, vars->walls.west_img, 60, 60);
 }
 
 
@@ -197,7 +197,7 @@ int	main(int argc, char **argv)
 	if (!vars.mlx)
 		exit(EXIT_FAILURE);
 	get_textures(&vars);
-	test_textures(&vars);
+	// test_textures(&vars);
 	vars.player1 = mlx_new_image(vars.mlx, 12, 12);
 	vars.line = mlx_new_image(vars.mlx, 2, 100);
 	vars.wall = mlx_new_image(vars.mlx, MAPPIXEL, MAPPIXEL);
@@ -251,6 +251,7 @@ int	main(int argc, char **argv)
 		mlx_image_to_window(vars.mlx, vars.line1, (vars.player1->instances[0].x + 6) + (vars.player.playdeltaX * (5 + (i * 5))), ((vars.player1->instances[0].y + 6) + (vars.player.playdeltaY * (5 + (i * 5)))));
 		i++;
 	}
+	test_textures(&vars);
 
 	mlx_loop_hook(vars.mlx, &hook, &vars);
 	mlx_loop(vars.mlx);

@@ -1,7 +1,7 @@
-NO ./textures/green_empty.png
-SO ./textures/green_empty.png
 WE ./textures/green_empty.png
-EA ./textures/green_empty.png
+SO ./textures/dog.png
+EA ./textures/Grass.png
+NO ./textures/Bone.png
 
 F 220,100,0
 C 225,30,0
