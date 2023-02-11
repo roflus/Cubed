@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   main.c                                             :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rharing <rharing@student.42.fr>              +#+                     */
+/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/10 16:34:47 by rharing       ########   odam.nl         */
+/*   Updated: 2023/02/11 10:35:50 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	hook(void *param)
 		vars->player1->instances[0].x += vars->player.playdeltaX;
 		vars->player1->instances[0].y += vars->player.playdeltaY;
 		int i = 0;
-		while (i < 4)
+		while (i < vars->inst_len)
 		{
 			vars->line1->instances[i].x += vars->player.playdeltaX;
 			vars->line1->instances[i].y += vars->player.playdeltaY;
@@ -49,7 +49,7 @@ void	hook(void *param)
 		vars->player1->instances[0].x -= vars->player.playdeltaX;
 		vars->player1->instances[0].y -= vars->player.playdeltaY;
 		int i = 0;
-		while (i < 4)
+		while (i < vars->inst_len)
 		{
 			vars->line1->instances[i].x -= vars->player.playdeltaX;
 			vars->line1->instances[i].y -= vars->player.playdeltaY;
@@ -81,7 +81,7 @@ void	hook(void *param)
 			i++;
 		}
 		i = 0;
-		while (i < 4)
+		while (i < vars->inst_len)
 		{
 			mlx_image_to_window(vars->mlx, vars->line1, (vars->player1->instances[0].x + 6) + (vars->player.playdeltaX * (5 + (i * 5))), ((vars->player1->instances[0].y + 6) + (vars->player.playdeltaY * (5 + (i * 5)))));
 			i++;
@@ -113,7 +113,7 @@ void	hook(void *param)
 			i++;
 		}
 		i = 0;
-		while (i < 4)
+		while (i < vars->inst_len)
 		{
 			mlx_image_to_window(vars->mlx, vars->line1, (vars->player1->instances[0].x + 6) + (vars->player.playdeltaX * (5 + (i * 5))), ((vars->player1->instances[0].y + 6) + (vars->player.playdeltaY * (5 + (i * 5)))));
 			i++;
@@ -136,7 +136,7 @@ bool	arg_check(char **argv)
 
 void	init_vars(t_vars *vars)
 {
-	vars->test = 0;
+	vars->inst_len = 0;
 	vars->playercount = 0;
 	vars->map.array_count = 0;
 	vars->map.data = NULL;
@@ -199,7 +199,6 @@ int	main(int argc, char **argv)
 	get_textures(&vars);
 	// test_textures(&vars);
 	vars.player1 = mlx_new_image(vars.mlx, 12, 12);
-	vars.line = mlx_new_image(vars.mlx, 2, 100);
 	vars.wall = mlx_new_image(vars.mlx, MAPPIXEL, MAPPIXEL);
 	vars.empty = mlx_new_image(vars.mlx, MAPPIXEL, MAPPIXEL);
 	memset(vars.empty->pixels, 255, vars.empty->width * vars.empty->height * sizeof(int));
@@ -246,7 +245,10 @@ int	main(int argc, char **argv)
 	}
 	mlx_image_to_window(vars.mlx, vars.player1, (vars.player.playerX * MAPPIXEL + 32), (vars.player.playerY * MAPPIXEL + 32));
 	i = 0;
-	while (i < 4)
+	vars.inst_len = 5;
+
+
+	while (i < vars.inst_len)
 	{
 		mlx_image_to_window(vars.mlx, vars.line1, (vars.player1->instances[0].x + 6) + (vars.player.playdeltaX * (5 + (i * 5))), ((vars.player1->instances[0].y + 6) + (vars.player.playdeltaY * (5 + (i * 5)))));
 		i++;

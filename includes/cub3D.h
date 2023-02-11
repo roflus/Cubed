@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   cub3D.h                                            :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rharing <rharing@student.42.fr>              +#+                     */
+/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/10 16:07:58 by rharing       ########   odam.nl         */
+/*   Updated: 2023/02/11 10:33:42 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,12 @@ typedef struct s_walls
 
 typedef struct s_vars
 {
-	int			test;
+	int			inst_len;
 	int			playercount;
 	mlx_t		*mlx;
 	mlx_image_t	*player1;
 	mlx_image_t	*empty;
 	mlx_image_t	*wall;
-	mlx_image_t	*line;
 	mlx_image_t	*line1;
 
 	t_walls		walls;
