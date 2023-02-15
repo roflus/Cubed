@@ -6,15 +6,15 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/19 13:58:19 by rharing       #+#    #+#                 */
-/*   Updated: 2022/05/12 19:16:40 by rharing       ########   odam.nl         */
+/*   Updated: 2023/02/15 16:08:00 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-long	ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int		count;
-	long	res;
-	long	neg_num;
+	int		res;
+	int		neg_num;
 
 	count = 0;
 	res = 0;

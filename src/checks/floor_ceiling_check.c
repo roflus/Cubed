@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   floor_ceiling_check.c                              :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
+/*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/15 14:11:38 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/02/15 14:11:39 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/15 16:03:06 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	check_fcdata(char *string)
 		}
 		k++;
 	}
-	if (count != 2)
+	if (count != 2 || k > 13)
 		return (false);
 	return (true);
 }

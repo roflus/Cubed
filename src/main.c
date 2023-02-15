@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   main.c                                             :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
+/*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/15 14:32:16 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/15 16:31:05 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ void	init_vars(t_vars *vars)
 	vars->map.map = NULL;
 	vars->map.pos = 0;
 	vars->map.data = (char **)malloc(7 * sizeof(char *));
-	vars->player.playerAngel = (3*PI/2);
+	vars->player.playerAngel = (0);
 	vars->player.playdeltaX = cos(vars->player.playerAngel) * 5;
 	vars->player.playdeltaY = sin(vars->player.playerAngel) * 5;
 	vars->player.playerX = 0;
@@ -201,6 +201,8 @@ int	main(int argc, char **argv)
 	if (!vars.mlx)
 		exit(EXIT_FAILURE);
 	get_textures(&vars);
+	get_colors(&vars);
+
 	// test_textures(&vars);
 	vars.player1 = mlx_new_image(vars.mlx, 12, 12);
 	vars.wall = mlx_new_image(vars.mlx, MAPPIXEL, MAPPIXEL);
@@ -268,14 +270,14 @@ int	main(int argc, char **argv)
 
 	int x_start = (vars.player1->instances[0].x + 6);
 	int y_start = (vars.player1->instances[0].y + 6);
-	int x_end = (vars.line1->instances[0].x);
-	int y_end = (vars.line1->instances[0].y);
+	int x_end = (vars.line1->instances[2].x);
+	int y_end = (vars.line1->instances[2].y);
 
 	//int x_end = (vars.player1->instances[0].x + 6) + (vars.player.playdeltaX * (5 + (2 * 5)));
 	//int y_end = (vars.player1->instances[0].y + 6) + (vars.player.playdeltaY * (5 + (2 * 5)));
 
-	drawline(128, 64, \
-				192, 128, &vars);
+	// drawline(128, 64, \
+	// 			192, 128, &vars);
 
 
 	printf("This is XSTART = %d\n", x_start);
@@ -286,8 +288,8 @@ int	main(int argc, char **argv)
 	drawline(x_start, y_start, \
 				x_end, y_end, &vars);
 
-	//drawline(294, 230, \
-	//			294, 205, &vars);
+	// drawline(128, 64, \
+	// 			130, 128, &vars);
 
 
 
