@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/15 18:34:51 by rharing       ########   odam.nl         */
+/*   Updated: 2023/02/15 18:45:52 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	hook(void *param)
 		vars->player.playdeltaY = sin(vars->player.playerAngel) * 5;
 		
 		mlx_delete_image(vars->mlx, vars->line1);
+		mlx_delete_image(vars->mlx, vars->linepixel);
 		vars->line1 = mlx_new_image(vars->mlx, 6, 6);
 		
 		int i = 0;
@@ -86,7 +87,15 @@ void	hook(void *param)
 			mlx_image_to_window(vars->mlx, vars->line1, (vars->player1->instances[0].x + 6) + (vars->player.playdeltaX * (5 + (i * 5))), ((vars->player1->instances[0].y + 6) + (vars->player.playdeltaY * (5 + (i * 5)))));
 			i++;
 		}
-		//printf("This is Angle = %f\n", vars->player.playerAngel);
+		vars->linepixel = mlx_new_image(vars->mlx, 1, 1);
+		mlx_put_pixel(vars->linepixel, 0, 0, 0x7D2AFA);
+		int x_start = (vars->player1->instances[0].x + 6);
+		int y_start = (vars->player1->instances[0].y + 6);
+		int x_end = (vars->line1->instances[2].x);
+		int y_end = (vars->line1->instances[2].y);
+
+		drawline(x_start, y_start, \
+					x_end, y_end, vars);
 	}	
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_RIGHT))
 	{
@@ -119,6 +128,16 @@ void	hook(void *param)
 			mlx_image_to_window(vars->mlx, vars->line1, (vars->player1->instances[0].x + 6) + (vars->player.playdeltaX * (5 + (i * 5))), ((vars->player1->instances[0].y + 6) + (vars->player.playdeltaY * (5 + (i * 5)))));
 			i++;
 		}
+		vars->linepixel = mlx_new_image(vars->mlx, 1, 1);
+		mlx_put_pixel(vars->linepixel, 0, 0, 0x7D2AFA);
+		int x_start = (vars->player1->instances[0].x + 6);
+		int y_start = (vars->player1->instances[0].y + 6);
+		int x_end = (vars->line1->instances[2].x);
+		int y_end = (vars->line1->instances[2].y);
+
+		drawline(x_start, y_start, \
+					x_end, y_end, vars);
+
 	}
 }
 

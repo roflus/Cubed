@@ -12,19 +12,6 @@
 
 #include "cub3D.h"
 
-void	freesplit(char **split)
-{
-	int	i;
-
-	i = 0;
-	while (split[i] != NULL)
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
-}
-
 char	*get_ceiling(t_vars *vars)
 {
 	int		i;
@@ -81,6 +68,11 @@ void	ceiling_atoi(t_vars *vars, char *ceiling)
 	vars->ceiling_rgb[2] = ft_atoi(temp[2]);
 	free(ceiling);
 	freesplit(temp);
+	if (check_ceiling_intsize(vars) == false)
+	{
+		free(vars->ceiling_rgb);
+		ft_error("color int size is wrong", 3);
+	}
 }
 
 void	floor_atoi(t_vars *vars, char *floor)
@@ -101,6 +93,11 @@ void	floor_atoi(t_vars *vars, char *floor)
 	vars->floor_rgb[2] = ft_atoi(temp[2]);
 	free(floor);
 	freesplit(temp);
+	if (check_floor_intsize(vars) == false)
+	{
+		free(vars->floor_rgb);
+		ft_error("color int size is wrong", 3);
+	}
 }
 
 void	get_colors(t_vars *vars)

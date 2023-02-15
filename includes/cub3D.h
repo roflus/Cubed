@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/15 16:46:19 by rharing       ########   odam.nl         */
+/*   Updated: 2023/02/15 19:01:36 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	int playerX;
-	int playerY;
-	float playdeltaX;
-	float playdeltaY;
-	float playerAngel;
+	int		playerX;
+	int		playerY;
+	float	playdeltaX;
+	float	playdeltaY;
+	float	playerAngel;
 }	t_player;
 
 typedef struct s_walls
@@ -67,10 +67,11 @@ typedef struct s_vars
 	t_player	player;
 }	t_vars;
 
-
 /*-------------------------------open_file.c----------------------------*/
 
-void    get_colors(t_vars *vars);
+void	get_colors(t_vars *vars);
+bool	check_floor_intsize(t_vars *vars);
+bool	check_ceiling_intsize(t_vars *vars);
 
 /**
  * @brief Get the textures object for every cardinal.

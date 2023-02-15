@@ -6,11 +6,35 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/15 14:11:38 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/02/15 16:03:06 by rharing       ########   odam.nl         */
+/*   Updated: 2023/02/15 19:01:21 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+bool	check_ceiling_intsize(t_vars *vars)
+{
+	if (vars->ceiling_rgb[0] > 255 || vars->ceiling_rgb[0] < 0)
+		return (false);
+	if (vars->ceiling_rgb[1] > 255 || vars->ceiling_rgb[1] < 0)
+		return (false);
+	if (vars->ceiling_rgb[2] > 255 || vars->ceiling_rgb[2] < 0)
+		return (false);
+	else
+		return (true);
+}
+
+bool	check_floor_intsize(t_vars *vars)
+{
+	if (vars->floor_rgb[0] > 255 || vars->floor_rgb[0] < 0)
+		return (false);
+	if (vars->floor_rgb[1] > 255 || vars->floor_rgb[1] < 0)
+		return (false);
+	if (vars->floor_rgb[2] > 255 || vars->floor_rgb[2] < 0)
+		return (false);
+	else
+		return (true);
+}
 
 bool	check_fcdata(char *string)
 {
