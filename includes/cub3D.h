@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/15 16:29:53 by rharing       ########   odam.nl         */
+/*   Updated: 2023/02/15 16:46:19 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct s_vars
 {
 	int			inst_len;
 	int			playercount;
+	int			*ceiling_rgb;
+	int			*floor_rgb;
 	mlx_t		*mlx;
 	mlx_image_t	*player1;
 	mlx_image_t	*empty;
