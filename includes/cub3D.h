@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/11 10:33:42 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/15 13:52:09 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_vars
 	mlx_image_t	*empty;
 	mlx_image_t	*wall;
 	mlx_image_t	*line1;
+	mlx_image_t	*linepixel;
 
 	t_walls		walls;
 	t_map		map;
@@ -209,5 +210,7 @@ bool	check_first_last(t_vars *vars);
 /*-------------------------------DELETEWHENFINISHED--------------------------*/
 void	print_mapdata(t_vars *vars);
 void	print_map(t_vars *vars);
+
+void drawline(int x_start, int y_start, int x_end, int y_end, t_vars *vars);
 
 #endif

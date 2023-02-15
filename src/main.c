@@ -6,12 +6,11 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/11 10:35:50 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/15 14:10:57 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -53,6 +52,7 @@ void	hook(void *param)
 		{
 			vars->line1->instances[i].x -= vars->player.playdeltaX;
 			vars->line1->instances[i].y -= vars->player.playdeltaY;
+			i++;
 		}
 	}
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_LEFT))
@@ -118,6 +118,10 @@ void	hook(void *param)
 			mlx_image_to_window(vars->mlx, vars->line1, (vars->player1->instances[0].x + 6) + (vars->player.playdeltaX * (5 + (i * 5))), ((vars->player1->instances[0].y + 6) + (vars->player.playdeltaY * (5 + (i * 5)))));
 			i++;
 		}
+
+		//drawline(vars->player1->instances[0].x, vars->player1->instances[0].y, \
+		//		vars->player1->instances[1].x, vars->player1->instances[1].y, vars);
+
 	}
 }
 
@@ -245,15 +249,31 @@ int	main(int argc, char **argv)
 	}
 	mlx_image_to_window(vars.mlx, vars.player1, (vars.player.playerX * MAPPIXEL + 32), (vars.player.playerY * MAPPIXEL + 32));
 	i = 0;
-	vars.inst_len = 5;
-
-
+	vars.inst_len = 3;
 	while (i < vars.inst_len)
 	{
-		mlx_image_to_window(vars.mlx, vars.line1, (vars.player1->instances[0].x + 6) + (vars.player.playdeltaX * (5 + (i * 5))), ((vars.player1->instances[0].y + 6) + (vars.player.playdeltaY * (5 + (i * 5)))));
+		mlx_image_to_window(vars.mlx, vars.line1, (vars.player1->instances[0].x + 6) + (vars.player.playdeltaX * (5 + (i * 5))), \
+			((vars.player1->instances[0].y + 6) + (vars.player.playdeltaY * (5 + (i * 5)))));
 		i++;
 	}
 	test_textures(&vars);
+
+	vars.linepixel = mlx_new_image(vars.mlx, 1, 1);
+	mlx_put_pixel(vars.linepixel, 0, 0, 0x7D2AFA);
+
+
+	int x_start = (vars.player1->instances[0].x + 6) + (vars.player.playdeltaX * (5));
+	int y_start = (vars.player1->instances[0].y + 6) + (vars.player.playdeltaY * (5));
+	int x_end = (vars.player1->instances[0].x + 6) + (vars.player.playdeltaX * (5 + (2 * 5)));
+	int y_end = (vars.player1->instances[0].y + 6) + (vars.player.playdeltaY * (5 + (2 * 5)));
+
+	//drawline(50, 250, \
+	//			255, 270, &vars);
+
+	drawline(x_start, y_start, \
+				x_end, y_end, &vars);
+
+
 
 	mlx_loop_hook(vars.mlx, &hook, &vars);
 	mlx_loop(vars.mlx);
