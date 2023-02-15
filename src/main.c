@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/15 14:10:57 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/15 14:32:16 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,16 +262,32 @@ int	main(int argc, char **argv)
 	mlx_put_pixel(vars.linepixel, 0, 0, 0x7D2AFA);
 
 
-	int x_start = (vars.player1->instances[0].x + 6) + (vars.player.playdeltaX * (5));
-	int y_start = (vars.player1->instances[0].y + 6) + (vars.player.playdeltaY * (5));
-	int x_end = (vars.player1->instances[0].x + 6) + (vars.player.playdeltaX * (5 + (2 * 5)));
-	int y_end = (vars.player1->instances[0].y + 6) + (vars.player.playdeltaY * (5 + (2 * 5)));
+	//int x_start = (vars.player1->instances[0].x + 6) + (vars.player.playdeltaX * (5));
+	//int y_start = (vars.player1->instances[0].y + 6) + (vars.player.playdeltaY * (5));
+	
 
-	//drawline(50, 250, \
-	//			255, 270, &vars);
+	int x_start = (vars.player1->instances[0].x + 6);
+	int y_start = (vars.player1->instances[0].y + 6);
+	int x_end = (vars.line1->instances[0].x);
+	int y_end = (vars.line1->instances[0].y);
+
+	//int x_end = (vars.player1->instances[0].x + 6) + (vars.player.playdeltaX * (5 + (2 * 5)));
+	//int y_end = (vars.player1->instances[0].y + 6) + (vars.player.playdeltaY * (5 + (2 * 5)));
+
+	drawline(128, 64, \
+				192, 128, &vars);
+
+
+	printf("This is XSTART = %d\n", x_start);
+	printf("This is YSTART = %d\n", y_start);
+	printf("This is XEND = %d\n", x_end);
+	printf("This is YEND = %d\n", y_end);
 
 	drawline(x_start, y_start, \
 				x_end, y_end, &vars);
+
+	//drawline(294, 230, \
+	//			294, 205, &vars);
 
 
 
