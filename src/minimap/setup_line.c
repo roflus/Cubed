@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/20 13:12:59 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/02/20 14:49:54 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/20 14:54:31 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,6 @@ void create_points_line(t_vars *vars)
     vars->line1 = mlx_new_image(vars->mlx, 6, 6);
     draw_point_on_map(vars);
 	set_point_on_map(vars);
+	vars->linepixel = mlx_new_image(vars->mlx, 1, 1);
+	mlx_put_pixel(vars->linepixel, 0, 0, 0x7D2AFA);
 }

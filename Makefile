@@ -10,22 +10,23 @@ MINIMAP_DIR = ./src/minimap/
 FLAGS = -Wall -Werror -Wextra -g 
 LFLAGS = -framework Cocoa -framework OpenGL -framework IOKit
 INC = -I ./includes -I $(MLX_DIR)/include -I $(LIBFT_DIR) -I $(GNL_DIR)
-SRC = ./src/main.c \
-	$(PARSER_DIR)get_colors.c \
-	$(PARSER_DIR)get_textures.c \
-	$(PARSER_DIR)open_file.c \
-	$(PARSER_DIR)parse_data.c \
-	$(PARSER_DIR)parse_map.c \
-	$(CHECK_DIR)cardinal_check.c \
-	$(CHECK_DIR)char_check.c \
-	$(CHECK_DIR)floor_ceiling_check.c \
-	$(CHECK_DIR)map_check.c \
-	$(CHECK_DIR)walls_check.c \
-	$(GNL_DIR)get_next_line.c \
-	$(GNL_DIR)get_next_line_utils.c \
-	$(MINIMAP_DIR)setup_line.c \
-	$(MINIMAP_DIR)draw_line.c \
-	$(MINIMAP_DIR)init_minimap.c \
+SRC =	./src/main.c \
+	 	./src/init_structs.c \
+		$(PARSER_DIR)get_colors.c \
+		$(PARSER_DIR)get_textures.c \
+		$(PARSER_DIR)open_file.c \
+		$(PARSER_DIR)parse_data.c \
+		$(PARSER_DIR)parse_map.c \
+		$(CHECK_DIR)cardinal_check.c \
+		$(CHECK_DIR)char_check.c \
+		$(CHECK_DIR)floor_ceiling_check.c \
+		$(CHECK_DIR)map_check.c \
+		$(CHECK_DIR)walls_check.c \
+		$(GNL_DIR)get_next_line.c \
+		$(GNL_DIR)get_next_line_utils.c \
+		$(MINIMAP_DIR)setup_line.c \
+		$(MINIMAP_DIR)draw_line.c \
+		$(MINIMAP_DIR)init_minimap.c \
 	./src/printDELETEWHENFINISHED/printstuff.c
 
 OBJ = $(SRC:%.c=%.o)

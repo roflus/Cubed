@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/20 13:25:43 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/20 15:19:22 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,21 @@ typedef struct s_map
 	char	**data;
 	char	**map;
 }	t_map;
+
+typedef struct s_line
+{
+	int x_start;
+	int x_end;
+	int y_start;
+	int y_end;
+	int diffx;
+    int diffy;
+    int boundary;
+    int current_x;
+    int current_y;
+    int increase_x;
+    int increase_y;
+}	t_line;
 
 typedef struct s_player
 {
@@ -70,6 +85,7 @@ typedef struct s_vars
 	t_walls		walls;
 	t_map		map;
 	t_player	player;
+	t_line		line;
 }	t_vars;
 
 /*-------------------------------open_file.c----------------------------*/
@@ -221,15 +237,19 @@ bool	check_first_last(t_vars *vars);
 void	print_mapdata(t_vars *vars);
 void	print_map(t_vars *vars);
 
+//init_structs
+void	init_vars(t_vars *vars);
+
 
 //init_minimap
-void draw_map(t_vars *vars);
-void create_images_minimap(t_vars *vars);
+void 	draw_map(t_vars *vars);
+void 	create_images_minimap(t_vars *vars);
 
 //setup
-void create_points_line(t_vars *vars);
+void 	create_points_line(t_vars *vars);
 
 //drawline
-void drawline(int x_start, int y_start, int x_end, int y_end, t_vars *vars);
+void 	set_line_start_end(t_vars *vars);
+void 	drawline(t_vars *vars);
 
 #endif

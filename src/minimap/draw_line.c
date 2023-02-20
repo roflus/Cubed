@@ -6,13 +6,13 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/20 13:07:14 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/02/20 13:07:35 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/20 15:13:03 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-// Kleine maken
+// Kleiner maken
 // Delete line per keer
 // Controleren op out of bounces for map/widht/height
 
@@ -31,41 +31,37 @@ static int dir_axis(int start, int end)
         return (-1);
 }
 
-void drawline(int x_start, int y_start, int x_end, int y_end, t_vars *vars)
+void set_line_start_end(t_vars *vars)
 {
-    int diffx;
-    int diffy;
-    int boundary;
-    int current_x;
-    int current_y;
-    int increase_x;
-    int increase_y;
+    vars->line.x_start = (vars->player1->instances[0].x + 6);
+	vars->line.y_start = (vars->player1->instances[0].y + 6);
+	vars->line.x_end = (vars->line1->instances[(vars->inst_len) - 1].x);
+	vars->line.y_end = (vars->line1->instances[(vars->inst_len) - 1].y);
+}
 
-
-    diffx = make_int_positive(x_start - x_end);
-    diffy = make_int_positive(y_start - y_end);
-    increase_x = dir_axis(x_start, x_end);
-    increase_y = dir_axis(y_start, y_end);
-
-    current_x = x_end;
-    current_y = y_end;
-
-    boundary = 2 * (diffy - diffx);
-
+void drawline(t_vars *vars)
+{
+    vars->line.diffx = make_int_positive(vars->line.x_start - vars->line.x_end);
+    vars->line.diffy = make_int_positive(vars->line.y_start - vars->line.y_end);
+    vars->line.increase_x = dir_axis(vars->line.x_start, vars->line.x_end);
+    vars->line.increase_y = dir_axis(vars->line.y_start, vars->line.y_end);
+    vars->line.current_x = vars->line.x_end;
+    vars->line.current_y = vars->line.y_end;
+    vars->line.boundary = 2 * (vars->line.diffy - vars->line.diffx);
     while (1)
     {
-        mlx_image_to_window(vars->mlx, vars->linepixel, current_x, current_y);
-        if (current_x == x_start && current_y == y_start)
+        mlx_image_to_window(vars->mlx, vars->linepixel, vars->line.current_x, vars->line.current_y);
+        if (vars->line.current_x == vars->line.x_start && vars->line.current_y == vars->line.y_start)
             break;
-        if (boundary >= 0)
+        if (vars->line.boundary >= 0)
         {
-            current_y += increase_y;
-            boundary -= 2 * diffx;
+            vars->line.current_y += vars->line.increase_y;
+            vars->line.boundary -= 2 * vars->line.diffx;
         }
-        if (boundary < 0)
+        if (vars->line.boundary < 0)
         {
-            current_x += increase_x;
-            boundary += 2 * diffy;
+            vars->line.current_x += vars->line.increase_x;
+            vars->line.boundary += 2 * vars->line.diffy;
         }
     }
 }
