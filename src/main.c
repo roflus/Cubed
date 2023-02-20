@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/20 15:21:00 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/20 15:46:07 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,43 @@ void	hook(void *param)
 		mlx_close_window(vars->mlx);
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_UP))
 	{
+		int i;
+		
 		vars->player1->instances[0].x += vars->player.playdelta_x;
 		vars->player1->instances[0].y += vars->player.playdelta_y;
-		int i = 0;
+		i = 0;
 		while (i < vars->inst_len)
 		{
 			vars->line1->instances[i].x += vars->player.playdelta_x;
 			vars->line1->instances[i].y += vars->player.playdelta_y;
 			i++;
 		}
+		i = 0;
+		while (i < vars->line.count)
+		{
+			vars->linepixel->instances[i].x += vars->player.playdelta_x;
+			vars->linepixel->instances[i].y += vars->player.playdelta_y;
+			i++;
+		}
 	}
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_DOWN))
 	{
+		int i;
+		
 		vars->player1->instances[0].x -= vars->player.playdelta_x;
 		vars->player1->instances[0].y -= vars->player.playdelta_y;
-		int i = 0;
+		i = 0;
 		while (i < vars->inst_len)
 		{
 			vars->line1->instances[i].x -= vars->player.playdelta_x;
 			vars->line1->instances[i].y -= vars->player.playdelta_y;
+			i++;
+		}
+		i = 0;
+		while (i < vars->line.count)
+		{
+			vars->linepixel->instances[i].x -= vars->player.playdelta_x;
+			vars->linepixel->instances[i].y -= vars->player.playdelta_y;
 			i++;
 		}
 	}

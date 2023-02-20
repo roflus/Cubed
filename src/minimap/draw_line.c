@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/20 13:07:14 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/02/20 15:13:03 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/20 15:41:33 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void set_line_start_end(t_vars *vars)
 
 void drawline(t_vars *vars)
 {
+    vars->line.count = 0;
     vars->line.diffx = make_int_positive(vars->line.x_start - vars->line.x_end);
     vars->line.diffy = make_int_positive(vars->line.y_start - vars->line.y_end);
     vars->line.increase_x = dir_axis(vars->line.x_start, vars->line.x_end);
@@ -50,6 +51,7 @@ void drawline(t_vars *vars)
     vars->line.boundary = 2 * (vars->line.diffy - vars->line.diffx);
     while (1)
     {
+        vars->line.count++;
         mlx_image_to_window(vars->mlx, vars->linepixel, vars->line.current_x, vars->line.current_y);
         if (vars->line.current_x == vars->line.x_start && vars->line.current_y == vars->line.y_start)
             break;

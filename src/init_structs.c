@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/20 15:16:44 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/02/20 15:24:08 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/20 15:34:34 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void init_line(t_vars *vars)
     vars->line.current_y = 0;
     vars->line.increase_x = 0;
     vars->line.increase_y = 0;
+    vars->line.count = 0;
 }
 
 static void init_player(t_vars *vars)

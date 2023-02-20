@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/20 15:19:22 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/20 15:33:25 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_line
     int current_y;
     int increase_x;
     int increase_y;
+	int count;
 }	t_line;
 
 typedef struct s_player

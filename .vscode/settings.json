@@ -1,5 +1,10 @@
 {
     "files.associations": {
-        "mlx42.h": "c"
+        "mlx42.h": "c",
+        "__bit_reference": "c",
+        "algorithm": "c",
+        "bitset": "c",
+        "chrono": "c",
+        "unordered_map": "c"
     }
 }
