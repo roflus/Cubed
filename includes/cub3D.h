@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/20 09:26:15 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/20 13:04:12 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	int		playerX;
-	int		playerY;
-	float	playdeltaX;
-	float	playdeltaY;
-	float	playerAngel;
+	int		player_x;
+	int		player_y;
+	float	playdelta_x;
+	float	playdelta_y;
+	float	player_angle;
 }	t_player;
 
 typedef struct s_walls
