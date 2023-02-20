@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   drawline.c                                         :+:    :+:            */
+/*   draw_line.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/02/20 09:22:22 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/02/20 09:22:23 by qfrederi      ########   odam.nl         */
+/*   Created: 2023/02/20 13:07:14 by qfrederi      #+#    #+#                 */
+/*   Updated: 2023/02/20 13:07:35 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static int make_int_positive(int n)
 		return (n * -1);
 	return (n);
 }
-
 
 static int dir_axis(int start, int end)
 {

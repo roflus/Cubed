@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/20 13:04:12 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/20 13:25:43 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,8 +221,15 @@ bool	check_first_last(t_vars *vars);
 void	print_mapdata(t_vars *vars);
 void	print_map(t_vars *vars);
 
-void drawline(int x_start, int y_start, int x_end, int y_end, t_vars *vars);
+
+//init_minimap
 void draw_map(t_vars *vars);
 void create_images_minimap(t_vars *vars);
+
+//setup
+void create_points_line(t_vars *vars);
+
+//drawline
+void drawline(int x_start, int y_start, int x_end, int y_end, t_vars *vars);
 
 #endif

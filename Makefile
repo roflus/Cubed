@@ -23,8 +23,9 @@ SRC = ./src/main.c \
 	$(CHECK_DIR)walls_check.c \
 	$(GNL_DIR)get_next_line.c \
 	$(GNL_DIR)get_next_line_utils.c \
-	$(MINIMAP_DIR)drawline.c \
-	$(MINIMAP_DIR)initialize_minimap.c \
+	$(MINIMAP_DIR)setup_line.c \
+	$(MINIMAP_DIR)draw_line.c \
+	$(MINIMAP_DIR)init_minimap.c \
 	./src/printDELETEWHENFINISHED/printstuff.c
 
 OBJ = $(SRC:%.c=%.o)
