@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/20 09:25:25 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/20 12:50:09 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,43 +196,15 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	get_textures(&vars);
 	get_colors(&vars);
-
 	// test_textures(&vars);
-	vars.player1 = mlx_new_image(vars.mlx, 12, 12);
-	vars.wall = mlx_new_image(vars.mlx, MAPPIXEL, MAPPIXEL);
-	vars.empty = mlx_new_image(vars.mlx, MAPPIXEL, MAPPIXEL);
+	create_images_minimap(&vars);
 	memset(vars.empty->pixels, 255, vars.empty->width * vars.empty->height * sizeof(int));
-	
 	draw_map(&vars);
+
+	vars.line1 = mlx_new_image(vars.mlx, 6, 6);
 
 	int i = 0;
 	int k = 0;
-	while (i < 12)
-	{
-		k = 0;
-		while (k < 12)
-		{
-			mlx_put_pixel(vars.player1, k, i, 0x7D2AFA);
-			k++;
-		}
-		i++;
-	}
-	i = 0;
-	k = 0;
-	while (i < 64)
-	{
-		k = 0;
-		while (k < 64)
-		{
-			mlx_put_pixel(vars.wall, k, i, 267833369);
-			k++;
-		}
-		i++;
-	}
-	vars.line1 = mlx_new_image(vars.mlx, 6, 6);
-
-	i = 0;
-	k = 0;
 	while (i < 6)
 	{
 		k = 0;
