@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   main.c                                             :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rharing <rharing@student.42.fr>              +#+                     */
+/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/15 18:45:52 by rharing       ########   odam.nl         */
+/*   Updated: 2023/02/20 09:25:25 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,26 +172,6 @@ void	init_vars(t_vars *vars)
 		ft_error("Error\nMalloc error", 2);
 }
 
-static void draw_map(t_vars *vars)
-{
-	int i = 0;
-	int k;
-
-	while (vars->map.map[i] != NULL)
-	{
-		k = 0;
-		while (k < ft_strlen(vars->map.map[i]))
-		{
-			if (vars->map.map[i][k] == '1')
-				mlx_image_to_window(vars->mlx, vars->wall, (k * MAPPIXEL), (i * MAPPIXEL));
-			else if (vars->map.map[i][k] == '0')
-				mlx_image_to_window(vars->mlx, vars->empty, (k * MAPPIXEL), (i * MAPPIXEL));
-			k++;
-		}
-		i++;
-	}
-}
-
 void	test_textures(t_vars *vars)
 {
 	mlx_image_to_window(vars->mlx, vars->walls.north_img, 0, 0);
@@ -199,7 +179,6 @@ void	test_textures(t_vars *vars)
 	mlx_image_to_window(vars->mlx, vars->walls.south_img, 40, 40);
 	mlx_image_to_window(vars->mlx, vars->walls.west_img, 60, 60);
 }
-
 
 int	main(int argc, char **argv)
 {
@@ -223,7 +202,7 @@ int	main(int argc, char **argv)
 	vars.wall = mlx_new_image(vars.mlx, MAPPIXEL, MAPPIXEL);
 	vars.empty = mlx_new_image(vars.mlx, MAPPIXEL, MAPPIXEL);
 	memset(vars.empty->pixels, 255, vars.empty->width * vars.empty->height * sizeof(int));
-	//memset(vars.player1->pixels, 255, vars.player1->width * vars.player1->height * sizeof(int));
+	
 	draw_map(&vars);
 
 	int i = 0;

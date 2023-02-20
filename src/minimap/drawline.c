@@ -1,9 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   drawline.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/02/20 09:22:22 by qfrederi      #+#    #+#                 */
+/*   Updated: 2023/02/20 09:22:23 by qfrederi      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <memory.h>
-#include <math.h>
+
 // Kleine maken
 // Delete line per keer
 // Controleren op out of bounces for map/widht/height

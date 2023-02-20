@@ -6,11 +6,11 @@ MLX_LIB = $(MLX_DIR)/libmlx42.a
 GNL_DIR = ./src/getnextline/
 CHECK_DIR = ./src/checks/
 PARSER_DIR = ./src/parser/
+MINIMAP_DIR = ./src/minimap/
 FLAGS = -Wall -Werror -Wextra -g 
 LFLAGS = -framework Cocoa -framework OpenGL -framework IOKit
 INC = -I ./includes -I $(MLX_DIR)/include -I $(LIBFT_DIR) -I $(GNL_DIR)
 SRC = ./src/main.c \
-	  ./src/drawline.c \
 	$(PARSER_DIR)get_colors.c \
 	$(PARSER_DIR)get_textures.c \
 	$(PARSER_DIR)open_file.c \
@@ -23,6 +23,8 @@ SRC = ./src/main.c \
 	$(CHECK_DIR)walls_check.c \
 	$(GNL_DIR)get_next_line.c \
 	$(GNL_DIR)get_next_line_utils.c \
+	$(MINIMAP_DIR)drawline.c \
+	$(MINIMAP_DIR)initialize_minimap.c \
 	./src/printDELETEWHENFINISHED/printstuff.c
 
 OBJ = $(SRC:%.c=%.o)

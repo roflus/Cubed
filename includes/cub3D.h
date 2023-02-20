@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   cub3D.h                                            :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rharing <rharing@student.42.fr>              +#+                     */
+/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/15 19:01:36 by rharing       ########   odam.nl         */
+/*   Updated: 2023/02/20 09:26:15 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 # include <MLX42/MLX42.h>
 # include <fcntl.h>
 # include "get_next_line.h"
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <memory.h>
+# include <math.h>
 # define MAPPIXEL 64
 
 typedef struct s_map
@@ -217,5 +222,7 @@ void	print_mapdata(t_vars *vars);
 void	print_map(t_vars *vars);
 
 void drawline(int x_start, int y_start, int x_end, int y_end, t_vars *vars);
+void draw_map(t_vars *vars);
+void create_images_minimap(t_vars *vars);
 
 #endif
