@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   initialize_minimap.c                               :+:    :+:            */
+/*   init_minimap.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/20 09:26:32 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/02/20 13:02:41 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/20 14:40:13 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,13 @@ static void draw_empty(t_vars *vars)
 
 void create_images_minimap(t_vars *vars)
 {
-	vars->player1 = mlx_new_image(vars->mlx, 12, 12);
 	vars->wall = mlx_new_image(vars->mlx, MAPPIXEL, MAPPIXEL);
 	vars->empty = mlx_new_image(vars->mlx, MAPPIXEL, MAPPIXEL);
+	vars->player1 = mlx_new_image(vars->mlx, 12, 12);
+	draw_player(vars);
 	draw_wall(vars);
 	draw_empty(vars);
-	draw_player(vars);
+	draw_map(vars);
+	mlx_image_to_window(vars->mlx, vars->player1, (vars->player.player_x \
+		* MAPPIXEL + 32), (vars->player.player_y * MAPPIXEL + 32));
 }

@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/20 13:30:36 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/20 14:49:23 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@
 #define HEIGHT 1000
 #define PI 3.14159265359
 
-void	hook(void *param)
-{
-	t_vars *vars;
-
 	//N = 3*PI/2
 	//S = PI/2
 	//W = PI
 	//E = 0
+
+void	hook(void *param)
+{
+	t_vars *vars;
+	
 	vars = param;
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(vars->mlx);
@@ -68,12 +69,6 @@ void	hook(void *param)
 		mlx_delete_image(vars->mlx, vars->line1);
 		mlx_delete_image(vars->mlx, vars->linepixel);
 		create_points_line(vars);
-		int i = 0;
-		while (i < vars->inst_len)
-		{
-			mlx_image_to_window(vars->mlx, vars->line1, (vars->player1->instances[0].x + 6) + (vars->player.playdelta_x * (5 + (i * 5))), ((vars->player1->instances[0].y + 6) + (vars->player.playdelta_y * (5 + (i * 5)))));
-			i++;
-		}
 		vars->linepixel = mlx_new_image(vars->mlx, 1, 1);
 		mlx_put_pixel(vars->linepixel, 0, 0, 0x7D2AFA);
 		int x_start = (vars->player1->instances[0].x + 6);
@@ -96,12 +91,6 @@ void	hook(void *param)
 		create_points_line(vars);
 		vars->player.playdelta_x = cos(vars->player.player_angle) * 5;
 		vars->player.playdelta_y = sin(vars->player.player_angle) * 5;
-		int i = 0;
-		while (i < vars->inst_len)
-		{
-			mlx_image_to_window(vars->mlx, vars->line1, (vars->player1->instances[0].x + 6) + (vars->player.playdelta_x * (5 + (i * 5))), ((vars->player1->instances[0].y + 6) + (vars->player.playdelta_y * (5 + (i * 5)))));
-			i++;
-		}
 		vars->linepixel = mlx_new_image(vars->mlx, 1, 1);
 		mlx_put_pixel(vars->linepixel, 0, 0, 0x7D2AFA);
 		int x_start = (vars->player1->instances[0].x + 6);
@@ -171,18 +160,8 @@ int	main(int argc, char **argv)
 	get_colors(&vars);
 	// test_textures(&vars);
 	create_images_minimap(&vars);
-	draw_map(&vars);
-	create_points_line(&vars);
-
-	mlx_image_to_window(vars.mlx, vars.player1, (vars.player.player_x * MAPPIXEL + 32), (vars.player.player_y * MAPPIXEL + 32));
-	int i = 0;
 	vars.inst_len = 3;
-	while (i < vars.inst_len)
-	{
-		mlx_image_to_window(vars.mlx, vars.line1, (vars.player1->instances[0].x + 6) + (vars.player.playdelta_x * (5 + (i * 5))), \
-			((vars.player1->instances[0].y + 6) + (vars.player.playdelta_y * (5 + (i * 5)))));
-		i++;
-	}
+	create_points_line(&vars);
 	test_textures(&vars);
 
 	vars.linepixel = mlx_new_image(vars.mlx, 1, 1);
