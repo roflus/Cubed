@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/22 13:21:01 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/22 15:20:32 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@
 #include <unistd.h>
 #include <memory.h>
 #include <math.h>
-
-	//N = 3*PI/2 || 3*M_PI_2
-	//S = PI/2 || M_PI_2
-	//W = PI || M_PI
-	//E = 0
-	// PI = M_PI || https://learn.microsoft.com/en-us/cpp/c-runtime-library/math-constants?view=msvc-170
 
 void	hook(void *param)
 {
@@ -85,6 +79,7 @@ int	main(int argc, char **argv)
 	get_textures(&vars);
 	get_colors(&vars);
 	// test_textures(&vars);
+	start_direction(&vars);
 	create_images_minimap(&vars);
 	vars.inst_len = 3;
 	create_points_line(&vars);

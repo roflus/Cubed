@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/20 09:26:32 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/02/20 14:40:13 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/22 13:28:59 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void draw_wall(t_vars *vars)
 		k = 0;
 		while (k < 64)
 		{
-			mlx_put_pixel(vars->wall, k, i, 267833369);
+			mlx_put_pixel(vars->wall, k, i, 255255255);
 			k++;
 		}
 		i++;
@@ -80,7 +80,7 @@ static void draw_empty(t_vars *vars)
 		k = 0;
 		while (k < 64)
 		{
-			mlx_put_pixel(vars->empty, k, i, 255255255);
+			mlx_put_pixel(vars->empty, k, i, 267833369);
 			k++;
 		}
 		i++;

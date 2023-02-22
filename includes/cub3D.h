@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/22 13:21:07 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/22 15:15:32 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,7 +242,7 @@ void	print_map(t_vars *vars);
 
 //init_structs
 void	init_vars(t_vars *vars);
-
+void	start_direction(t_vars *vars);
 
 //init_minimap
 void 	draw_map(t_vars *vars);
