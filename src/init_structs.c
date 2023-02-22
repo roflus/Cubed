@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/20 15:16:44 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/02/22 15:26:12 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/22 15:28:05 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 	//W = PI || M_PI
 	//E = 0
 	// PI = M_PI || https://learn.microsoft.com/en-us/cpp/c-runtime-library/math-constants?view=msvc-170
-
 
 void start_direction(t_vars *vars)
 {

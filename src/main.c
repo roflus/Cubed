@@ -6,16 +6,21 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/22 15:20:32 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/22 15:41:20 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <memory.h>
-#include <math.h>
+
+static void check_player_position(t_vars *vars)
+{
+	//Get Player X and Y
+	//Check if we see a wall
+	//Make sure player can not walk in wall
+	//Place this function inside the up and down movement functions
+	printf("This is player X = %d\n", vars->player1->instances[0].x);
+    printf("This is player Y = %d\n\n", vars->player1->instances[0].y);
+}
 
 void	hook(void *param)
 {
@@ -27,10 +32,12 @@ void	hook(void *param)
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_UP))
 	{
 		move_up(vars);
+		check_player_position(vars);
 	}
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_DOWN))
 	{
 		move_down(vars);
+		check_player_position(vars);
 	}
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_LEFT))
 	{
@@ -73,7 +80,7 @@ int	main(int argc, char **argv)
 		ft_error("Error\nFile is not .cub", 2);
 	init_vars(&vars);
 	open_file(&vars, argv[1]);
-	vars.mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
+	vars.mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
 	if (!vars.mlx)
 		exit(EXIT_FAILURE);
 	get_textures(&vars);
