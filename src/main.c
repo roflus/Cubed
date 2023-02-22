@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/20 15:46:07 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/22 13:11:58 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 #include <unistd.h>
 #include <memory.h>
 #include <math.h>
-#define WIDTH 1000	
-#define HEIGHT 1000
-#define PI 3.14159265359
 
 	//N = 3*PI/2
 	//S = PI/2
@@ -34,71 +31,19 @@ void	hook(void *param)
 		mlx_close_window(vars->mlx);
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_UP))
 	{
-		int i;
-		
-		vars->player1->instances[0].x += vars->player.playdelta_x;
-		vars->player1->instances[0].y += vars->player.playdelta_y;
-		i = 0;
-		while (i < vars->inst_len)
-		{
-			vars->line1->instances[i].x += vars->player.playdelta_x;
-			vars->line1->instances[i].y += vars->player.playdelta_y;
-			i++;
-		}
-		i = 0;
-		while (i < vars->line.count)
-		{
-			vars->linepixel->instances[i].x += vars->player.playdelta_x;
-			vars->linepixel->instances[i].y += vars->player.playdelta_y;
-			i++;
-		}
+		move_up(vars);
 	}
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_DOWN))
 	{
-		int i;
-		
-		vars->player1->instances[0].x -= vars->player.playdelta_x;
-		vars->player1->instances[0].y -= vars->player.playdelta_y;
-		i = 0;
-		while (i < vars->inst_len)
-		{
-			vars->line1->instances[i].x -= vars->player.playdelta_x;
-			vars->line1->instances[i].y -= vars->player.playdelta_y;
-			i++;
-		}
-		i = 0;
-		while (i < vars->line.count)
-		{
-			vars->linepixel->instances[i].x -= vars->player.playdelta_x;
-			vars->linepixel->instances[i].y -= vars->player.playdelta_y;
-			i++;
-		}
+		move_down(vars);
 	}
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_LEFT))
 	{
-		vars->player.player_angle -= 0.1;
-		if (vars->player.player_angle < 0)
-			vars->player.player_angle += (2*PI);
-		vars->player.playdelta_x = cos(vars->player.player_angle) * 5;
-		vars->player.playdelta_y = sin(vars->player.player_angle) * 5;
-		mlx_delete_image(vars->mlx, vars->line1);
-		mlx_delete_image(vars->mlx, vars->linepixel);
-		create_points_line(vars);
-		set_line_start_end(vars);
-		drawline(vars);
+		move_left(vars);
 	}	
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_RIGHT))
 	{
-		vars->player.player_angle += 0.1;
-		if (vars->player.player_angle > (2*PI))
-			vars->player.player_angle -= (2*PI);
-		vars->player.playdelta_x = cos(vars->player.player_angle) * 5;
-		vars->player.playdelta_y = sin(vars->player.player_angle) * 5;
-		mlx_delete_image(vars->mlx, vars->line1);
-		mlx_delete_image(vars->mlx, vars->linepixel);
-		create_points_line(vars);
-		set_line_start_end(vars);
-		drawline(vars);
+		move_right(vars);
 	}
 }
 

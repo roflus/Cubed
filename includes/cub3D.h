@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/20 15:33:25 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/02/22 13:11:06 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # include <memory.h>
 # include <math.h>
 # define MAPPIXEL 64
+# define WIDTH 1000	
+# define HEIGHT 1000
+# define PI 3.14159265359
 
 typedef struct s_map
 {
@@ -252,5 +255,17 @@ void 	create_points_line(t_vars *vars);
 //drawline
 void 	set_line_start_end(t_vars *vars);
 void 	drawline(t_vars *vars);
+
+//move_up
+void	move_up(t_vars *vars);
+
+//move_down
+void	move_down(t_vars *vars);
+
+//move_left
+void	move_left(t_vars *vars);
+
+//move_right
+void	move_right(t_vars *vars);
 
 #endif

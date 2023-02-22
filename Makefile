@@ -4,6 +4,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 MLX_DIR = ./libs/mlx
 MLX_LIB = $(MLX_DIR)/libmlx42.a
 GNL_DIR = ./src/getnextline/
+MOVE_DIR = ./src/player_move/
 CHECK_DIR = ./src/checks/
 PARSER_DIR = ./src/parser/
 MINIMAP_DIR = ./src/minimap/
@@ -27,7 +28,11 @@ SRC =	./src/main.c \
 		$(MINIMAP_DIR)setup_line.c \
 		$(MINIMAP_DIR)draw_line.c \
 		$(MINIMAP_DIR)init_minimap.c \
-	./src/printDELETEWHENFINISHED/printstuff.c
+		$(MOVE_DIR)move_up.c \
+		$(MOVE_DIR)move_down.c \
+		$(MOVE_DIR)move_left.c \
+		$(MOVE_DIR)move_right.c \
+		./src/printDELETEWHENFINISHED/printstuff.c
 
 OBJ = $(SRC:%.c=%.o)
 
