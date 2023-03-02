@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-char	*get_ceiling(t_vars *vars)
+char	*get_color(t_vars *vars, char c)
 {
 	int		i;
 	char	*string;
@@ -20,7 +20,7 @@ char	*get_ceiling(t_vars *vars)
 	i = 0;
 	while (vars->map.data[i] != '\0')
 	{
-		if (vars->map.data[i][0] == 'C' && vars->map.data[i][1] == ' ')
+		if (vars->map.data[i][0] == c && vars->map.data[i][1] == ' ')
 		{
 			string = ft_substr(vars->map.data[i], 2, \
 								ft_strlen(vars->map.data[i]) - 3);
@@ -31,73 +31,27 @@ char	*get_ceiling(t_vars *vars)
 	return (string);
 }
 
-char	*get_floor(t_vars *vars)
+int	get_rgba(int r, int g, int b, int a)
 {
-	int		i;
-	char	*string;
-
-	i = 0;
-	while (vars->map.data[i] != '\0')
-	{
-		if (vars->map.data[i][0] == 'F' && vars->map.data[i][1] == ' ')
-		{
-			string = ft_substr(vars->map.data[i], 2, \
-								ft_strlen(vars->map.data[i]) - 3);
-			break ;
-		}
-		i++;
-	}
-	return (string);
+	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-void	ceiling_atoi(t_vars *vars, char *ceiling)
+void	set_colors(int *colors, char *rgb)
 {
 	char	**temp;
 
-	temp = ft_split(ceiling, ',');
+	temp = ft_split(rgb, ',');
+	free(rgb);
 	if (!temp)
 		ft_error("malloc failed", 1);
-	vars->ceiling_rgb = calloc(3, sizeof(int *));
-	if (!vars->ceiling_rgb)
+	if (check_intsize(temp) == false)
 	{
 		freesplit(temp);
-		ft_error("malloc failed", 1);
+		ft_error("color int size is wrong", 3);
 	}
-	vars->ceiling_rgb[0] = ft_atoi(temp[0]);
-	vars->ceiling_rgb[1] = ft_atoi(temp[1]);
-	vars->ceiling_rgb[2] = ft_atoi(temp[2]);
-	free(ceiling);
+	*colors = get_rgba(ft_atoi(temp[0]), ft_atoi(temp[1]), \
+						ft_atoi(temp[2]), 0x000000FF);
 	freesplit(temp);
-	//if (check_ceiling_intsize(vars) == false)
-	//{
-	//	free(vars->ceiling_rgb);
-	//	ft_error("color int size is wrong", 3);
-	//}
-}
-
-void	floor_atoi(t_vars *vars, char *floor)
-{
-	char	**temp;
-
-	temp = ft_split(floor, ',');
-	if (!temp)
-		ft_error("malloc failed", 1);
-	vars->floor_rgb = calloc(3, sizeof(int *));
-	if (!vars->floor_rgb)
-	{
-		freesplit(temp);
-		ft_error("malloc failed", 1);
-	}
-	vars->floor_rgb[0] = ft_atoi(temp[0]);
-	vars->floor_rgb[1] = ft_atoi(temp[1]);
-	vars->floor_rgb[2] = ft_atoi(temp[2]);
-	free(floor);
-	freesplit(temp);
-	//if (check_floor_intsize(vars) == false)
-	//{
-	//	free(vars->floor_rgb);
-	//	ft_error("color int size is wrong", 3);
-	//}
 }
 
 void	get_colors(t_vars *vars)
@@ -105,8 +59,8 @@ void	get_colors(t_vars *vars)
 	char	*ceiling;
 	char	*floor;
 
-	ceiling = get_ceiling(vars);
-	ceiling_atoi(vars, ceiling);
-	floor = get_floor(vars);
-	floor_atoi(vars, floor);
+	ceiling = get_color(vars, 'C');
+	set_colors(&vars->ceiling_rgb, ceiling);
+	floor = get_color(vars, 'F');
+	set_colors(&vars->floor_rgb, floor);
 }

@@ -1,13 +1,13 @@
 WE ./textures/green_empty.png
 SO ./textures/dog.png
-EA ./textures/Grass.png
 NO ./textures/Bone.png
+EA ./textures/Grass.png
 
-F 257,100,0
+F 252,100,0
 C 225,30,0
 
 111111
-100101
-101001
-1100E1
-111111
+1001011111111    11
+10111       11  1001
+1100E11111111    11
+111111111

@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   move_left.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
+/*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/22 13:07:56 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/02/22 13:18:06 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/02 16:11:04 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,4 @@ void move_left(t_vars *vars)
 	mlx_delete_image(vars->mlx, vars->line1);
 	mlx_delete_image(vars->mlx, vars->linepixel);
 	create_points_line(vars);
-	set_line_start_end(vars);
-	drawline(vars);
 }

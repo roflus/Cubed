@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/10 14:55:06 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/10 16:17:24 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/02 13:57:11 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,9 @@ static void	getnorth(t_vars *vars)
 	}
 	printf("%s\n", path);
 	vars->walls.north_t = mlx_load_png(path);
-	if (!vars->walls.north_t)
-	{
-		free(path);
-		ft_error("Can't load texture north", 2);
-	}
 	free(path);
+	if (!vars->walls.north_t)
+		ft_error("Can't load texture north", 2);
 }
 
 static void	geteast(t_vars *vars)
@@ -56,12 +53,9 @@ static void	geteast(t_vars *vars)
 	}
 	printf("test: %s\n", path);
 	vars->walls.east_t = mlx_load_png(path);
-	if (!vars->walls.east_t)
-	{
-		free(path);
-		ft_error("Can't load texture east", 2);
-	}
 	free(path);
+	if (!vars->walls.east_t)
+		ft_error("Can't load texture east", 2);
 }
 
 static void	getsouth(t_vars *vars)
@@ -82,12 +76,9 @@ static void	getsouth(t_vars *vars)
 	}
 	printf("test: %s\n", path);
 	vars->walls.south_t = mlx_load_png(path);
-	if (!vars->walls.south_t)
-	{
-		free(path);
-		ft_error("Can't load texture south", 2);
-	}
 	free(path);
+	if (!vars->walls.south_t)
+		ft_error("Can't load texture south", 2);
 }
 
 static void	getwest(t_vars *vars)
@@ -108,12 +99,9 @@ static void	getwest(t_vars *vars)
 	}
 	printf("test: %s\n", path);
 	vars->walls.west_t = mlx_load_png(path);
-	if (!vars->walls.west_t)
-	{
-		free(path);
-		ft_error("Can't load texture west", 2);
-	}
 	free(path);
+	if (!vars->walls.west_t)
+		ft_error("Can't load texture west", 2);
 }
 
 void	get_textures(t_vars *vars)

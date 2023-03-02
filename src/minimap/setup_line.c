@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   setup_line.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
+/*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/20 13:12:59 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/02/20 15:29:28 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/02 16:08:32 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static void draw_point_on_map(t_vars *vars)
 		k = 0;
 		while (k < 6)
 		{
-			mlx_put_pixel(vars->line1, k, i, 0x7D2AFA);
+			// mlx_put_pixel(vars->line1, k, i, 0x7D2AFA);
+			mlx_put_pixel(vars->line1, k, i, 2031460);
 			k++;
 		}
 		i++;
@@ -51,4 +52,6 @@ void create_points_line(t_vars *vars)
 	set_point_on_map(vars);
 	vars->linepixel = mlx_new_image(vars->mlx, 1, 1);
 	mlx_put_pixel(vars->linepixel, 0, 0, 0x7D2AFA);
+	set_line_start_end(vars);
+	drawline(vars);
 }

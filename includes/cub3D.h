@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   cub3D.h                                            :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
+/*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/22 15:15:32 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/02 15:56:13 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ typedef struct s_vars
 {
 	int			inst_len;
 	int			playercount;
-	int			*ceiling_rgb;
-	int			*floor_rgb;
+	int			ceiling_rgb;
+	int			floor_rgb;
 	mlx_t		*mlx;
 	mlx_image_t	*player1;
 	mlx_image_t	*empty;
@@ -94,8 +94,7 @@ typedef struct s_vars
 /*-------------------------------open_file.c----------------------------*/
 
 void	get_colors(t_vars *vars);
-bool	check_floor_intsize(t_vars *vars);
-bool	check_ceiling_intsize(t_vars *vars);
+bool	check_intsize(char **colors);
 
 /**
  * @brief Get the textures object for every cardinal.

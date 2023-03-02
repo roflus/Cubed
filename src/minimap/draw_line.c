@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   draw_line.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
+/*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/20 13:07:14 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/02/20 15:41:33 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/01 16:32:59 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ void set_line_start_end(t_vars *vars)
 {
     vars->line.x_start = (vars->player1->instances[0].x + 6);
 	vars->line.y_start = (vars->player1->instances[0].y + 6);
-	vars->line.x_end = (vars->line1->instances[(vars->inst_len) - 1].x);
-	vars->line.y_end = (vars->line1->instances[(vars->inst_len) - 1].y);
+
+    vars->line.x_end = (vars->player1->instances[0].x + 6) + (vars->player.playdelta_x * (5 + (vars->inst_len * 5)));
+	vars->line.y_end = ((vars->player1->instances[0].y + 6) + (vars->player.playdelta_y * (5 + (vars->inst_len * 5))));
+
 }
 
 void drawline(t_vars *vars)
