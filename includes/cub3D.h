@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/02 15:56:13 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/02 16:50:11 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_vars
 	mlx_image_t	*wall;
 	mlx_image_t	*line1;
 	mlx_image_t	*linepixel;
+	mlx_image_t	*display;
 
 	t_walls		walls;
 	t_map		map;
@@ -234,6 +235,14 @@ bool	check_walls(t_vars *vars);
 bool	check_first_last(t_vars *vars);
 
 
+/*-------------------------------display.c--------------------------*/
+
+/**
+ * @brief Display final game image to screen.
+ * 
+ * @param vars 
+ */
+void	display_game(t_vars *vars);
 
 /*-------------------------------DELETEWHENFINISHED--------------------------*/
 void	print_mapdata(t_vars *vars);

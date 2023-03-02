@@ -8,6 +8,7 @@ MOVE_DIR = ./src/player_move/
 CHECK_DIR = ./src/checks/
 PARSER_DIR = ./src/parser/
 MINIMAP_DIR = ./src/minimap/
+GAME_DIR = ./src/game/
 FLAGS = -Wall -Werror -Wextra -g 
 LFLAGS = -framework Cocoa -framework OpenGL -framework IOKit
 INC = -I ./includes -I $(MLX_DIR)/include -I $(LIBFT_DIR) -I $(GNL_DIR)
@@ -32,6 +33,7 @@ SRC =	./src/main.c \
 		$(MOVE_DIR)move_down.c \
 		$(MOVE_DIR)move_left.c \
 		$(MOVE_DIR)move_right.c \
+		$(GAME_DIR)display.c \
 		./src/printDELETEWHENFINISHED/printstuff.c
 
 OBJ = $(SRC:%.c=%.o)

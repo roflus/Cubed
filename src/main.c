@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/02 15:54:29 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/02 16:48:49 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	test_textures(t_vars *vars)
 	mlx_image_to_window(vars->mlx, vars->walls.west_img, 60, 60);
 }
 
-
 int	main(int argc, char **argv)
 {
 	mlx_texture_t* texture;
@@ -92,6 +91,10 @@ int	main(int argc, char **argv)
 	vars.inst_len = 3;
 	create_points_line(&vars);
 	// test_textures(&vars);225,30,0
+
+	display_game(&vars);
+
+
 	mlx_loop_hook(vars.mlx, &hook, &vars);
 	mlx_loop(vars.mlx);
 	mlx_terminate(vars.mlx);
