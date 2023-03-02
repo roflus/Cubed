@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/02 16:48:49 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/02 18:42:38 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static void check_player_position(t_vars *vars)
 
 void	hook(void *param)
 {
-	t_vars *vars;
-	
+	t_vars	*vars;
+
 	vars = param;
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(vars->mlx);
@@ -69,32 +69,31 @@ void	test_textures(t_vars *vars)
 	mlx_image_to_window(vars->mlx, vars->walls.west_img, 60, 60);
 }
 
+
 int	main(int argc, char **argv)
 {
-	mlx_texture_t* texture;
-	t_vars	vars;
+	t_vars			vars;
 
 	if (argc != 2)
 		ft_error("Error\nWrong amount of arguments", 2);
 	if (arg_check(argv) == false)
 		ft_error("Error\nFile is not .cub", 2);
-	init_vars(&vars);
-	open_file(&vars, argv[1]);
-	vars.mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
+	ft_memset(&vars, 0, sizeof(vars));
+	vars.map.data = (char **)malloc(7 * sizeof(char *));
+	vars.mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
 	if (!vars.mlx)
 		exit(EXIT_FAILURE);
+	open_file(&vars, argv[1]);
 	get_textures(&vars);
 	get_colors(&vars);
-	// test_textures(&vars);
 	start_direction(&vars);
 	create_images_minimap(&vars);
 	vars.inst_len = 3;
 	create_points_line(&vars);
-	// test_textures(&vars);225,30,0
+
 
 	display_game(&vars);
-
-
+	// test_textures(&vars);
 	mlx_loop_hook(vars.mlx, &hook, &vars);
 	mlx_loop(vars.mlx);
 	mlx_terminate(vars.mlx);
