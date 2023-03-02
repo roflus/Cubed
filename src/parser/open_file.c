@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:40:40 by rharing       #+#    #+#                 */
-/*   Updated: 2023/01/26 18:36:27 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/02 18:59:13 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	open_file(t_vars *vars, char *map)
 		ft_error("Error\nCan't open file", 2);
 	get_data(vars);
 	print_mapdata(vars);
-	if (check_data(vars) == false)
+	if (check_data(vars->map.data) == false)
 		ft_error("Cardinal Data not valid", 2);
 	get_map(vars);
 	close(vars->map.fd);

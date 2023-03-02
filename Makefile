@@ -21,7 +21,6 @@ SRC =	./src/main.c \
 		$(PARSER_DIR)parse_map.c \
 		$(CHECK_DIR)cardinal_check.c \
 		$(CHECK_DIR)char_check.c \
-		$(CHECK_DIR)floor_ceiling_check.c \
 		$(CHECK_DIR)map_check.c \
 		$(CHECK_DIR)walls_check.c \
 		$(GNL_DIR)get_next_line.c \

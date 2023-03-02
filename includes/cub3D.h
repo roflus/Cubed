@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/02 16:50:11 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/02 18:52:10 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ void	check_map(t_vars *vars);
  * @return true 
  * @return false 
  */
-bool	check_data(t_vars *vars);
+bool	check_data(char **mapdata);
 
 /*-------------------------------char_check.c---------------------------*/
 
@@ -196,23 +196,23 @@ bool	check_empty(t_vars *vars);
 
 /*---------------------------floor_ceiling_check.c----------------------*/
 
-/**
- * @brief Check if Floor data is parsed correctly.
- * 
- * @param vars 
- * @return true 
- * @return false 
- */
-bool	check_floor(t_vars *vars);
+// /**
+//  * @brief Check if Floor data is parsed correctly.
+//  * 
+//  * @param vars 
+//  * @return true 
+//  * @return false 
+//  */
+// bool	check_floor(t_vars *vars);
 
-/**
- * @brief Check if Ceiling data is parsed correctly.
- * 
- * @param vars 
- * @return true 
- * @return false 
- */
-bool	check_ceiling(t_vars *vars);
+// /**
+//  * @brief Check if Ceiling data is parsed correctly.
+//  * 
+//  * @param vars 
+//  * @return true 
+//  * @return false 
+//  */
+// bool	check_ceiling(t_vars *vars);
 
 /*-------------------------------walls_check.c--------------------------*/
 
