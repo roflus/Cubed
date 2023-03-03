@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/03 13:14:06 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/03 15:44:09 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,5 +264,7 @@ void	move_left(t_vars *vars);
 
 //move_right
 void	move_right(t_vars *vars);
+
+void	hook(void *param);
 
 #endif

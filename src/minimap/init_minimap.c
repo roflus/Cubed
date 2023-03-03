@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   init_minimap.c                                     :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
+/*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/20 09:26:32 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/02/22 13:28:59 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/03 15:37:14 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/03 14:10:59 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/03 15:55:44 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,32 +22,7 @@ static void check_player_position(t_vars *vars)
     printf("This is player Y = %d\n\n", vars->player1->instances[0].y);
 }
 
-void	hook(void *param)
-{
-	t_vars	*vars;
 
-	vars = param;
-	if (mlx_is_key_down(vars->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(vars->mlx);
-	if (mlx_is_key_down(vars->mlx, MLX_KEY_UP))
-	{
-		move_up(vars);
-		check_player_position(vars);
-	}
-	if (mlx_is_key_down(vars->mlx, MLX_KEY_DOWN))
-	{
-		move_down(vars);
-		check_player_position(vars);
-	}
-	if (mlx_is_key_down(vars->mlx, MLX_KEY_LEFT))
-	{
-		move_left(vars);
-	}	
-	if (mlx_is_key_down(vars->mlx, MLX_KEY_RIGHT))
-	{
-		move_right(vars);
-	}
-}
 
 bool	arg_check(char **argv)
 {
@@ -69,6 +44,23 @@ void	test_textures(t_vars *vars)
 	mlx_image_to_window(vars->mlx, vars->walls.west_img, 60, 60);
 }
 
+void	init(t_vars *vars)
+{
+	ft_memset(vars, 0, sizeof(vars));
+	vars->map.data = (char **)malloc(7 * sizeof(char *));
+	if (vars->map.data == NULL)
+		ft_error("malloc failed", 1);
+	vars->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
+	if (!vars->mlx)
+		exit(EXIT_FAILURE);
+}
+
+void	parser(t_vars *vars, char *file)
+{
+	open_file(vars, file);
+	// get_textures(vars);
+	get_colors(vars);
+}
 
 int	main(int argc, char **argv)
 {
@@ -78,21 +70,13 @@ int	main(int argc, char **argv)
 		ft_error("Wrong amount of arguments", 2);
 	if (arg_check(argv) == false)
 		ft_error("File is not .cub", 2);
-	ft_memset(&vars, 0, sizeof(vars));
-	vars.map.data = (char **)malloc(7 * sizeof(char *));
-	vars.mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
-	if (!vars.mlx)
-		exit(EXIT_FAILURE);
-	open_file(&vars, argv[1]);
-	get_textures(&vars);
-	get_colors(&vars);
+	init(&vars);
+	parser(&vars, argv[1]);
 	start_direction(&vars);
 	create_images_minimap(&vars);
 	vars.inst_len = 3;
 	create_points_line(&vars);
-
-
-	// // display_game(&vars);
+	// display_game(&vars);
 	// test_textures(&vars);
 	system("leaks cub3D");
 	mlx_loop_hook(vars.mlx, &hook, &vars);
