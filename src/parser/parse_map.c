@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/26 18:20:29 by rharing       #+#    #+#                 */
-/*   Updated: 2023/01/26 18:39:41 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/03 14:40:41 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,17 @@ static int	nlcount(char *mapline)
 
 static void	create_map(t_vars *vars, char *mapline)
 {
-	if (check_empty_line_map(mapline) == false)
-		ft_error("Error\nNo newline in map", 2);
-	vars->map.array_count = nlcount(mapline);
-	vars->map.map = ft_split(mapline, '\n');
+	char	*temptrim;
+
+	temptrim = ft_strtrim(mapline, "\n");
+	free(mapline);
+	if (check_empty_line_map(temptrim) == false)
+		ft_error("Newline in map", 1);
+	vars->map.array_count = nlcount(temptrim);
+	vars->map.map = ft_split(temptrim, '\n');
+	free(temptrim);
 	if (vars->map.map == NULL)
-		ft_error("Error\nMalloc map failed", 2);
+		ft_error("Malloc map failed", 1);
 }
 
 char	*get_map_utils(t_vars *vars)
@@ -43,9 +48,10 @@ char	*get_map_utils(t_vars *vars)
 	char	*mapline;
 	char	*temp;
 
-	while (1)
+	mapline = NULL;
+	temp = get_next_line(vars->map.fd);
+	while (temp)
 	{
-		temp = get_next_line(vars->map.fd);
 		if (ft_strncmp(temp, "\n", 1) != 0)
 		{
 			mapline = ft_strdup(temp);
@@ -53,7 +59,10 @@ char	*get_map_utils(t_vars *vars)
 			return (mapline);
 		}
 		free(temp);
+		temp = get_next_line(vars->map.fd);
 	}
+	free(temp);
+	return (mapline);
 }
 
 void	get_map(t_vars *vars)
@@ -62,10 +71,9 @@ void	get_map(t_vars *vars)
 	char	*mapline;
 	char	*newmapline;
 
-	mapline = ft_calloc(1, 1);
-	if (mapline == NULL)
-		ft_error("Error\nMalloc failed", 2);
 	mapline = get_map_utils(vars);
+	if (mapline == NULL)
+		ft_error("no map", 2);
 	while (mapline)
 	{
 		temp = get_next_line(vars->map.fd);
@@ -77,5 +85,5 @@ void	get_map(t_vars *vars)
 		free(temp);
 	}
 	create_map(vars, mapline);
-	free(mapline);
+	free(temp);
 }

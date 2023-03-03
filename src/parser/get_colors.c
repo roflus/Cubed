@@ -16,6 +16,7 @@ char	*get_color(t_vars *vars, char c)
 {
 	int		i;
 	char	*string;
+	char	*trimmed;
 
 	i = 0;
 	while (vars->map.data[i] != '\0')
@@ -28,7 +29,9 @@ char	*get_color(t_vars *vars, char c)
 		}
 		i++;
 	}
-	return (string);
+	trimmed = ft_strtrim(string, " ");
+	free(string);
+	return (trimmed);
 }
 
 int	get_rgba(int r, int g, int b, int a)
@@ -60,7 +63,11 @@ void	get_colors(t_vars *vars)
 	char	*floor;
 
 	ceiling = get_color(vars, 'C');
+	if (check_fcdata(ceiling) == false)
+		ft_error("ceiling color error", 1);
 	set_colors(&vars->ceiling_rgb, ceiling);
 	floor = get_color(vars, 'F');
+	if (check_fcdata(floor) == false)
+		ft_error("ceiling color error", 1);
 	set_colors(&vars->floor_rgb, floor);
 }

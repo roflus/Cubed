@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/19 13:33:17 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/03/02 19:03:16 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/03 14:35:29 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,14 @@ bool	check_intsize(char **colors)
 		return (true);
 }
 
-static bool	check_fcdata(char *string)
+bool	check_fcdata(char *string)
 {
 	int	k;
 	int	count;
 
 	count = 0;
-	k = 2;
-	if ((!ft_isdigit(string[k])) || \
-		(!ft_isdigit(string[ft_strlen(string) - 2])))
-		return (false);
-	while (string[k] != '\n')
+	k = 0;
+	while (string[k] != '\0')
 	{
 		if (!ft_isdigit(string[k]) && string[k] != ',')
 			return (false);
@@ -47,7 +44,7 @@ static bool	check_fcdata(char *string)
 		}
 		k++;
 	}
-	if (count != 2 || k > 13)
+	if (count != 2 || k > 11)
 		return (false);
 	return (true);
 }
@@ -59,17 +56,12 @@ static bool	check_color(char **mapdata, char c)
 
 	i = 0;
 	count = 0;
-	while (i < 6)
+	while ((mapdata[i] != '\0') && i < 6)
 	{
 		if (mapdata[i][0] == c && mapdata[i][1] == ' ')
-		{
-			if (check_fcdata(mapdata[i]) == true)
-				count++;
-		}
+			return (true);
 		i++;
 	}
-	if (count == 1)
-		return (true);
 	return (false);
 }
 
@@ -80,15 +72,13 @@ static bool	check_cardinal(char **mapdata, char first, char second)
 
 	i = 0;
 	count = 0;
-	while (i < 6)
+	while ((mapdata[i] != '\0') && i < 6)
 	{
 		if (mapdata[i][0] == first && mapdata[i][1] == second \
 			&& mapdata[i][2] == ' ')
-			count++;
+			return (true);
 		i++;
 	}
-	if (count == 1)
-		return (true);
 	return (false);
 }
 

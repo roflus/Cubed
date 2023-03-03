@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/02 18:52:10 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/03 13:14:06 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,23 +196,14 @@ bool	check_empty(t_vars *vars);
 
 /*---------------------------floor_ceiling_check.c----------------------*/
 
-// /**
-//  * @brief Check if Floor data is parsed correctly.
-//  * 
-//  * @param vars 
-//  * @return true 
-//  * @return false 
-//  */
-// bool	check_floor(t_vars *vars);
-
-// /**
-//  * @brief Check if Ceiling data is parsed correctly.
-//  * 
-//  * @param vars 
-//  * @return true 
-//  * @return false 
-//  */
-// bool	check_ceiling(t_vars *vars);
+/**
+ * @brief Check if the data of floor and ceiling is correct.
+ * 
+ * @param string 
+ * @return true 
+ * @return false 
+ */
+bool	check_fcdata(char *string);
 
 /*-------------------------------walls_check.c--------------------------*/
 
@@ -233,7 +224,6 @@ bool	check_walls(t_vars *vars);
  * @return false 
  */
 bool	check_first_last(t_vars *vars);
-
 
 /*-------------------------------display.c--------------------------*/
 

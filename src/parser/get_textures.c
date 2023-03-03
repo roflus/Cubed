@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/10 14:55:06 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/02 18:44:59 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/03 13:03:50 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	gettexture(char **mapdata, mlx_texture_t **cardinal, \
 						char first, char second)
 {
 	char	*path;
+	char	*trimmed;
 	int		i;
 
 	i = 0;
@@ -30,10 +31,12 @@ static void	gettexture(char **mapdata, mlx_texture_t **cardinal, \
 		i++;
 	}
 	printf("test: %s\n", path);
-	*cardinal = mlx_load_png(path);
+	trimmed = ft_strtrim(path, " ");
 	free(path);
-	if (!cardinal)
-		ft_error("Can't load texture west", 2);
+	*cardinal = mlx_load_png(trimmed);
+	free(trimmed);
+	if (*cardinal == NULL)
+		ft_error("Can't load texture", 2);
 }
 
 void	get_textures(t_vars *vars)

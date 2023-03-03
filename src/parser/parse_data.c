@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/26 18:19:31 by rharing       #+#    #+#                 */
-/*   Updated: 2023/01/26 18:21:10 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/03 12:34:03 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ void	get_data(t_vars *vars)
 	int		k;
 
 	k = 0;
-	while (1)
+	temp1 = get_next_line(vars->map.fd);
+	if (temp1 == NULL)
+		vars->map.data[0] = "\0";
+	while (temp1)
 	{
-		temp1 = get_next_line(vars->map.fd);
 		if (ft_strncmp(temp1, "\n", 1) != 0)
 		{
 			vars->map.data[k] = ft_strdup(temp1);
@@ -33,5 +35,8 @@ void	get_data(t_vars *vars)
 			k++;
 		}
 		free(temp1);
+		temp1 = get_next_line(vars->map.fd);
 	}
+	free(temp1);
+	vars->map.data[k] = "\0";
 }
