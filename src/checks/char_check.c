@@ -12,26 +12,27 @@
 
 #include "cub3D.h"
 
-static bool	check_player_count(t_vars *vars, int i, int k)
+static bool check_player_count(t_vars *vars, int i, int k)
 {
-	char	pos;
+	char pos;
 
-	if (vars->map.map[i][k] == 'N' || vars->map.map[i][k] == 'E' \
-		|| vars->map.map[i][k] == 'S' || vars->map.map[i][k] == 'W')
+	if (vars->map.map[i][k] == 'N' || vars->map.map[i][k] == 'E' || vars->map.map[i][k] == 'S' || vars->map.map[i][k] == 'W')
 	{
 		pos = vars->map.map[i][k];
 		vars->map.pos = pos;
 		vars->player.player_x = k;
 		vars->player.player_y = i;
+		vars->ray.pos_x = k;
+		vars->ray.pos_y = i;
 		return (true);
 	}
 	return (false);
 }
 
-bool	check_char_map(t_vars *vars)
+bool check_char_map(t_vars *vars)
 {
-	int	i;
-	int	k;
+	int i;
+	int k;
 
 	i = 1;
 	while (i < vars->map.array_count)
@@ -39,7 +40,7 @@ bool	check_char_map(t_vars *vars)
 		k = 0;
 		while (vars->map.map[i][k] != '\0')
 		{
-			if (vars->map.map[i][k] != '1' && vars->map.map[i][k] != '0' && \
+			if (vars->map.map[i][k] != '1' && vars->map.map[i][k] != '0' &&
 				vars->map.map[i][k] != ' ')
 			{
 				if (check_player_count(vars, i, k) == true)
@@ -56,7 +57,7 @@ bool	check_char_map(t_vars *vars)
 	return (true);
 }
 
-static bool	check_pos_char(t_vars *vars, int i, size_t k)
+static bool check_pos_char(t_vars *vars, int i, size_t k)
 {
 	if (k > (ft_strlen(vars->map.map[i + 1]) - 1))
 		return (false);
@@ -73,10 +74,10 @@ static bool	check_pos_char(t_vars *vars, int i, size_t k)
 	return (true);
 }
 
-bool	check_empty(t_vars *vars)
+bool check_empty(t_vars *vars)
 {
-	int	i;
-	int	k;
+	int i;
+	int k;
 
 	i = 0;
 	while (i < vars->map.array_count)
@@ -84,7 +85,7 @@ bool	check_empty(t_vars *vars)
 		k = 0;
 		while (vars->map.map[i][k] != '\0')
 		{
-			if (vars->map.map[i][k] == '0' || \
+			if (vars->map.map[i][k] == '0' ||
 				vars->map.map[i][k] == vars->map.pos)
 			{
 				if (check_pos_char(vars, i, k) == false)

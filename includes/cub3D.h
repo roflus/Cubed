@@ -11,29 +11,29 @@
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
-# define CUB3D_H
+#define CUB3D_H
 
-# include <libft.h>
-# include <MLX42/MLX42.h>
-# include <fcntl.h>
-# include "get_next_line.h"
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <memory.h>
-# include <math.h>
-# define MAPPIXEL 64
-# define WIDTH 1000	
-# define HEIGHT 1000
+#include <libft.h>
+#include <MLX42/MLX42.h>
+#include <fcntl.h>
+#include "get_next_line.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <memory.h>
+#include <math.h>
+#define MAPPIXEL 64
+#define WIDTH 400
+#define HEIGHT 400
 
 typedef struct s_map
 {
-	int		fd;
-	int		array_count;
-	char	pos;
-	char	**data;
-	char	**map;
-}	t_map;
+	int fd;
+	int array_count;
+	char pos;
+	char **data;
+	char **map;
+} t_map;
 
 typedef struct s_line
 {
@@ -42,99 +42,132 @@ typedef struct s_line
 	int y_start;
 	int y_end;
 	int diffx;
-    int diffy;
-    int boundary;
-    int current_x;
-    int current_y;
-    int increase_x;
-    int increase_y;
+	int diffy;
+	int boundary;
+	int current_x;
+	int current_y;
+	int increase_x;
+	int increase_y;
 	int count;
-}	t_line;
+} t_line;
 
 typedef struct s_player
 {
-	int		player_x;
-	int		player_y;
-	float	playdelta_x;
-	float	playdelta_y;
-	float	player_angle;
-}	t_player;
+	int player_x;
+	int player_y;
+	float playdelta_x;
+	float playdelta_y;
+	float player_angle;
+} t_player;
 
 typedef struct s_walls
 {
-	mlx_image_t		*north_img;
-	mlx_image_t		*east_img;
-	mlx_image_t		*south_img;
-	mlx_image_t		*west_img;
-	mlx_texture_t	*north_t;
-	mlx_texture_t	*east_t;
-	mlx_texture_t	*south_t;
-	mlx_texture_t	*west_t;
-}	t_walls;
+	mlx_image_t *north_img;
+	mlx_image_t *east_img;
+	mlx_image_t *south_img;
+	mlx_image_t *west_img;
+	mlx_texture_t *north_t;
+	mlx_texture_t *east_t;
+	mlx_texture_t *south_t;
+	mlx_texture_t *west_t;
+} t_walls;
+
+typedef struct s_raycast
+{
+	float pos_x;
+	float pos_y;
+	float dir_x;
+	float dir_y;
+	float plane_x;
+	float plane_y;
+	float time;
+	float old_time;
+	float camera_x;
+	float ray_dir_x;
+	float ray_dir_y;
+	int map_x;
+	int map_y;
+	float side_dist_x;
+	float side_dist_y;
+	float delta_dist_x;
+	float delta_dist_y;
+	float perp_wall_dist;
+	int step_x;
+	int step_y;
+	int hit;
+	int side;
+	int lineheight;
+	int drawstart;
+	int drawend;
+} t_raycast;
 
 typedef struct s_vars
 {
-	int			inst_len;
-	int			playercount;
-	int			ceiling_rgb;
-	int			floor_rgb;
-	mlx_t		*mlx;
-	mlx_image_t	*player1;
-	mlx_image_t	*empty;
-	mlx_image_t	*wall;
-	mlx_image_t	*line1;
-	mlx_image_t	*linepixel;
-	mlx_image_t	*display;
+	int inst_len;
+	int playercount;
+	int ceiling_rgb;
+	int floor_rgb;
+	mlx_t *mlx;
+	mlx_image_t *player1;
+	mlx_image_t *empty;
+	mlx_image_t *wall;
+	mlx_image_t *line1;
+	mlx_image_t *linepixel;
+	mlx_image_t *display;
 
-	t_walls		walls;
-	t_map		map;
-	t_player	player;
-	t_line		line;
-}	t_vars;
+	t_walls walls;
+	t_map map;
+	t_player player;
+	t_line line;
+	t_raycast ray;
+} t_vars;
+
+void raycaster(t_vars *vars);
+void draw_background(mlx_image_t *display, int height, int start, int color);
 
 /*-------------------------------open_file.c----------------------------*/
 
-void	get_colors(t_vars *vars);
-bool	check_intsize(char **colors);
+void get_colors(t_vars *vars);
+bool check_intsize(char **colors);
 
 /**
  * @brief Get the textures object for every cardinal.
- * 
- * @param vars 
+ *
+ * @param vars
  */
-void	get_textures(t_vars *vars);
+void get_textures(t_vars *vars);
 /*-------------------------------open_file.c----------------------------*/
 
 /**
  * @brief Opens map.cub file to read.
  * get_data(vars) -> read first 6 data lines and writes them to
  * char ** vars->map->data.
- * get_map(vars) -> read the map part of file and writes it to a 
+ * get_map(vars) -> read the map part of file and writes it to a
  * string, then splits it to char **vars->map->map
  * @param vars
  * @param map
  */
-void	open_file(t_vars *vars, char *map);
+void open_file(t_vars *vars, char *map);
 
 /*-------------------------------parse_data.c---------------------------*/
 
 /**
  * @brief get_data(vars) -> read first 6 data lines and writes them to
  * char ** vars->map->data.
- * 
- * @param vars 
+ *
+ * @param vars
  */
-void	get_data(t_vars *vars);
+void get_data(t_vars *vars);
 
 /*-------------------------------parse_map.c----------------------------*/
 
 /**
- * @brief read the map part of file and writes it to a 
+ * @brief read the map part of file and writes it to a
  * string, then splits it to char **vars->map->map
- * 
- * @param vars 
+ *
+ * @param vars
  */
-void	get_map(t_vars *vars);
+void get_map(t_vars *vars);
 
 /*-------------------------------map_check.c----------------------------*/
 
@@ -142,12 +175,12 @@ void	get_map(t_vars *vars);
  * @brief The map cannot have any newline's inbetween.
  * Checks the string for to many newline's, returns false if it found
  * extra newline. Returns true if no extra newline's have been found.
- * 
- * @param mapline 
- * @return true 
- * @return false 
+ *
+ * @param mapline
+ * @return true
+ * @return false
  */
-bool	check_empty_line_map(char *mapline);
+bool check_empty_line_map(char *mapline);
 
 /**
  * @brief Check if the map is valid without errors
@@ -155,9 +188,9 @@ bool	check_empty_line_map(char *mapline);
  * Check if their are not any invalid characters in the map
  * Check if there is 1 player
  * Check is the map is closed with walls
- * @param vars 
+ * @param vars
  */
-void	check_map(t_vars *vars);
+void check_map(t_vars *vars);
 
 /*-------------------------------cardinal_check.c-----------------------*/
 
@@ -166,105 +199,105 @@ void	check_map(t_vars *vars);
  * Loop through first 4 lines of vars->map->data
  * To check for NO, SO  WE and EA
  * And check for F(floor) and C(ceiling).
- * @param vars 
- * @return true 
- * @return false 
+ * @param vars
+ * @return true
+ * @return false
  */
-bool	check_data(char **mapdata);
+bool check_data(char **mapdata);
 
 /*-------------------------------char_check.c---------------------------*/
 
 /**
  * @brief Loop trough map and check if every character is either a 1, 0
  * ' ' or N,E,S,W. Also checks for only one starting position.
- * 
- * @param vars 
- * @return true 
- * @return false 
+ *
+ * @param vars
+ * @return true
+ * @return false
  */
-bool	check_char_map(t_vars *vars);
+bool check_char_map(t_vars *vars);
 
 /**
  * @brief Check if every 0 and player starting pos is surrounded by either
  * another 0 or 1.
- * 
+ *
  * @param vars
- * @return true 
- * @return false 
+ * @return true
+ * @return false
  */
-bool	check_empty(t_vars *vars);
+bool check_empty(t_vars *vars);
 
 /*---------------------------floor_ceiling_check.c----------------------*/
 
 /**
  * @brief Check if the data of floor and ceiling is correct.
- * 
- * @param string 
- * @return true 
- * @return false 
+ *
+ * @param string
+ * @return true
+ * @return false
  */
-bool	check_fcdata(char *string);
+bool check_fcdata(char *string);
 
 /*-------------------------------walls_check.c--------------------------*/
 
 /**
  * @brief Map must be surrounded by walls, checks every string if map begins
  * and ends with a 1(wall).
- * @param vars 
- * @return true 
- * @return false 
+ * @param vars
+ * @return true
+ * @return false
  */
-bool	check_walls(t_vars *vars);
+bool check_walls(t_vars *vars);
 
 /**
  * @brief Map must be surrounded by walls, checks first and last string of map,
  * if it consist only of 1's(walls) of ' '(space) returns true.
- * @param vars 
- * @return true 
- * @return false 
+ * @param vars
+ * @return true
+ * @return false
  */
-bool	check_first_last(t_vars *vars);
+bool check_first_last(t_vars *vars);
 
 /*-------------------------------display.c--------------------------*/
 
 /**
  * @brief Display final game image to screen.
- * 
- * @param vars 
+ *
+ * @param vars
  */
-void	display_game(t_vars *vars);
+void display_game(t_vars *vars);
 
 /*-------------------------------DELETEWHENFINISHED--------------------------*/
-void	print_mapdata(t_vars *vars);
-void	print_map(t_vars *vars);
+void print_mapdata(t_vars *vars);
+void print_map(t_vars *vars);
 
-//init_structs
-void	init_vars(t_vars *vars);
-void	start_direction(t_vars *vars);
+// init_structs
+void init_vars(t_vars *vars);
+void start_direction(t_vars *vars);
 
-//init_minimap
-void 	draw_map(t_vars *vars);
-void 	create_images_minimap(t_vars *vars);
+// init_minimap
+void draw_map(t_vars *vars);
+void create_images_minimap(t_vars *vars);
 
-//setup
-void 	create_points_line(t_vars *vars);
+// setup
+void create_points_line(t_vars *vars);
 
-//drawline
-void 	set_line_start_end(t_vars *vars);
-void 	drawline(t_vars *vars);
+// drawline
+void set_line_start_end(t_vars *vars);
+void drawline(t_vars *vars);
 
-//move_up
-void	move_up(t_vars *vars);
+// move_up
+void move_up(t_vars *vars);
 
-//move_down
-void	move_down(t_vars *vars);
+// move_down
+void move_down(t_vars *vars);
 
-//move_left
-void	move_left(t_vars *vars);
+// move_left
+void move_left(t_vars *vars);
 
-//move_right
-void	move_right(t_vars *vars);
+// move_right
+void move_right(t_vars *vars);
 
-void	hook(void *param);
+void hook(void *param);
 
 #endif

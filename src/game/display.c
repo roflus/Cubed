@@ -12,10 +12,10 @@
 
 #include "cub3D.h"
 
-void	draw_background(mlx_image_t *display, int height, int start, int color)
+void draw_background(mlx_image_t *display, int height, int start, int color)
 {
-	int	x;
-	int	y;
+	int x;
+	int y;
 
 	x = 0;
 	while (x < WIDTH)
@@ -27,10 +27,10 @@ void	draw_background(mlx_image_t *display, int height, int start, int color)
 			y++;
 		}
 		x++;
-	}	
+	}
 }
 
-void	display_game(t_vars *vars)
+void display_game(t_vars *vars)
 {
 	vars->display = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 	if (!vars->display)

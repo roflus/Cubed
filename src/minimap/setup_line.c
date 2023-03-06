@@ -19,19 +19,19 @@ static void set_point_on_map(t_vars *vars)
 	i = 0;
 	while (i < vars->inst_len)
 	{
-		mlx_image_to_window(vars->mlx, vars->line1, (vars->player1->instances[0].x + 6) + (vars->player.playdelta_x * (5 + (i * 5))), \
-			((vars->player1->instances[0].y + 6) + (vars->player.playdelta_y * (5 + (i * 5)))));
+		mlx_image_to_window(vars->mlx, vars->line1, (vars->player1->instances[0].x + 6) + (vars->player.playdelta_x * (5 + (i * 5))),
+							((vars->player1->instances[0].y + 6) + (vars->player.playdelta_y * (5 + (i * 5)))));
 		i++;
 	}
 }
 
-//Only for Testing DELETE WHEN DONE
+// Only for Testing DELETE WHEN DONE
 static void draw_point_on_map(t_vars *vars)
 {
-    int i;
+	int i;
 	int k;
 
-    i = 0;
+	i = 0;
 	while (i < 6)
 	{
 		k = 0;
@@ -47,8 +47,8 @@ static void draw_point_on_map(t_vars *vars)
 
 void create_points_line(t_vars *vars)
 {
-    vars->line1 = mlx_new_image(vars->mlx, 6, 6);
-    draw_point_on_map(vars);
+	vars->line1 = mlx_new_image(vars->mlx, 6, 6);
+	draw_point_on_map(vars);
 	set_point_on_map(vars);
 	vars->linepixel = mlx_new_image(vars->mlx, 1, 1);
 	mlx_put_pixel(vars->linepixel, 0, 0, 0x7D2AFA);

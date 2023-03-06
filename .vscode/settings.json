@@ -7,6 +7,8 @@
         "chrono": "c",
         "unordered_map": "c",
         "stdio.h": "c",
-        "cub3d.h": "c"
-    }
+        "cub3d.h": "c",
+        "libft.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

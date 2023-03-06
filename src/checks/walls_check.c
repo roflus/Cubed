@@ -12,9 +12,9 @@
 
 #include "cub3D.h"
 
-static bool	check_walls_start(t_vars *vars, int i)
+static bool check_walls_start(t_vars *vars, int i)
 {
-	int	k;
+	int k;
 
 	k = 0;
 	while (k < ft_strlen(vars->map.map[i]))
@@ -25,15 +25,15 @@ static bool	check_walls_start(t_vars *vars, int i)
 				return (false);
 		}
 		else
-			break ;
+			break;
 		k++;
 	}
 	return (true);
 }
 
-static bool	check_walls_end(t_vars *vars, int i)
+static bool check_walls_end(t_vars *vars, int i)
 {
-	int	k;
+	int k;
 
 	k = ft_strlen(vars->map.map[i]);
 	while (1)
@@ -44,16 +44,16 @@ static bool	check_walls_end(t_vars *vars, int i)
 				return (false);
 		}
 		else
-			break ;
+			break;
 		k--;
 	}
 	return (true);
 }
 
-bool	check_walls(t_vars *vars)
+bool check_walls(t_vars *vars)
 {
-	int		i;
-	size_t	k;
+	int i;
+	size_t k;
 
 	i = 1;
 	while (i < vars->map.array_count)
@@ -67,9 +67,9 @@ bool	check_walls(t_vars *vars)
 	return (true);
 }
 
-bool	check_first_last(t_vars *vars)
+bool check_first_last(t_vars *vars)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (vars->map.map[0][i] != '\0')
@@ -81,8 +81,7 @@ bool	check_first_last(t_vars *vars)
 	i = 0;
 	while (vars->map.map[vars->map.array_count][i] != '\0')
 	{
-		if (vars->map.map[vars->map.array_count][i] != ' ' \
-		&& vars->map.map[vars->map.array_count][i] != '1')
+		if (vars->map.map[vars->map.array_count][i] != ' ' && vars->map.map[vars->map.array_count][i] != '1')
 			return (false);
 		i++;
 	}

@@ -24,9 +24,9 @@ void draw_map(t_vars *vars)
 		while (k < ft_strlen(vars->map.map[i]))
 		{
 			if (vars->map.map[i][k] == '1')
-				mlx_image_to_window(vars->mlx, vars->wall, (k * MAPPIXEL), (i * MAPPIXEL));
+				mlx_image_to_window(vars->mlx, vars->wall, (k * 15), (i * 15));
 			else if (vars->map.map[i][k] == '0')
-				mlx_image_to_window(vars->mlx, vars->empty, (k * MAPPIXEL), (i * MAPPIXEL));
+				mlx_image_to_window(vars->mlx, vars->empty, (k * 15), (i * 15));
 			k++;
 		}
 		i++;
@@ -57,16 +57,16 @@ static void draw_wall(t_vars *vars)
 	int k;
 
 	i = 0;
-	while (i < 64)
+	while (i < 15)
 	{
 		k = 0;
-		while (k < 64)
+		while (k < 15)
 		{
 			mlx_put_pixel(vars->wall, k, i, 255255255);
 			k++;
 		}
 		i++;
-	}	
+	}
 }
 
 static void draw_empty(t_vars *vars)
@@ -75,16 +75,16 @@ static void draw_empty(t_vars *vars)
 	int k;
 
 	i = 0;
-	while (i < 64)
+	while (i < 15)
 	{
 		k = 0;
-		while (k < 64)
+		while (k < 15)
 		{
 			mlx_put_pixel(vars->empty, k, i, 267833369);
 			k++;
 		}
 		i++;
-	}	
+	}
 }
 
 void create_images_minimap(t_vars *vars)
@@ -96,6 +96,6 @@ void create_images_minimap(t_vars *vars)
 	draw_wall(vars);
 	draw_empty(vars);
 	draw_map(vars);
-	mlx_image_to_window(vars->mlx, vars->player1, (vars->player.player_x \
-		* MAPPIXEL + 32), (vars->player.player_y * MAPPIXEL + 32));
+	// mlx_image_to_window(vars->mlx, vars->player1, (vars->player.player_x * MAPPIXEL + 32), (vars->player.player_y * MAPPIXEL + 32));
+	mlx_image_to_window(vars->mlx, vars->player1, 10, 10);
 }
