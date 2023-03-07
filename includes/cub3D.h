@@ -23,8 +23,8 @@
 #include <memory.h>
 #include <math.h>
 #define MAPPIXEL 64
-#define WIDTH 400
-#define HEIGHT 400
+#define WIDTH 600
+#define HEIGHT 600
 
 typedef struct s_map
 {
@@ -91,7 +91,7 @@ typedef struct s_raycast
 	float side_dist_y;
 	float delta_dist_x;
 	float delta_dist_y;
-	float perp_wall_dist;
+	float reflect_from_wall;
 	int step_x;
 	int step_y;
 	int hit;

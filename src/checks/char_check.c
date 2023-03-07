@@ -22,8 +22,9 @@ static bool check_player_count(t_vars *vars, int i, int k)
 		vars->map.pos = pos;
 		vars->player.player_x = k;
 		vars->player.player_y = i;
-		vars->ray.pos_x = k;
-		vars->ray.pos_y = i;
+		vars->ray.pos_x = i;
+		vars->ray.pos_y = k;
+		vars->map.map[i][k] = '0';
 		return (true);
 	}
 	return (false);

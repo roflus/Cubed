@@ -60,17 +60,49 @@ void parser(t_vars *vars, char *file)
 	get_colors(vars);
 }
 
+static void setdirection_sw(t_vars *vars)
+{
+	if (vars->map.pos == 'S')
+	{
+		vars->ray.dir_x = 1;
+		vars->ray.dir_y = 0;
+		vars->ray.plane_x = 0;
+		vars->ray.plane_y = -0.66;
+	}
+	else if (vars->map.pos == 'W')
+	{
+		vars->ray.dir_x = 0;
+		vars->ray.dir_y = -1;
+		vars->ray.plane_x = -0.66;
+		vars->ray.plane_y = 0;
+	}
+}
+
+static void setdirection_ne(t_vars *vars)
+{
+	if (vars->map.pos == 'N')
+	{
+		vars->ray.dir_x = -1;
+		vars->ray.dir_y = 0;
+		vars->ray.plane_x = 0;
+		vars->ray.plane_y = 0.66;
+	}
+	else if (vars->map.pos == 'E')
+	{
+		vars->ray.dir_x = 0;
+		vars->ray.dir_y = 1;
+		vars->ray.plane_x = 0.66;
+		vars->ray.plane_y = 0;
+	}
+}
+
 void init_ray(t_vars *vars)
 {
 	// x and y start position is declared in char_check
 	// initial direction vector
-	vars->ray.dir_x = -1;
-	vars->ray.dir_y = 0;
 	// vector of camera plane
-	vars->ray.plane_x = 0;
-	vars->ray.plane_y = 0.66;
-	// vars->ray.pos_x = 2;
-	// vars->ray.pos_y = 2;
+	setdirection_ne(vars);
+	setdirection_sw(vars);
 }
 
 int main(int argc, char **argv)
