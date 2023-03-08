@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/08 15:24:06 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/08 17:13:58 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,12 @@ typedef struct s_raycast
 	double delta_dist_x;
 	double delta_dist_y;
 	double reflect_from_wall;
+	double	step;
+	double	textpos;
+	int	texture_y;
+	int	texture_x;
 	int step_x;
 	int step_y;
-	int hit;
 	int side;
 	int lineheight;
 	int drawstart;
@@ -328,7 +331,7 @@ void	calc_line_back_to_plane(t_vars *vars);
 void	get_vertical_line_height(t_vars *vars, int h);
 
 void	draw_vertical_line(t_vars *vars, int x, int color);
-void	setcolor(int side, int *color);
+void	setcolor(char side, int *color);
 
 
 /*-------------------------------DELETEWHENFINISHED--------------------------*/

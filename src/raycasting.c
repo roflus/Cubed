@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/08 11:43:21 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/08 15:24:29 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/08 18:36:44 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ void	calc_line_back_to_plane(t_vars *vars)
 
 void	dda_algoritm(t_vars *vars)
 {
-	vars->ray.hit = 0;
-	while (vars->ray.hit == 0)
+	int	hit;
+
+	hit = 0;
+	while (hit == 0)
 	{
 		if (vars->ray.side_dist_x < vars->ray.side_dist_y)
 		{
@@ -42,31 +44,97 @@ void	dda_algoritm(t_vars *vars)
 			vars->ray.side = 1;
 		}
 		if (vars->map.map[vars->ray.map_x][vars->ray.map_y] == '1')
-			vars->ray.hit = 1;
+			hit = 1;
 	}
 }
 
-/*
-	if (!ray->side && ray->direction.x >= 0)
-		ray->side = 1;
-	else if (!ray->side && ray->direction.x < 0)
-		ray->side = 3;
-	else if (ray->side && ray->direction.y >= 0)
-		ray->side = 2;
-	else
-		ray->side = 0;
-		*/
-
-void	testkleur(char side, int *color)
+void	wall_side(t_vars *vars)
 {
-	if (side == 'N')
-		*color = 0xFF8D00FF;
-	else if (side == 'S')
-		*color = 0xFF0000FF;
-	else if (side == 'W')
-		*color = 0x00FF00FF;
-	else if (side == 'E')
-		*color = 0x0000FFFF;
+	if (!vars->ray.side && vars->ray.ray_dir_x >= 0)
+		vars->wallside = 'N';
+	else if (!vars->ray.side && vars->ray.ray_dir_x < 0)
+		vars->wallside = 'S';
+	else if (vars->ray.side && vars->ray.ray_dir_y >= 0)
+		vars->wallside = 'W';
+	else if (vars->ray.side && vars->ray.ray_dir_y < 0)
+		vars->wallside = 'E';
+}
+
+static double	calc_wall_hit(t_vars *vars)
+{
+	double	wall_x;
+
+	if (!vars->ray.side)
+		wall_x = vars->ray.pos_y + vars->ray.reflect_from_wall * \
+				vars->ray.ray_dir_y;
+	if (vars->ray.side)
+		wall_x = vars->ray.pos_x + vars->ray.reflect_from_wall * \
+				vars->ray.ray_dir_x;
+	wall_x -= floor(wall_x);
+	return (wall_x);
+}
+
+void	calc_coord_x_text(t_vars *vars, mlx_texture_t *text)
+{
+	double	wall_x;
+
+	wall_x = calc_wall_hit(vars);
+	vars->ray.texture_x = (int)(wall_x * text->width);
+	// if (vars->ray.side == 0 && vars->ray.ray_dir_x > 0)
+	// 	vars->ray.texture_x = text->width - vars->ray.texture_x - 1;
+	// if (vars->ray.side == 1 && vars->ray.ray_dir_y < 0)
+	// 	vars->ray.texture_x = text->width - vars->ray.texture_x - 1;
+	// vars->ray.step = 1.0 * text->height / vars->ray.lineheight;
+	// vars->ray.textpos = (vars->ray.drawstart - HEIGHT / 2 + \
+	// 	vars->ray.lineheight / 2) * vars->ray.step;
+}
+
+// void	set_texture_to_wall(t_vars *vars, mlx_texture_t *text, int w)
+// {
+// 	int	y;
+// 	int	color;
+
+// 	y = vars->ray.drawstart;
+// 	while (y < vars->ray.drawend)
+// 	{
+// 		vars->ray.texture_y = (int)vars->ray.textpos;
+// 		vars->ray.textpos += vars->ray.step;
+// 		color = (int)(&text->pixels[text->width * vars->ray.texture_y + vars->ray.texture_x * sizeof(int)]);
+// 		color = ((color >> 24) & 0xff) | ((color << 8) & 0xff0000) | \
+// 			((color >> 8) & 0xff00) | ((color << 24) & 0xff000000);
+// 		mlx_put_pixel(vars->display, w, vars->ray.textpos, color);
+// 		y++;
+// 	}
+// }
+
+void	set_texture_to_wall(t_vars *vars, mlx_texture_t *text, int w)
+{
+	int ocx;
+	int heighty;
+	int heightx;
+	int	y;
+	int	color;
+
+	ocx = 0;
+	heighty = vars->ray.drawend - vars->ray.drawstart;
+	if (heighty > HEIGHT)
+		ocx = (heighty - HEIGHT) / 2;
+	heightx = vars->ray.drawend - vars->ray.drawstart;
+	if (heightx >= HEIGHT)
+		heightx = HEIGHT - 1;
+	calc_coord_x_text(vars, text);
+	y = 0;
+	while (y < heightx)
+	{
+		vars->ray.texture_y = (int)((((float)text->height / \
+			heighty)) * (y + ocx));
+		color = *(int*)(&text->pixels[vars->ray.texture_y * \
+			text->width + vars->ray.texture_x * sizeof(int)]);
+		color = ((color >> 24) & 0xff) | ((color << 8) & 0xff0000) | \
+			((color >> 8) & 0xff00) | ((color << 24) & 0xff000000);
+		mlx_put_pixel(vars->display, w,  (HEIGHT - heightx - 1) / 2 + y, color);
+		y++;
+	}
 }
 
 void	raycaster(t_vars *vars)
@@ -86,17 +154,11 @@ void	raycaster(t_vars *vars)
 		dda_algoritm(vars);
 		calc_line_back_to_plane(vars);
 		get_vertical_line_height(vars, HEIGHT);
-		// setcolor(vars->ray.side, &color);
-		if (!vars->ray.side && vars->ray.ray_dir_x >= 0)
-			vars->wallside = 'N';
-		else if (!vars->ray.side && vars->ray.ray_dir_x < 0)
-			vars->wallside = 'S';
-		else if (vars->ray.side && vars->ray.ray_dir_y >= 0)
-			vars->wallside = 'W';
-		else if (vars->ray.side && vars->ray.ray_dir_y < 0)
-			vars->wallside = 'E';
-		testkleur(vars->wallside, &color);
-		draw_vertical_line(vars, x, color);
+		// wall_side(vars);
+		// setcolor(vars->wallside, &color);
+		// draw_vertical_line(vars, x, color);
+		// calc_coord_x_text(vars, vars->walls.north_t);
+		set_texture_to_wall(vars, vars->walls.north_t, x);
 		x++;
 	}
 	mlx_image_to_window(vars->mlx, vars->display, 0, 0);

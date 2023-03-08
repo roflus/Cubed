@@ -6,18 +6,22 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/02 16:47:54 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/08 15:02:01 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/08 16:24:19 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	setcolor(int side, int *color)
+void	setcolor(char side, int *color)
 {
-	if (side == 0)
+	if (side == 'N')
 		*color = 0xFF8D00FF;
-	if (side == 1)
+	else if (side == 'S')
 		*color = 0xFF0000FF;
+	else if (side == 'W')
+		*color = 0x00FF00FF;
+	else if (side == 'E')
+		*color = 0x0000FFFF;
 }
 
 void	draw_vertical_line(t_vars *vars, int x, int color)

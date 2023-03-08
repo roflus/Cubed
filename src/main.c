@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/08 13:29:57 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/08 18:23:37 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,12 +116,6 @@ int main(int argc, char **argv)
 	init(&vars);
 	parser(&vars, argv[1]);
 	start_direction(&vars);
-	// check_player_position(&vars);
-	// create_images_minimap(&vars);
-	// vars.inst_len = 3;
-	// create_points_line(&vars);
-	// display_game(&vars);
-	// test_textures(&vars);
 	init_ray(&vars);
 	// system("leaks cub3D");
 	mlx_loop_hook(vars.mlx, &hook, &vars);
