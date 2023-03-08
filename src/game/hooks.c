@@ -6,11 +6,11 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 15:42:11 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/03 15:43:26 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/08 10:35:05 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "/Users/rolfharing/Documents/Codam/thuiswerkenaanschool/cub3d_github/includes/cub3D.h"
+#include "cub3D.h"
 
 void hook(void *param)
 {

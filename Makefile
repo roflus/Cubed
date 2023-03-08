@@ -15,6 +15,7 @@ INC = -I ./includes -I $(MLX_DIR)/include -I $(LIBFT_DIR) -I $(GNL_DIR)
 SRC =	./src/main.c \
 	 	./src/init_structs.c \
 		./src/raycasting.c \
+		./src/ray.c \
 		$(PARSER_DIR)get_colors.c \
 		$(PARSER_DIR)get_textures.c \
 		$(PARSER_DIR)open_file.c \

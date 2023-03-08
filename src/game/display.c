@@ -6,16 +6,47 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/02 16:47:54 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/02 18:33:09 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/08 11:51:49 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void draw_background(mlx_image_t *display, int height, int start, int color)
+void	setcolor(int side, int *color)
 {
-	int x;
-	int y;
+	if (side == 1)
+		*color = 0xFF8D00FF;
+	else
+		*color = 0xFF0000FF;
+}
+
+void	draw_vertical_line(t_vars *vars, int x, int color)
+{
+	int	i;
+
+	i = vars->ray.drawstart;
+	while (i < vars->ray.drawend)
+	{
+		mlx_put_pixel(vars->display, x, i, color);
+		i++;
+	}
+}
+
+void	get_vertical_line_height(t_vars *vars, int h)
+{
+	vars->ray.lineheight = (int)(h / vars->ray.reflect_from_wall);
+	vars->ray.drawstart = (-vars->ray.lineheight / 2) + (h / 2);
+	if (vars->ray.drawstart < 0)
+		vars->ray.drawstart = 0;
+	vars->ray.drawend = (vars->ray.lineheight / 2) + (h / 2);
+	if (vars->ray.drawend >= h)
+		vars->ray.drawend = h - 1;
+}
+
+void	draw_background(mlx_image_t *display, int height, int start, int color)
+{
+	int	x;
+	int	y;
 
 	x = 0;
 	while (x < WIDTH)
@@ -30,12 +61,12 @@ void draw_background(mlx_image_t *display, int height, int start, int color)
 	}
 }
 
-void display_game(t_vars *vars)
+void	setup_display(t_vars *vars)
 {
+	mlx_delete_image(vars->mlx, vars->display);
 	vars->display = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 	if (!vars->display)
 		ft_error("failed to allocate image", 4);
-	draw_background(vars->display, HEIGHT / 2, 0, vars->ceiling_rgb);
-	draw_background(vars->display, HEIGHT, 500, vars->floor_rgb);
-	mlx_image_to_window(vars->mlx, vars->display, 0, 0);
+	draw_background(vars->display, HEIGHT / 2, 0, 1232323);
+	draw_background(vars->display, HEIGHT, HEIGHT / 2, vars->floor_rgb);
 }

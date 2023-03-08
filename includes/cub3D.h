@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/03 15:44:09 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/08 13:04:49 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ void get_map(t_vars *vars);
  * @return true
  * @return false
  */
-bool check_empty_line_map(char *mapline);
+bool	check_empty_line_map(char *mapline);
 
 /**
  * @brief Check if the map is valid without errors
@@ -190,7 +190,7 @@ bool check_empty_line_map(char *mapline);
  * Check is the map is closed with walls
  * @param vars
  */
-void check_map(t_vars *vars);
+void	check_map(t_vars *vars);
 
 /*-------------------------------cardinal_check.c-----------------------*/
 
@@ -203,7 +203,7 @@ void check_map(t_vars *vars);
  * @return true
  * @return false
  */
-bool check_data(char **mapdata);
+bool	check_data(char **mapdata);
 
 /*-------------------------------char_check.c---------------------------*/
 
@@ -260,12 +260,72 @@ bool check_first_last(t_vars *vars);
 
 /*-------------------------------display.c--------------------------*/
 
+void	setup_display(t_vars *vars);
+
+/*-------------------------------Raycasting--------------------------*/
+
 /**
- * @brief Display final game image to screen.
+ * @brief Function that creates a 3D perspective from a 2D map.
  *
- * @param vars
+ * @param vars 
  */
-void display_game(t_vars *vars);
+void	raycaster(t_vars *vars);
+
+/**
+ * @brief Calculate ray position and direction.
+ *  Also sets the map x and y values using the position x and y of the player.
+ * 			
+ * @param vars 
+ * @param x 
+ * @param w 
+ */
+void	calc_ray_position_direction(t_vars *vars, int x, int w);
+
+/**
+ * @brief Calculate the length of ray from one x or y-side to next x or y-side
+ * 
+ * @param vars 
+ */
+void	calc_ray_lenght_to_add(t_vars *vars);
+
+/**
+ * @brief Calculate step and the distance from the ray starting 
+ * position to the first x or y-side.	
+ * 
+ * @param vars 
+ */
+void	calc_initial_ray_length(t_vars *vars);
+
+/**
+ * @brief Increment ray with 1 square in either x or y direction, 
+ * until wall is hit. 
+ * 
+ * @param vars 
+ */
+void	dda_algoritm(t_vars *vars);
+
+/**
+ * @brief  
+ * Calculate distance projected on camera direction. 
+ * This is the shortest distance from the point where the wall is
+ * hit to the camera plane. To avoid fisheye effect.
+ * 
+ * @param vars 
+ */
+void	calc_line_back_to_plane(t_vars *vars);
+
+/**
+ * @brief 
+ * Calculate heigt of line to draw on screen
+ * by calculating lowest and highest pixel to fill.
+ * @param vars 
+ * @param h 
+ */
+void	get_vertical_line_height(t_vars *vars, int h);
+
+void	draw_vertical_line(t_vars *vars, int x, int color);
+void	setcolor(int side, int *color);
+
 
 /*-------------------------------DELETEWHENFINISHED--------------------------*/
 void print_mapdata(t_vars *vars);
@@ -299,5 +359,9 @@ void move_left(t_vars *vars);
 void move_right(t_vars *vars);
 
 void hook(void *param);
+
+
+
+
 
 #endif
