@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/02 16:47:54 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/08 11:51:49 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/08 15:02:01 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	setcolor(int side, int *color)
 {
-	if (side == 1)
+	if (side == 0)
 		*color = 0xFF8D00FF;
-	else
+	if (side == 1)
 		*color = 0xFF0000FF;
 }
 

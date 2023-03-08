@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/08 13:43:49 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/08 15:24:06 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ typedef struct s_player
 {
 	int player_x;
 	int player_y;
-	float playdelta_x;
-	float playdelta_y;
-	float player_angle;
+	double playdelta_x;
+	double playdelta_y;
+	double player_angle;
 } t_player;
 
 typedef struct s_walls
@@ -77,24 +77,24 @@ typedef struct s_walls
 
 typedef struct s_raycast
 {
-	float pos_x;
-	float pos_y;
-	float dir_x;
-	float dir_y;
-	float plane_x;
-	float plane_y;
-	float time;
-	float old_time;
-	float camera_x;
-	float ray_dir_x;
-	float ray_dir_y;
+	double pos_x;
+	double pos_y;
+	double dir_x;
+	double dir_y;
+	double plane_x;
+	double plane_y;
+	double time;
+	double old_time;
+	double camera_x;
+	double ray_dir_x;
+	double ray_dir_y;
 	int map_x;
 	int map_y;
-	float side_dist_x;
-	float side_dist_y;
-	float delta_dist_x;
-	float delta_dist_y;
-	float reflect_from_wall;
+	double side_dist_x;
+	double side_dist_y;
+	double delta_dist_x;
+	double delta_dist_y;
+	double reflect_from_wall;
 	int step_x;
 	int step_y;
 	int hit;
@@ -110,6 +110,7 @@ typedef struct s_vars
 	int playercount;
 	int ceiling_rgb;
 	int floor_rgb;
+	char	wallside;
 	mlx_t *mlx;
 	mlx_image_t *player1;
 	mlx_image_t *empty;

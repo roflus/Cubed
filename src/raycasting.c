@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/08 11:43:21 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/08 11:51:44 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/08 15:24:29 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,29 @@ void	dda_algoritm(t_vars *vars)
 	}
 }
 
+/*
+	if (!ray->side && ray->direction.x >= 0)
+		ray->side = 1;
+	else if (!ray->side && ray->direction.x < 0)
+		ray->side = 3;
+	else if (ray->side && ray->direction.y >= 0)
+		ray->side = 2;
+	else
+		ray->side = 0;
+		*/
+
+void	testkleur(char side, int *color)
+{
+	if (side == 'N')
+		*color = 0xFF8D00FF;
+	else if (side == 'S')
+		*color = 0xFF0000FF;
+	else if (side == 'W')
+		*color = 0x00FF00FF;
+	else if (side == 'E')
+		*color = 0x0000FFFF;
+}
+
 void	raycaster(t_vars *vars)
 {
 	int	x;
@@ -63,7 +86,16 @@ void	raycaster(t_vars *vars)
 		dda_algoritm(vars);
 		calc_line_back_to_plane(vars);
 		get_vertical_line_height(vars, HEIGHT);
-		setcolor(vars->ray.side, &color);
+		// setcolor(vars->ray.side, &color);
+		if (!vars->ray.side && vars->ray.ray_dir_x >= 0)
+			vars->wallside = 'N';
+		else if (!vars->ray.side && vars->ray.ray_dir_x < 0)
+			vars->wallside = 'S';
+		else if (vars->ray.side && vars->ray.ray_dir_y >= 0)
+			vars->wallside = 'W';
+		else if (vars->ray.side && vars->ray.ray_dir_y < 0)
+			vars->wallside = 'E';
+		testkleur(vars->wallside, &color);
 		draw_vertical_line(vars, x, color);
 		x++;
 	}
