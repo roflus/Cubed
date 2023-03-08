@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/03 15:55:44 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/08 13:29:57 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void init(t_vars *vars)
 void parser(t_vars *vars, char *file)
 {
 	open_file(vars, file);
-	// get_textures(vars);
+	get_textures(vars);
 	get_colors(vars);
 }
 
@@ -124,7 +124,6 @@ int main(int argc, char **argv)
 	// test_textures(&vars);
 	init_ray(&vars);
 	// system("leaks cub3D");
-	// raycaster(&vars);
 	mlx_loop_hook(vars.mlx, &hook, &vars);
 	mlx_loop(vars.mlx);
 	mlx_terminate(vars.mlx);

@@ -6,25 +6,28 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/08 13:04:49 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/08 13:43:49 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
-#define CUB3D_H
+# define CUB3D_H
 
-#include <libft.h>
-#include <MLX42/MLX42.h>
-#include <fcntl.h>
-#include "get_next_line.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <memory.h>
-#include <math.h>
-#define MAPPIXEL 64
-#define WIDTH 600
-#define HEIGHT 600
+# include <libft.h>
+# include <MLX42/MLX42.h>
+# include <fcntl.h>
+# include "get_next_line.h"
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <memory.h>
+# include <math.h>
+# define MAPPIXEL 64
+# define WIDTH 600
+# define HEIGHT 600
+# define MOVESPEED 0.05
+# define ROTSPEED 0.05
+
 
 typedef struct s_map
 {
@@ -62,8 +65,8 @@ typedef struct s_player
 
 typedef struct s_walls
 {
-	mlx_image_t *north_img;
-	mlx_image_t *east_img;
+	mlx_image_t	*north_img;
+	mlx_image_t	*east_img;
 	mlx_image_t *south_img;
 	mlx_image_t *west_img;
 	mlx_texture_t *north_t;
