@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/09 15:50:26 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/09 18:09:24 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <memory.h>
 # include <math.h>
 # define MAPPIXEL 64
-# define WIDTH 600
-# define HEIGHT 600
+# define WIDTH 800
+# define HEIGHT 800
 # define MOVESPEED 0.05
 # define ROTSPEED 0.05
 
@@ -36,6 +36,7 @@ typedef struct s_map
 	char pos;
 	char **data;
 	char **map;
+	mlx_image_t	*minimap;
 } t_map;
 
 typedef struct s_line
@@ -120,6 +121,7 @@ typedef struct s_vars
 	mlx_image_t *wall;
 	mlx_image_t *line1;
 	mlx_image_t *linepixel;
+	mlx_image_t *background;
 	mlx_image_t *display;
 
 	t_walls walls;
@@ -129,20 +131,21 @@ typedef struct s_vars
 	t_raycast ray;
 } t_vars;
 
-void raycaster(t_vars *vars);
-void draw_background(mlx_image_t *display, int height, int start, int color);
+void	raycaster(t_vars *vars);
+void	draw_background(mlx_image_t *display, int height, int start, int color);
+void	set_direction(t_vars *vars);
 
 /*-------------------------------open_file.c----------------------------*/
 
-void get_colors(t_vars *vars);
-bool check_intsize(char **colors);
+void	get_colors(t_vars *vars);
+bool	check_intsize(char **colors);
 
 /**
  * @brief Get the textures object for every cardinal.
  *
  * @param vars
  */
-void get_textures(t_vars *vars);
+void	get_textures(t_vars *vars);
 /*-------------------------------open_file.c----------------------------*/
 
 /**
@@ -154,7 +157,7 @@ void get_textures(t_vars *vars);
  * @param vars
  * @param map
  */
-void open_file(t_vars *vars, char *map);
+void	open_file(t_vars *vars, char *map);
 
 /*-------------------------------parse_data.c---------------------------*/
 
@@ -164,7 +167,7 @@ void open_file(t_vars *vars, char *map);
  *
  * @param vars
  */
-void get_data(t_vars *vars);
+void	get_data(t_vars *vars);
 
 /*-------------------------------parse_map.c----------------------------*/
 
@@ -174,7 +177,7 @@ void get_data(t_vars *vars);
  *
  * @param vars
  */
-void get_map(t_vars *vars);
+void	get_map(t_vars *vars);
 
 /*-------------------------------map_check.c----------------------------*/
 
@@ -222,7 +225,7 @@ bool	check_data(char **mapdata);
  * @return true
  * @return false
  */
-bool check_char_map(t_vars *vars);
+bool	check_char_map(t_vars *vars);
 
 /**
  * @brief Check if every 0 and player starting pos is surrounded by either
@@ -232,7 +235,7 @@ bool check_char_map(t_vars *vars);
  * @return true
  * @return false
  */
-bool check_empty(t_vars *vars);
+bool	check_empty(t_vars *vars);
 
 /*---------------------------floor_ceiling_check.c----------------------*/
 
@@ -243,7 +246,7 @@ bool check_empty(t_vars *vars);
  * @return true
  * @return false
  */
-bool check_fcdata(char *string);
+bool	check_fcdata(char *string);
 
 /*-------------------------------walls_check.c--------------------------*/
 
@@ -254,7 +257,7 @@ bool check_fcdata(char *string);
  * @return true
  * @return false
  */
-bool check_walls(t_vars *vars);
+bool	check_walls(t_vars *vars);
 
 /**
  * @brief Map must be surrounded by walls, checks first and last string of map,
@@ -263,7 +266,7 @@ bool check_walls(t_vars *vars);
  * @return true
  * @return false
  */
-bool check_first_last(t_vars *vars);
+bool	check_first_last(t_vars *vars);
 
 /*-------------------------------display.c--------------------------*/
 
@@ -315,7 +318,7 @@ void	dda_algoritm(t_vars *vars);
  * @brief  
  * Calculate distance projected on camera direction. 
  * This is the shortest distance from the point where the wall is
- * hit to the camera plane. To avoid fisheye effect.
+ * hit to the camera plane. To avoid	fisheye effect.
  * 
  * @param vars 
  */
@@ -333,6 +336,8 @@ void	get_vertical_line_height(t_vars *vars);
 void	draw_vertical_line(t_vars *vars, int x, int color);
 void	setcolor(char side, int *color);
 
+void	choose_texture(t_vars *vars, int x);
+
 /*-------------------------------MOUSEHOOK--------------------------*/
 
 void	mousehook(t_vars *vars);
@@ -345,41 +350,37 @@ void	strafe_right(t_vars *vars);
 
 void	keyhook(t_vars *vars);
 
+void	hook(void	*param);
+
 /*-------------------------------DELETEWHENFINISHED--------------------------*/
-void print_mapdata(t_vars *vars);
-void print_map(t_vars *vars);
+void	print_mapdata(t_vars *vars);
+void	print_map(t_vars *vars);
 
 // init_structs
-void init_vars(t_vars *vars);
-void start_direction(t_vars *vars);
+void	init_vars(t_vars *vars);
+void	start_direction(t_vars *vars);
 
 // init_minimap
-void draw_map(t_vars *vars);
-void create_images_minimap(t_vars *vars);
+void	draw_map(t_vars *vars);
+void	create_images_minimap(t_vars *vars);
 
 // setup
-void create_points_line(t_vars *vars);
+void	create_points_line(t_vars *vars);
 
 // drawline
-void set_line_start_end(t_vars *vars);
-void drawline(t_vars *vars);
+void	set_line_start_end(t_vars *vars);
+void	drawline(t_vars *vars);
 
 // move_up
-void move_up(t_vars *vars);
+void	move_up(t_vars *vars);
 
 // move_down
-void move_down(t_vars *vars);
+void	move_down(t_vars *vars);
 
 // move_left
-void move_left(t_vars *vars);
+void	move_left(t_vars *vars);
 
 // move_right
-void move_right(t_vars *vars);
-
-void hook(void *param);
-
-
-
-
+void	move_right(t_vars *vars);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/20 09:26:32 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/03/03 15:37:14 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/09 18:44:17 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ static void draw_wall(t_vars *vars)
 	int k;
 
 	i = 0;
-	while (i < 15)
+	while (i < 10)
 	{
 		k = 0;
-		while (k < 15)
+		while (k < 10)
 		{
 			mlx_put_pixel(vars->wall, k, i, 255255255);
 			k++;
@@ -75,10 +75,10 @@ static void draw_empty(t_vars *vars)
 	int k;
 
 	i = 0;
-	while (i < 15)
+	while (i < 10)
 	{
 		k = 0;
-		while (k < 15)
+		while (k < 10)
 		{
 			mlx_put_pixel(vars->empty, k, i, 267833369);
 			k++;
@@ -87,7 +87,7 @@ static void draw_empty(t_vars *vars)
 	}
 }
 
-void create_images_minimap(t_vars *vars)
+void	create_images_minimap(t_vars *vars)
 {
 	vars->wall = mlx_new_image(vars->mlx, MAPPIXEL, MAPPIXEL);
 	vars->empty = mlx_new_image(vars->mlx, MAPPIXEL, MAPPIXEL);
@@ -97,5 +97,5 @@ void create_images_minimap(t_vars *vars)
 	draw_empty(vars);
 	draw_map(vars);
 	// mlx_image_to_window(vars->mlx, vars->player1, (vars->player.player_x * MAPPIXEL + 32), (vars->player.player_y * MAPPIXEL + 32));
-	mlx_image_to_window(vars->mlx, vars->player1, 10, 10);
+	// mlx_image_to_window(vars->mlx, vars->player1, 10, 10);
 }

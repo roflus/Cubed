@@ -2,7 +2,7 @@ NO ./textures/colorstone.png
 SO ./textures/greystone.png
 WE ./textures/wood.png
 EA ./textures/eagle.png
-F 192,192,192
+F 211,211,211
 C 0,191,255
 
         1111111111111111111111111

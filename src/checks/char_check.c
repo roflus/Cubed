@@ -3,20 +3,21 @@
 /*                                                        ::::::::            */
 /*   char_check.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
+/*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/26 17:56:21 by rharing       #+#    #+#                 */
-/*   Updated: 2023/02/22 13:29:57 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/09 16:33:21 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static bool check_player_count(t_vars *vars, int i, int k)
+static bool	check_player_count(t_vars *vars, int i, int k)
 {
-	char pos;
+	char	pos;
 
-	if (vars->map.map[i][k] == 'N' || vars->map.map[i][k] == 'E' || vars->map.map[i][k] == 'S' || vars->map.map[i][k] == 'W')
+	if (vars->map.map[i][k] == 'N' || vars->map.map[i][k] == 'E' || \
+		vars->map.map[i][k] == 'S' || vars->map.map[i][k] == 'W')
 	{
 		pos = vars->map.map[i][k];
 		vars->map.pos = pos;
@@ -30,10 +31,10 @@ static bool check_player_count(t_vars *vars, int i, int k)
 	return (false);
 }
 
-bool check_char_map(t_vars *vars)
+bool	check_char_map(t_vars *vars)
 {
-	int i;
-	int k;
+	int	i;
+	int	k;
 
 	i = 1;
 	while (i < vars->map.array_count)
@@ -58,7 +59,7 @@ bool check_char_map(t_vars *vars)
 	return (true);
 }
 
-static bool check_pos_char(t_vars *vars, int i, size_t k)
+static bool	check_pos_char(t_vars *vars, int i, size_t k)
 {
 	if (k > (ft_strlen(vars->map.map[i + 1]) - 1))
 		return (false);
@@ -75,10 +76,10 @@ static bool check_pos_char(t_vars *vars, int i, size_t k)
 	return (true);
 }
 
-bool check_empty(t_vars *vars)
+bool	check_empty(t_vars *vars)
 {
-	int i;
-	int k;
+	int	i;
+	int	k;
 
 	i = 0;
 	while (i < vars->map.array_count)
