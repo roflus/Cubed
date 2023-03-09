@@ -36,6 +36,7 @@ SRC =	./src/main.c \
 		$(MOVE_DIR)move_right.c \
 		$(GAME_DIR)display.c \
 		$(GAME_DIR)hooks.c \
+		$(GAME_DIR)strafe.c \
 		./src/printDELETEWHENFINISHED/printstuff.c
 
 OBJ = $(SRC:%.c=%.o)

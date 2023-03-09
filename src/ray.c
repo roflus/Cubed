@@ -6,15 +6,15 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/08 11:48:11 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/08 13:01:14 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/09 11:30:58 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	calc_ray_position_direction(t_vars *vars, int x, int w)
+void	calc_ray_position_direction(t_vars *vars, int x)
 {
-	vars->ray.camera_x = 2 * x / (float)w - 1;
+	vars->ray.camera_x = 2 * x / (float)WIDTH - 1;
 	vars->ray.ray_dir_x = \
 		vars->ray.dir_x + vars->ray.plane_x * vars->ray.camera_x;
 	vars->ray.ray_dir_y = \

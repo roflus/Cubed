@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/02 16:47:54 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/08 16:24:19 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/09 10:35:28 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ void	draw_vertical_line(t_vars *vars, int x, int color)
 	}
 }
 
-void	get_vertical_line_height(t_vars *vars, int h)
+void	get_vertical_line_height(t_vars *vars)
 {
-	vars->ray.lineheight = (int)(h / vars->ray.reflect_from_wall);
-	vars->ray.drawstart = (-vars->ray.lineheight / 2) + (h / 2);
+	vars->ray.lineheight = (int)(HEIGHT / vars->ray.reflect_from_wall);
+	vars->ray.drawstart = -vars->ray.lineheight / 2 + HEIGHT / 2;
 	if (vars->ray.drawstart < 0)
 		vars->ray.drawstart = 0;
-	vars->ray.drawend = (vars->ray.lineheight / 2) + (h / 2);
-	if (vars->ray.drawend >= h)
-		vars->ray.drawend = h - 1;
+	vars->ray.drawend = vars->ray.lineheight / 2 + HEIGHT / 2;
+	if (vars->ray.drawend >= HEIGHT)
+		vars->ray.drawend = HEIGHT - 1;
 }
 
 void	draw_background(mlx_image_t *display, int height, int start, int color)

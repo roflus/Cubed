@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/08 17:13:58 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/09 11:41:13 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,7 +286,7 @@ void	raycaster(t_vars *vars);
  * @param x 
  * @param w 
  */
-void	calc_ray_position_direction(t_vars *vars, int x, int w);
+void	calc_ray_position_direction(t_vars *vars, int x);
 
 /**
  * @brief Calculate the length of ray from one x or y-side to next x or y-side
@@ -328,10 +328,16 @@ void	calc_line_back_to_plane(t_vars *vars);
  * @param vars 
  * @param h 
  */
-void	get_vertical_line_height(t_vars *vars, int h);
+void	get_vertical_line_height(t_vars *vars);
 
 void	draw_vertical_line(t_vars *vars, int x, int color);
 void	setcolor(char side, int *color);
+
+/*-------------------------------KEYHOOK--------------------------*/
+
+void	strafe_left(t_vars *vars);
+
+void	strafe_right(t_vars *vars);
 
 
 /*-------------------------------DELETEWHENFINISHED--------------------------*/
