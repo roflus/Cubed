@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/09 11:41:13 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/09 15:50:26 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -333,12 +333,17 @@ void	get_vertical_line_height(t_vars *vars);
 void	draw_vertical_line(t_vars *vars, int x, int color);
 void	setcolor(char side, int *color);
 
+/*-------------------------------MOUSEHOOK--------------------------*/
+
+void	mousehook(t_vars *vars);
+
 /*-------------------------------KEYHOOK--------------------------*/
 
 void	strafe_left(t_vars *vars);
 
 void	strafe_right(t_vars *vars);
 
+void	keyhook(t_vars *vars);
 
 /*-------------------------------DELETEWHENFINISHED--------------------------*/
 void print_mapdata(t_vars *vars);

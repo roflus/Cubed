@@ -9,6 +9,7 @@ CHECK_DIR = ./src/checks/
 PARSER_DIR = ./src/parser/
 MINIMAP_DIR = ./src/minimap/
 GAME_DIR = ./src/game/
+HOOK_DIR = ./src/hooks/
 FLAGS = -Wall -Werror -Wextra -g 
 LFLAGS = -framework Cocoa -framework OpenGL -framework IOKit
 INC = -I ./includes -I $(MLX_DIR)/include -I $(LIBFT_DIR) -I $(GNL_DIR)
@@ -35,8 +36,10 @@ SRC =	./src/main.c \
 		$(MOVE_DIR)move_left.c \
 		$(MOVE_DIR)move_right.c \
 		$(GAME_DIR)display.c \
-		$(GAME_DIR)hooks.c \
-		$(GAME_DIR)strafe.c \
+		$(HOOK_DIR)hooks.c \
+		$(HOOK_DIR)strafe.c \
+		$(HOOK_DIR)mouse_hook.c \
+		$(HOOK_DIR)key_hook.c \
 		./src/printDELETEWHENFINISHED/printstuff.c
 
 OBJ = $(SRC:%.c=%.o)
