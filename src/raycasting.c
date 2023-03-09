@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/08 11:43:21 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/09 12:05:48 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/09 13:27:48 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	calc_line_back_to_plane(t_vars *vars)
 		vars->ray.reflect_from_wall = \
 			((vars->ray.map_y - vars->ray.pos_y + (1 - vars->ray.step_y) / 2) \
 			/ vars->ray.ray_dir_y);
-	printf("test: perp : %f", vars->ray.reflect_from_wall);
 }
 
 void	dda_algoritm(t_vars *vars)
@@ -147,7 +146,7 @@ void	set_texture_to_wall(t_vars *vars, mlx_texture_t *text, int w)
 	{
 		vars->ray.texture_y = (int)vars->ray.textpos;
 		vars->ray.textpos += vars->ray.step;
-		color = *(int *)(&text->pixels[text->width * vars->ray.texture_y + vars->ray.texture_x * sizeof(int)]);
+		color = *(int *)(&text->pixels[(text->width * vars->ray.texture_y + vars->ray.texture_x) * sizeof(int)]);
 		color = ((color >> 24) & 0xff) | ((color << 8) & 0xff0000) | \
 			((color >> 8) & 0xff00) | ((color << 24) & 0xff000000);
 		mlx_put_pixel(vars->display, w, (HEIGHT - heightx - 1) / 2 + y, color);

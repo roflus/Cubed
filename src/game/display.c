@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/02 16:47:54 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/09 10:35:28 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/09 13:17:01 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,6 @@ void	setup_display(t_vars *vars)
 	vars->display = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 	if (!vars->display)
 		ft_error("failed to allocate image", 4);
-	draw_background(vars->display, HEIGHT / 2, 0, 1232323);
+	draw_background(vars->display, HEIGHT / 2, 0, vars->ceiling_rgb);
 	draw_background(vars->display, HEIGHT, HEIGHT / 2, vars->floor_rgb);
 }

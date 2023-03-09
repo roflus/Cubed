@@ -1,9 +1,10 @@
 NO ./textures/colorstone.png
 SO ./textures/greystone.png
-WE ./textures/mossy.png
-EA ./textures/purplestone.png
-F 220,100,0
-C 225,30,0
+WE ./textures/wood.png
+EA ./textures/eagle.png
+F 192,192,192
+C 0,191,255
+
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001
