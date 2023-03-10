@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/20 09:26:32 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/03/09 18:44:17 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/10 16:42:30 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,5 @@ void	create_images_minimap(t_vars *vars)
 	draw_empty(vars);
 	draw_map(vars);
 	// mlx_image_to_window(vars->mlx, vars->player1, (vars->player.player_x * MAPPIXEL + 32), (vars->player.player_y * MAPPIXEL + 32));
-	// mlx_image_to_window(vars->mlx, vars->player1, 10, 10);
+	mlx_image_to_window(vars->mlx, vars->player1, 10, 10);
 }

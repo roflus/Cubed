@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 15:42:11 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/09 16:24:20 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/10 19:00:22 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,43 @@ void	keyhook(t_vars *vars)
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(vars->mlx);
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_UP))
+	{
+		vars->player.player_x = vars->ray.pos_y;
+		vars->player.player_y = vars->ray.pos_x;
 		move_forward(vars);
+	}
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_DOWN))
+	{
+		vars->player.player_x = vars->ray.pos_y;
+		vars->player.player_y = vars->ray.pos_x;
 		move_backwards(vars);
+	}
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_RIGHT))
 		turn_right(vars);
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_LEFT))
 		turn_left(vars);
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_D))
+	{
+		vars->player.player_x = vars->ray.pos_y;
+		vars->player.player_y = vars->ray.pos_x;
 		strafe_right(vars);
+	}
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_A))
+	{
+		vars->player.player_x = vars->ray.pos_y;
+		vars->player.player_y = vars->ray.pos_x;
 		strafe_left(vars);
+	}
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_W))
+	{
+		vars->player.player_x = vars->ray.pos_y;
+		vars->player.player_y = vars->ray.pos_x;
 		move_forward(vars);
+	}
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_S))
+	{
+		vars->player.player_x = vars->ray.pos_y;
+		vars->player.player_y = vars->ray.pos_x;
 		move_backwards(vars);
+	}
 }

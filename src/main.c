@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/09 18:50:57 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/10 18:36:48 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int argc, char **argv)
 	parser(&vars, argv[1]);
 	start_direction(&vars);
 	set_direction(&vars);
-	system("leaks cub3D");
+	// system("leaks cub3D");
 	mlx_loop_hook(vars.mlx, &hook, &vars);
 	mlx_loop(vars.mlx);
 	mlx_terminate(vars.mlx);

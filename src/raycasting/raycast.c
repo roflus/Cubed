@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/08 11:43:21 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/09 18:51:00 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/10 18:54:16 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ void	raycaster(t_vars *vars)
 		choose_texture(vars, x);
 		x++;
 	}
+	create_minimap(vars);
 	mlx_image_to_window(vars->mlx, vars->display, 0, 0);
 }

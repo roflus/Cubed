@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/09 18:09:24 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/10 17:33:46 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,42 +23,41 @@
 # include <memory.h>
 # include <math.h>
 # define MAPPIXEL 64
-# define WIDTH 800
-# define HEIGHT 800
+# define WIDTH 1000
+# define HEIGHT 1000
 # define MOVESPEED 0.05
 # define ROTSPEED 0.05
 
 
 typedef struct s_map
 {
-	int fd;
-	int array_count;
+	int	fd;
+	int	array_count;
 	char pos;
 	char **data;
 	char **map;
-	mlx_image_t	*minimap;
 } t_map;
 
 typedef struct s_line
 {
-	int x_start;
-	int x_end;
-	int y_start;
-	int y_end;
-	int diffx;
-	int diffy;
-	int boundary;
-	int current_x;
-	int current_y;
-	int increase_x;
-	int increase_y;
-	int count;
+	int	x_start;
+	int	x_end;
+	int	y_start;
+	int	y_end;
+	int	diffx;
+	int	diffy;
+	int	boundary;
+	int	current_x;
+	int	current_y;
+	int	increase_x;
+	int	increase_y;
+	int	count;
 } t_line;
 
 typedef struct s_player
 {
-	int player_x;
-	int player_y;
+	int	player_x;
+	int	player_y;
 	double playdelta_x;
 	double playdelta_y;
 	double player_angle;
@@ -89,8 +88,8 @@ typedef struct s_raycast
 	double camera_x;
 	double ray_dir_x;
 	double ray_dir_y;
-	int map_x;
-	int map_y;
+	int	map_x;
+	int	map_y;
 	double side_dist_x;
 	double side_dist_y;
 	double delta_dist_x;
@@ -100,20 +99,27 @@ typedef struct s_raycast
 	double	textpos;
 	int	texture_y;
 	int	texture_x;
-	int step_x;
-	int step_y;
-	int side;
-	int lineheight;
-	int drawstart;
-	int drawend;
+	int	step_x;
+	int	step_y;
+	int	side;
+	int	lineheight;
+	int	drawstart;
+	int	drawend;
 } t_raycast;
+
+typedef struct s_minimap
+{
+	int			width;
+	int			height;
+	mlx_image_t	*minimap;
+}	t_minimap;
 
 typedef struct s_vars
 {
-	int inst_len;
-	int playercount;
-	int ceiling_rgb;
-	int floor_rgb;
+	int	inst_len;
+	int	playercount;
+	int	ceiling_rgb;
+	int	floor_rgb;
 	char	wallside;
 	mlx_t *mlx;
 	mlx_image_t *player1;
@@ -129,10 +135,14 @@ typedef struct s_vars
 	t_player player;
 	t_line line;
 	t_raycast ray;
-} t_vars;
+	t_minimap minimap;
+}	t_vars;
+
+
+void	create_minimap(t_vars *vars);
 
 void	raycaster(t_vars *vars);
-void	draw_background(mlx_image_t *display, int height, int start, int color);
+void	draw_background(mlx_image_t *display, int	height, int	start, int	color);
 void	set_direction(t_vars *vars);
 
 /*-------------------------------open_file.c----------------------------*/
@@ -289,7 +299,7 @@ void	raycaster(t_vars *vars);
  * @param x 
  * @param w 
  */
-void	calc_ray_position_direction(t_vars *vars, int x);
+void	calc_ray_position_direction(t_vars *vars, int	x);
 
 /**
  * @brief Calculate the length of ray from one x or y-side to next x or y-side
@@ -317,7 +327,7 @@ void	dda_algoritm(t_vars *vars);
 /**
  * @brief  
  * Calculate distance projected on camera direction. 
- * This is the shortest distance from the point where the wall is
+ * This is the shortest distance from the point	where the wall is
  * hit to the camera plane. To avoid	fisheye effect.
  * 
  * @param vars 
@@ -333,10 +343,10 @@ void	calc_line_back_to_plane(t_vars *vars);
  */
 void	get_vertical_line_height(t_vars *vars);
 
-void	draw_vertical_line(t_vars *vars, int x, int color);
-void	setcolor(char side, int *color);
+void	draw_vertical_line(t_vars *vars, int	x, int	color);
+void	setcolor(char side, int	*color);
 
-void	choose_texture(t_vars *vars, int x);
+void	choose_texture(t_vars *vars, int	x);
 
 /*-------------------------------MOUSEHOOK--------------------------*/
 
