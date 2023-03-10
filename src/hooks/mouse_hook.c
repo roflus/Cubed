@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/09 15:42:13 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/09 16:24:33 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/10 12:40:42 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ void	mousehook(t_vars *vars)
 	mouse_x = cur_x;
 	mlx_get_mouse_pos(vars->mlx, &cur_x, &cur_y);
 	mlx_set_cursor_mode(vars->mlx, MLX_MOUSE_HIDDEN);
+	if (mlx_get_time() < 1)
+	{
+		mlx_set_mouse_pos(vars->mlx, WIDTH / 2, HEIGHT / 2);
+		return ;
+	}
 	if (cur_x != mouse_x)
 	{
 		if (cur_x > mouse_x)
