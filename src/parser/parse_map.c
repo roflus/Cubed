@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/26 18:20:29 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/03 14:40:41 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/15 12:40:10 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	create_map(t_vars *vars, char *mapline)
 	temptrim = ft_strtrim(mapline, "\n");
 	free(mapline);
 	if (check_empty_line_map(temptrim) == false)
-		ft_error("Newline in map", 1);
+		ft_error("File is not correct", 1);
 	vars->map.array_count = nlcount(temptrim);
 	vars->map.map = ft_split(temptrim, '\n');
 	free(temptrim);

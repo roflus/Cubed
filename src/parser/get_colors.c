@@ -19,6 +19,7 @@ char	*get_color(t_vars *vars, char c)
 	char	*trimmed;
 
 	i = 0;
+	string = NULL;
 	while (vars->map.data[i] != '\0')
 	{
 		if (vars->map.data[i][0] == c && vars->map.data[i][1] == ' ')
@@ -63,11 +64,11 @@ void	get_colors(t_vars *vars)
 	char	*floor;
 
 	ceiling = get_color(vars, 'C');
-	if (check_fcdata(ceiling) == false)
+	if (ceiling == NULL || check_fcdata(ceiling) == false)
 		ft_error("ceiling color error", 1);
 	set_colors(&vars->ceiling_rgb, ceiling);
 	floor = get_color(vars, 'F');
-	if (check_fcdata(floor) == false)
+	if (floor == NULL || check_fcdata(floor) == false)
 		ft_error("ceiling color error", 1);
 	set_colors(&vars->floor_rgb, floor);
 }

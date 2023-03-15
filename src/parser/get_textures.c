@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/10 14:55:06 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/09 17:49:00 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/15 12:41:03 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	gettexture(char **mapdata, mlx_texture_t **cardinal, \
 	int		i;
 
 	i = 0;
+	path = NULL;
 	while (mapdata[i] != '\0')
 	{
 		if (mapdata[i][0] == first && mapdata[i][1] == second)
@@ -30,13 +31,12 @@ static void	gettexture(char **mapdata, mlx_texture_t **cardinal, \
 		}
 		i++;
 	}
-	printf("test: %s\n", path);
 	trimmed = ft_strtrim(path, " ");
 	free(path);
 	*cardinal = mlx_load_png(trimmed);
 	free(trimmed);
 	if (*cardinal == NULL)
-		ft_error("Can't load texture", 2);
+		ft_error("Can't load texture", 1);
 }
 
 void	get_textures(t_vars *vars)
@@ -45,18 +45,18 @@ void	get_textures(t_vars *vars)
 	vars->walls.north_img = \
 		mlx_texture_to_image(vars->mlx, vars->walls.north_t);
 	if (!vars->walls.north_img)
-		ft_error("Can't convert texture to image", 3);
+		ft_error("Can't convert texture to image", 1);
 	gettexture(vars->map.data, &vars->walls.east_t, 'E', 'A');
 	vars->walls.east_img = mlx_texture_to_image(vars->mlx, vars->walls.east_t);
 	if (!vars->walls.east_img)
-		ft_error("Can't convert texture to image", 3);
+		ft_error("Can't convert texture to image", 1);
 	gettexture(vars->map.data, &vars->walls.south_t, 'S', 'O');
 	vars->walls.south_img = \
 		mlx_texture_to_image(vars->mlx, vars->walls.south_t);
 	if (!vars->walls.south_img)
-		ft_error("Can't convert texture to image", 3);
+		ft_error("Can't convert texture to image", 1);
 	gettexture(vars->map.data, &vars->walls.west_t, 'W', 'E');
 	vars->walls.west_img = mlx_texture_to_image(vars->mlx, vars->walls.west_t);
 	if (!vars->walls.west_img)
-		ft_error("Can't convert texture to image", 3);
+		ft_error("Can't convert texture to image", 1);
 }

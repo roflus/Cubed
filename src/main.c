@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/10 18:36:48 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/15 13:42:34 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init(t_vars *vars)
 	ft_memset(vars, 0, sizeof(vars));
 	vars->map.data = (char **)malloc(7 * sizeof(char *));
 	if (vars->map.data == NULL)
-		ft_error("malloc failed", 1);
+		ft_error("Malloc failed", 1);
 	vars->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
 	if (!vars->mlx)
 		exit(EXIT_FAILURE);
@@ -54,7 +54,6 @@ int	main(int argc, char **argv)
 	parser(&vars, argv[1]);
 	start_direction(&vars);
 	set_direction(&vars);
-	// system("leaks cub3D");
 	mlx_loop_hook(vars.mlx, &hook, &vars);
 	mlx_loop(vars.mlx);
 	mlx_terminate(vars.mlx);

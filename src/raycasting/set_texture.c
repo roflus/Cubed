@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/09 16:02:01 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/09 16:24:11 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/15 11:46:26 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static void	set_texture_to_wall(t_vars *vars, mlx_texture_t *text, int w)
 	int		y;
 	int		color;
 	int		heightx;
-	double	wall_x;
 
 	heightx = vars->ray.drawend - vars->ray.drawstart;
 	if (heightx >= HEIGHT)

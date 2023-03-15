@@ -3,7 +3,7 @@ LIBFT_DIR = ./libs/libft
 LIBFT = $(LIBFT_DIR)/libft.a
 MLX_DIR = ./libs/mlx
 MLX_LIB = $(MLX_DIR)/libmlx42.a
-GNL_DIR = ./src/getnextline/
+GNL_DIR = ./libs/getnextline/
 MOVE_DIR = ./src/player_move/
 CHECK_DIR = ./src/checks/
 PARSER_DIR = ./src/parser/
@@ -14,8 +14,8 @@ FLAGS = -Wall -Werror -Wextra -g
 LFLAGS = -framework Cocoa -framework OpenGL -framework IOKit
 INC = -I ./includes -I $(MLX_DIR)/include -I $(LIBFT_DIR) -I $(GNL_DIR)
 SRC =	./src/main.c \
-	 	./src/set_dir.c \
-	 	./src/minimap.c \
+	 	./src/minimap/minimap.c \
+	 	$(PARSER_DIR)set_dir.c \
 		$(PARSER_DIR)get_colors.c \
 		$(PARSER_DIR)get_textures.c \
 		$(PARSER_DIR)open_file.c \
@@ -27,13 +27,6 @@ SRC =	./src/main.c \
 		$(CHECK_DIR)walls_check.c \
 		$(GNL_DIR)get_next_line.c \
 		$(GNL_DIR)get_next_line_utils.c \
-		$(MINIMAP_DIR)setup_line.c \
-		$(MINIMAP_DIR)draw_line.c \
-		$(MINIMAP_DIR)init_minimap.c \
-		$(MOVE_DIR)move_up.c \
-		$(MOVE_DIR)move_down.c \
-		$(MOVE_DIR)move_left.c \
-		$(MOVE_DIR)move_right.c \
 		$(RAY_DIR)display.c \
 		$(RAY_DIR)raycast.c \
 		$(RAY_DIR)ray.c \
@@ -51,7 +44,7 @@ $(NAME): $(MLX_LIB) $(LIBFT) $(OBJ)
 	gcc  $(OBJ) $(INC) $(MLX_LIB) -lglfw3 $(LIBFT) $(LFLAGS) -o $(NAME) 
 
 %.o: %.c
-	gcc  $(INC) -c $< -o $@
+	gcc  $(INC) $(FLAGS) -c $< -o $@
 
 $(MLX_LIB):
 	$(MAKE) -C $(MLX_DIR)

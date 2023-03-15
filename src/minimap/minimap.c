@@ -6,31 +6,13 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/10 13:19:28 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/10 18:55:59 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/15 13:46:43 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 #define TILESIZE 15
-
-int	get_width(char **map)
-{
-	int		longest;
-	int		len;
-	size_t	i;
-
-	longest = ft_strlen(map[0]);
-	i = 1;
-	while (map[i] != '\0')
-	{
-		len = ft_strlen(map[i]);
-		if (longest < len)
-			longest = len;
-		i++;
-	}
-	return (longest);
-}
 
 void	draw_square(mlx_image_t *minimap, int start_x, int start_y, int color)
 {
@@ -57,10 +39,10 @@ void	draw_square(mlx_image_t *minimap, int start_x, int start_y, int color)
 
 void	draw_minimap(char **map, mlx_image_t *minimap)
 {
-	int	i;
-	int	k;
-	int	x;
-	int	y;
+	int		i;
+	size_t	k;
+	int		x;
+	int		y;
 
 	i = 0;
 	x = 0;
@@ -83,10 +65,10 @@ void	draw_minimap(char **map, mlx_image_t *minimap)
 	}
 }
 
-static void draw_player(t_vars *vars)
+static void	draw_player(t_vars *vars)
 {
-	int i;
-	int k;
+	int	i;
+	int	k;
 
 	i = vars->player.player_y * TILESIZE;
 	while (i < (vars->player.player_y * TILESIZE + 15))
@@ -101,32 +83,8 @@ static void draw_player(t_vars *vars)
 	}
 }
 
-// void	create_minimap(t_vars *vars)
-// {
-// 	if (vars->minimap.width == 0)
-// 		vars->minimap.width = get_width(vars->map.map);
-// 	if (vars->minimap.height == 0)
-// 		vars->minimap.height = vars->map.array_count + 2;
-// 	mlx_delete_image(vars->mlx, vars->minimap.minimap);
-// 	vars->minimap.minimap = mlx_new_image(vars->mlx, \
-// 		(vars->minimap.width * TILESIZE + vars->minimap.width), (vars->minimap.height * TILESIZE + vars->minimap.height));
-// 	if (!vars->minimap.minimap)
-// 		ft_error("failed to allocate image", 4);
-// 	draw_minimap(vars->map.map, vars->minimap.minimap);
-// 	draw_player(vars);
-// }
-
 void	create_minimap(t_vars *vars)
 {
-	// if (vars->minimap.width == 0)
-	// 	vars->minimap.width = get_width(vars->map.map);
-	// if (vars->minimap.height == 0)
-	// 	vars->minimap.height = vars->map.array_count + 2;
-	// mlx_delete_image(vars->mlx, vars->minimap.minimap);
-	// vars->minimap.minimap = mlx_new_image(vars->mlx, \
-	// 	(vars->minimap.width * TILESIZE + vars->minimap.width), (vars->minimap.height * TILESIZE + vars->minimap.height));
-	// if (!vars->minimap.minimap)
-	// 	ft_error("failed to allocate image", 4);
 	draw_minimap(vars->map.map, vars->display);
 	draw_player(vars);
 }

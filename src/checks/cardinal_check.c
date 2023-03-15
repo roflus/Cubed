@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/19 13:33:17 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/03/03 14:35:29 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/15 12:15:36 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static bool	check_color(char **mapdata, char c)
 
 	i = 0;
 	count = 0;
-	while ((mapdata[i] != '\0') && i < 6)
+	while ((ft_strncmp(mapdata[i], "\0", 1) != 0))
 	{
 		if (mapdata[i][0] == c && mapdata[i][1] == ' ')
 			return (true);
@@ -72,7 +72,7 @@ static bool	check_cardinal(char **mapdata, char first, char second)
 
 	i = 0;
 	count = 0;
-	while ((mapdata[i] != '\0') && i < 6)
+	while ((ft_strncmp(mapdata[i], "\0", 1) != 0))
 	{
 		if (mapdata[i][0] == first && mapdata[i][1] == second \
 			&& mapdata[i][2] == ' ')

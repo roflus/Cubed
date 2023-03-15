@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/26 17:56:21 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/10 17:22:53 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/15 13:37:34 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static bool	check_player_count(t_vars *vars, int i, int k)
 		vars->map.pos = pos;
 		vars->player.player_x = k;
 		vars->player.player_y = i;
-		vars->ray.pos_x = i;
-		vars->ray.pos_y = k;
+		vars->ray.pos_x = i + 0.5;
+		vars->ray.pos_y = k + 0.5;
 		vars->map.map[i][k] = '0';
 		return (true);
 	}

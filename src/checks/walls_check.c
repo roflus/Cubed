@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/26 17:47:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/10 12:40:11 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/15 11:45:37 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static bool	check_walls_start(t_vars *vars, int i)
 {
-	int	k;
+	size_t	k;
 
 	k = 0;
 	while (k < ft_strlen(vars->map.map[i]))
@@ -33,7 +33,7 @@ static bool	check_walls_start(t_vars *vars, int i)
 
 static bool	check_walls_end(t_vars *vars, int i)
 {
-	int	k;
+	size_t	k;
 
 	k = ft_strlen(vars->map.map[i]);
 	while (1)
@@ -53,7 +53,6 @@ static bool	check_walls_end(t_vars *vars, int i)
 bool	check_walls(t_vars *vars)
 {
 	int		i;
-	size_t	k;
 
 	i = 1;
 	while (i < vars->map.array_count)

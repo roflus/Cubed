@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/08 11:43:21 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/10 18:54:16 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/15 11:45:57 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	wall_side(t_vars *vars)
 void	raycaster(t_vars *vars)
 {
 	int	x;
-	int	color;
 
 	x = 0;
 	setup_display(vars);
