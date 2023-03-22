@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   parse_map.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rharing <rharing@student.42.fr>              +#+                     */
+/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/26 18:20:29 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/15 12:40:10 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/22 16:37:47 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

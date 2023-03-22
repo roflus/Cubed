@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/10 13:19:28 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/22 14:09:34 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/22 16:26:54 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,9 @@ static void	draw_player(t_vars *vars)
 
 void	create_minimap(t_vars *vars)
 {
-	draw_minimap(vars->map.map, vars->display);
-	draw_player(vars);
+	if (vars->map.array_count < (HEIGHT / TILESIZE))
+	{
+		draw_minimap(vars->map.map, vars->display);
+		draw_player(vars);
+	}
 }
