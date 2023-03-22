@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/08 11:43:21 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/15 11:45:57 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/22 12:05:46 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void	raycaster(t_vars *vars)
 	while (x < WIDTH)
 	{
 		calc_ray_position_direction(vars, x);
-		calc_ray_lenght_to_add(vars);
 		calc_initial_ray_length(vars);
+		calc_ray_lenght_to_add(vars);
 		dda_algoritm(vars);
 		calc_line_back_to_plane(vars);
 		get_vertical_line_height(vars);

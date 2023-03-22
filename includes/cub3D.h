@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/10 17:33:46 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/22 12:09:50 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -343,10 +343,10 @@ void	calc_line_back_to_plane(t_vars *vars);
  */
 void	get_vertical_line_height(t_vars *vars);
 
-void	draw_vertical_line(t_vars *vars, int	x, int	color);
+void	draw_vertical_line(t_vars *vars, int x, int color);
 void	setcolor(char side, int	*color);
 
-void	choose_texture(t_vars *vars, int	x);
+void	choose_texture(t_vars *vars, int x);
 
 /*-------------------------------MOUSEHOOK--------------------------*/
 
@@ -368,7 +368,6 @@ void	print_map(t_vars *vars);
 
 // init_structs
 void	init_vars(t_vars *vars);
-void	start_direction(t_vars *vars);
 
 // init_minimap
 void	draw_map(t_vars *vars);

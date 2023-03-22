@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/15 13:42:34 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/22 11:40:56 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	main(int argc, char **argv)
 		ft_error("File is not .cub", 2);
 	init(&vars);
 	parser(&vars, argv[1]);
-	start_direction(&vars);
 	set_direction(&vars);
 	mlx_loop_hook(vars.mlx, &hook, &vars);
 	mlx_loop(vars.mlx);

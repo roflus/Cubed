@@ -6,25 +6,11 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/20 15:16:44 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/03/15 13:43:35 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/22 11:41:52 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-void	start_direction(t_vars *vars)
-{
-	if (vars->map.pos == 'N')
-		vars->player.player_angle = (3 * M_PI_2);
-	else if (vars->map.pos == 'E')
-		vars->player.player_angle = (0);
-	else if (vars->map.pos == 'S')
-		vars->player.player_angle = (M_PI_2);
-	else if (vars->map.pos == 'W')
-		vars->player.player_angle = (M_PI);
-	vars->player.playdelta_x = cos(vars->player.player_angle) * 5;
-	vars->player.playdelta_y = sin(vars->player.player_angle) * 5;
-}
 
 static void	setdirection_sw(t_vars *vars)
 {
