@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   key_hook.c                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rharing <rharing@student.42.fr>              +#+                     */
+/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 15:42:11 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/15 13:33:44 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/22 14:08:34 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	move_forward(t_vars *vars)
 {
-	vars->player.player_x = vars->ray.pos_y;
-	vars->player.player_y = vars->ray.pos_x;
+	vars->player.player_y = vars->ray.pos_y;
+	vars->player.player_x = vars->ray.pos_x;
 	if (vars->map.map[(int)(vars->ray.pos_x + vars->ray.dir_x * MOVESPEED)] \
 		[(int)vars->ray.pos_y] == '0')
 	{
@@ -30,8 +30,8 @@ static void	move_forward(t_vars *vars)
 
 static void	move_backwards(t_vars *vars)
 {
-	vars->player.player_x = vars->ray.pos_y;
-	vars->player.player_y = vars->ray.pos_x;
+	vars->player.player_y = vars->ray.pos_y;
+	vars->player.player_x = vars->ray.pos_x;
 	if (vars->map.map[(int)(vars->ray.pos_x - vars->ray.dir_x * MOVESPEED)] \
 		[(int)vars->ray.pos_y] == '0')
 	{

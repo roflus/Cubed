@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/10 13:19:28 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/22 14:01:45 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/22 14:09:34 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ static void	draw_player(t_vars *vars)
 	int	i;
 	int	k;
 
-	i = vars->player.player_y * TILESIZE;
-	while (i < (vars->player.player_y * TILESIZE + TILESIZE))
+	i = vars->player.player_x * TILESIZE;
+	while (i < (vars->player.player_x * TILESIZE + TILESIZE))
 	{
-		k = (vars->player.player_x * TILESIZE);
-		while (k < (vars->player.player_x * TILESIZE + TILESIZE))
+		k = (vars->player.player_y * TILESIZE);
+		while (k < (vars->player.player_y * TILESIZE + TILESIZE))
 		{
 			mlx_put_pixel(vars->display, k, i, 0xFF0000FF);
 			k++;
