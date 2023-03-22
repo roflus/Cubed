@@ -35,7 +35,6 @@ SRC =	./src/main.c \
 		$(HOOK_DIR)strafe.c \
 		$(HOOK_DIR)mouse_hook.c \
 		$(HOOK_DIR)key_hook.c \
-		./src/printDELETEWHENFINISHED/printstuff.c
 
 OBJ = $(SRC:%.c=%.o)
 

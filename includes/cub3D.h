@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/22 13:55:23 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/22 14:00:04 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -359,35 +359,5 @@ void	strafe_right(t_vars *vars);
 void	keyhook(t_vars *vars);
 
 void	hook(void	*param);
-
-/*-------------------------------DELETEWHENFINISHED--------------------------*/
-void	print_mapdata(t_vars *vars);
-void	print_map(t_vars *vars);
-
-// init_structs
-void	init_vars(t_vars *vars);
-
-// init_minimap
-void	draw_map(t_vars *vars);
-void	create_images_minimap(t_vars *vars);
-
-// setup
-void	create_points_line(t_vars *vars);
-
-// drawline
-void	set_line_start_end(t_vars *vars);
-void	drawline(t_vars *vars);
-
-// move_up
-void	move_up(t_vars *vars);
-
-// move_down
-void	move_down(t_vars *vars);
-
-// move_left
-void	move_left(t_vars *vars);
-
-// move_right
-void	move_right(t_vars *vars);
 
 #endif

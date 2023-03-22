@@ -3,16 +3,16 @@
 /*                                                        ::::::::            */
 /*   minimap.c                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rharing <rharing@student.42.fr>              +#+                     */
+/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/10 13:19:28 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/22 12:12:12 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/22 14:01:45 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-#define TILESIZE 5
+#define TILESIZE 15
 
 void	draw_square(mlx_image_t *minimap, int start_x, int start_y, int color)
 {
@@ -71,10 +71,10 @@ static void	draw_player(t_vars *vars)
 	int	k;
 
 	i = vars->player.player_y * TILESIZE;
-	while (i < (vars->player.player_y * TILESIZE + 5))
+	while (i < (vars->player.player_y * TILESIZE + TILESIZE))
 	{
 		k = (vars->player.player_x * TILESIZE);
-		while (k < (vars->player.player_x * TILESIZE + 5))
+		while (k < (vars->player.player_x * TILESIZE + TILESIZE))
 		{
 			mlx_put_pixel(vars->display, k, i, 0xFF0000FF);
 			k++;
