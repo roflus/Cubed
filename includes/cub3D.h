@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   cub3D.h                                            :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rharing <rharing@student.42.fr>              +#+                     */
+/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/22 12:09:50 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/22 13:55:23 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,14 @@
 # define MOVESPEED 0.05
 # define ROTSPEED 0.05
 
-
 typedef struct s_map
 {
-	int	fd;
-	int	array_count;
-	char pos;
-	char **data;
-	char **map;
-} t_map;
+	int		fd;
+	int		array_count;
+	char	pos;
+	char	**data;
+	char	**map;
+}	t_map;
 
 typedef struct s_line
 {
@@ -52,60 +51,60 @@ typedef struct s_line
 	int	increase_x;
 	int	increase_y;
 	int	count;
-} t_line;
+}	t_line;
 
 typedef struct s_player
 {
-	int	player_x;
-	int	player_y;
-	double playdelta_x;
-	double playdelta_y;
-	double player_angle;
-} t_player;
+	int		player_x;
+	int		player_y;
+	double	playdelta_x;
+	double	playdelta_y;
+	double	player_angle;
+}	t_player;
 
 typedef struct s_walls
 {
-	mlx_image_t	*north_img;
-	mlx_image_t	*east_img;
-	mlx_image_t *south_img;
-	mlx_image_t *west_img;
-	mlx_texture_t *north_t;
-	mlx_texture_t *east_t;
-	mlx_texture_t *south_t;
-	mlx_texture_t *west_t;
-} t_walls;
+	mlx_image_t		*north_img;
+	mlx_image_t		*east_img;
+	mlx_image_t		*south_img;
+	mlx_image_t		*west_img;
+	mlx_texture_t	*north_t;
+	mlx_texture_t	*east_t;
+	mlx_texture_t	*south_t;
+	mlx_texture_t	*west_t;
+}	t_walls;
 
 typedef struct s_raycast
 {
-	double pos_x;
-	double pos_y;
-	double dir_x;
-	double dir_y;
-	double plane_x;
-	double plane_y;
-	double time;
-	double old_time;
-	double camera_x;
-	double ray_dir_x;
-	double ray_dir_y;
-	int	map_x;
-	int	map_y;
-	double side_dist_x;
-	double side_dist_y;
-	double delta_dist_x;
-	double delta_dist_y;
-	double reflect_from_wall;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double	time;
+	double	old_time;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	reflect_from_wall;
 	double	step;
 	double	textpos;
-	int	texture_y;
-	int	texture_x;
-	int	step_x;
-	int	step_y;
-	int	side;
-	int	lineheight;
-	int	drawstart;
-	int	drawend;
-} t_raycast;
+	int		texture_y;
+	int		texture_x;
+	int		step_x;
+	int		step_y;
+	int		side;
+	int		lineheight;
+	int		drawstart;
+	int		drawend;
+}	t_raycast;
 
 typedef struct s_minimap
 {
@@ -116,33 +115,32 @@ typedef struct s_minimap
 
 typedef struct s_vars
 {
-	int	inst_len;
-	int	playercount;
-	int	ceiling_rgb;
-	int	floor_rgb;
-	char	wallside;
-	mlx_t *mlx;
-	mlx_image_t *player1;
-	mlx_image_t *empty;
-	mlx_image_t *wall;
-	mlx_image_t *line1;
-	mlx_image_t *linepixel;
-	mlx_image_t *background;
-	mlx_image_t *display;
-
-	t_walls walls;
-	t_map map;
-	t_player player;
-	t_line line;
-	t_raycast ray;
-	t_minimap minimap;
+	int			inst_len;
+	int			playercount;
+	int			ceiling_rgb;
+	int			floor_rgb;
+	char		wallside;
+	mlx_t		*mlx;
+	mlx_image_t	*player1;
+	mlx_image_t	*empty;
+	mlx_image_t	*wall;
+	mlx_image_t	*line1;
+	mlx_image_t	*linepixel;
+	mlx_image_t	*background;
+	mlx_image_t	*display;
+	t_walls		walls;
+	t_map		map;
+	t_player	player;
+	t_line		line;
+	t_raycast	ray;
+	t_minimap	minimap;
 }	t_vars;
-
 
 void	create_minimap(t_vars *vars);
 
 void	raycaster(t_vars *vars);
-void	draw_background(mlx_image_t *display, int	height, int	start, int	color);
+void	draw_background(mlx_image_t *display, \
+		int height, int start, int color);
 void	set_direction(t_vars *vars);
 
 /*-------------------------------open_file.c----------------------------*/
@@ -299,7 +297,7 @@ void	raycaster(t_vars *vars);
  * @param x 
  * @param w 
  */
-void	calc_ray_position_direction(t_vars *vars, int	x);
+void	calc_ray_position_direction(t_vars *vars, int x);
 
 /**
  * @brief Calculate the length of ray from one x or y-side to next x or y-side
