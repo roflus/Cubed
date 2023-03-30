@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/30 09:53:45 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/03/30 10:34:38 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/30 10:47:11 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,30 @@ static void	clean_map_data(t_map *map)
 
 static void	clean_textures_wall(t_walls walls)
 {
-	mlx_delete_texture(walls.north_t);
-	mlx_delete_texture(walls.east_t);
-	mlx_delete_texture(walls.south_t);
-	mlx_delete_texture(walls.west_t);
+	if (walls.north_t)
+		mlx_delete_texture(walls.north_t);
+	if (walls.east_t)
+		mlx_delete_texture(walls.east_t);
+	if (walls.south_t)
+		mlx_delete_texture(walls.south_t);
+	if (walls.west_t)
+		mlx_delete_texture(walls.west_t);
 }
 
 static void	clean_images(t_vars *vars)
 {
-	mlx_delete_image(vars->mlx, vars->walls.north_img);
-	mlx_delete_image(vars->mlx, vars->walls.east_img);
-	mlx_delete_image(vars->mlx, vars->walls.south_img);
-	mlx_delete_image(vars->mlx, vars->walls.west_img);
-	mlx_delete_image(vars->mlx, vars->minimap.minimap);
+	if (vars->walls.north_img)
+		mlx_delete_image(vars->mlx, vars->walls.north_img);
+	if (vars->walls.east_img)
+		mlx_delete_image(vars->mlx, vars->walls.east_img);
+	if (vars->walls.south_img)
+		mlx_delete_image(vars->mlx, vars->walls.south_img);
+	if (vars->walls.west_img)
+		mlx_delete_image(vars->mlx, vars->walls.west_img);
+	if (vars->minimap.minimap)
+		mlx_delete_image(vars->mlx, vars->minimap.minimap);
+	if (vars->display)
+		mlx_delete_image(vars->mlx, vars->minimap.minimap);
 }
 
 int	clean_project(t_vars *vars, int exit_code)

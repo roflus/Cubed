@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/30 09:59:52 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/30 10:38:26 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,12 +121,6 @@ typedef struct s_vars
 	int			floor_rgb;
 	char		wallside;
 	mlx_t		*mlx;
-	mlx_image_t	*player1;
-	mlx_image_t	*empty;
-	mlx_image_t	*wall;
-	mlx_image_t	*line1;
-	mlx_image_t	*linepixel;
-	mlx_image_t	*background;
 	mlx_image_t	*display;
 	t_walls		walls;
 	t_map		map;
