@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/30 10:38:26 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/30 12:41:15 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <unistd.h>
 # include <memory.h>
 # include <math.h>
-# define MAPPIXEL 64
 # define WIDTH 1000
 # define HEIGHT 1000
 # define MOVESPEED 0.05
@@ -37,29 +36,10 @@ typedef struct s_map
 	char	**map;
 }	t_map;
 
-typedef struct s_line
-{
-	int	x_start;
-	int	x_end;
-	int	y_start;
-	int	y_end;
-	int	diffx;
-	int	diffy;
-	int	boundary;
-	int	current_x;
-	int	current_y;
-	int	increase_x;
-	int	increase_y;
-	int	count;
-}	t_line;
-
 typedef struct s_player
 {
 	int		player_x;
 	int		player_y;
-	double	playdelta_x;
-	double	playdelta_y;
-	double	player_angle;
 }	t_player;
 
 typedef struct s_walls
@@ -115,7 +95,6 @@ typedef struct s_minimap
 
 typedef struct s_vars
 {
-	int			inst_len;
 	int			playercount;
 	int			ceiling_rgb;
 	int			floor_rgb;
@@ -125,13 +104,11 @@ typedef struct s_vars
 	t_walls		walls;
 	t_map		map;
 	t_player	player;
-	t_line		line;
 	t_raycast	ray;
 	t_minimap	minimap;
 }	t_vars;
 
 void	create_minimap(t_vars *vars);
-
 void	raycaster(t_vars *vars);
 void	draw_background(mlx_image_t *display, \
 		int height, int start, int color);
