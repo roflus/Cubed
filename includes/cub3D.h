@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/30 12:41:15 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/30 14:14:50 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,12 +107,6 @@ typedef struct s_vars
 	t_raycast	ray;
 	t_minimap	minimap;
 }	t_vars;
-
-void	create_minimap(t_vars *vars);
-void	raycaster(t_vars *vars);
-void	draw_background(mlx_image_t *display, \
-		int height, int start, int color);
-void	set_direction(t_vars *vars);
 
 /*-------------------------------open_file.c----------------------------*/
 
@@ -312,9 +306,6 @@ void	calc_line_back_to_plane(t_vars *vars);
  */
 void	get_vertical_line_height(t_vars *vars);
 
-void	draw_vertical_line(t_vars *vars, int x, int color);
-void	setcolor(char side, int	*color);
-
 void	choose_texture(t_vars *vars, int x);
 
 /*-------------------------------MOUSEHOOK--------------------------*/
@@ -330,6 +321,19 @@ void	strafe_right(t_vars *vars);
 void	keyhook(t_vars *vars);
 
 void	hook(void	*param);
+
+/*----------------------------Utilities Raycasting-----------------------*/
+
+void	raycaster(t_vars *vars);
+
+void	draw_background(mlx_image_t *display, \
+		int height, int start, int color);
+
+void	create_minimap(t_vars *vars);
+
+void	set_direction(t_vars *vars);
+
+/*-------------------------------Free/Clean Project--------------------------*/
 
 int		clean_project(t_vars *vars, int exit_code);
 

@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/30 13:07:51 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/03/30 13:08:00 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/30 14:04:59 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*get_color(t_vars *vars, char c)
 	return (trimmed);
 }
 
-int	get_rgba(int r, int g, int b, int a)
+static int	get_rgba(int r, int g, int b, int a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
 }
@@ -66,12 +66,12 @@ void	get_colors(t_vars *vars)
 
 	ceiling = get_color(vars, 'C');
 	if (ceiling == NULL || check_fcdata(ceiling) == false)
-		ft_error("ceiling color error", clean_project(vars, 1));
+		ft_error("Ceiling color error", clean_project(vars, 1));
 	if (set_colors(&vars->ceiling_rgb, ceiling) == false)
-		ft_error("Set Colors Failed", clean_project(vars, 1));
+		ft_error("Set Ceiling Colors Failed", clean_project(vars, 1));
 	floor = get_color(vars, 'F');
 	if (floor == NULL || check_fcdata(floor) == false)
-		ft_error("ceiling color error", clean_project(vars, 1));
+		ft_error("Floor color error", clean_project(vars, 1));
 	if (set_colors(&vars->floor_rgb, floor) == false)
-		ft_error("Set Colors Failed", clean_project(vars, 1));
+		ft_error("Set Floor Colors Failed", clean_project(vars, 1));
 }

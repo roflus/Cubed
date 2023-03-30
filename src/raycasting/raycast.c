@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   raycast.c                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rharing <rharing@student.42.fr>              +#+                     */
+/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/08 11:43:21 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/22 12:05:46 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/30 14:09:17 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	dda_algoritm(t_vars *vars)
 	}
 }
 
-void	wall_side(t_vars *vars)
+static void	wall_side(t_vars *vars)
 {
 	if (!vars->ray.side && vars->ray.ray_dir_x >= 0)
 		vars->wallside = 'N';

@@ -6,13 +6,13 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/30 12:29:44 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/30 13:57:23 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-bool	arg_check(char **argv)
+static bool	arg_check(char **argv)
 {
 	if (ft_strlen(argv[1]) <= 4)
 		return (false);
@@ -24,7 +24,7 @@ bool	arg_check(char **argv)
 	return (false);
 }
 
-void	init(t_vars *vars)
+static void	init(t_vars *vars)
 {
 	ft_memset(vars, 0, sizeof(vars));
 	vars->map.data = (char **)malloc(7 * sizeof(char *));
@@ -35,7 +35,7 @@ void	init(t_vars *vars)
 		exit(EXIT_FAILURE);
 }
 
-void	parser(t_vars *vars, char *file)
+static void	parser(t_vars *vars, char *file)
 {
 	open_file(vars, file);
 	get_textures(vars);
@@ -55,6 +55,5 @@ int	main(int argc, char **argv)
 	set_direction(&vars);
 	mlx_loop_hook(vars.mlx, &hook, &vars);
 	mlx_loop(vars.mlx);
-	clean_project(&vars, EXIT_SUCCESS);
-	return (EXIT_SUCCESS);
+	return (clean_project(&vars, EXIT_SUCCESS));
 }

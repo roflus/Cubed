@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/10 13:19:28 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/22 16:26:54 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/30 14:01:02 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 #define TILESIZE 15
 
-void	draw_square(mlx_image_t *minimap, int start_x, int start_y, int color)
+static void	draw_square(mlx_image_t *minimap, int start_x, \
+						int start_y, int color)
 {
 	int	end_x;
 	int	end_y;
@@ -37,7 +38,7 @@ void	draw_square(mlx_image_t *minimap, int start_x, int start_y, int color)
 	}
 }
 
-void	draw_minimap(char **map, mlx_image_t *minimap)
+static void	draw_minimap(char **map, mlx_image_t *minimap)
 {
 	int		i;
 	size_t	k;
