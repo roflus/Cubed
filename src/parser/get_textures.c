@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   get_textures.c                                     :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rharing <rharing@student.42.fr>              +#+                     */
+/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/10 14:55:06 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/15 12:41:03 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/30 09:11:35 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
