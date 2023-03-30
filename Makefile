@@ -14,6 +14,7 @@ FLAGS = -Wall -Werror -Wextra -g
 LFLAGS = -framework Cocoa -framework OpenGL -framework IOKit
 INC = -I ./includes -I $(MLX_DIR)/include -I $(LIBFT_DIR) -I $(GNL_DIR)
 SRC =	./src/main.c \
+		./src/clean_project.c \
 	 	./src/minimap/minimap.c \
 	 	$(PARSER_DIR)set_dir.c \
 		$(PARSER_DIR)get_colors.c \

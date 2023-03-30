@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/22 16:36:35 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/30 09:59:52 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -359,5 +359,7 @@ void	strafe_right(t_vars *vars);
 void	keyhook(t_vars *vars);
 
 void	hook(void	*param);
+
+int		clean_project(t_vars *vars, int exit_code);
 
 #endif
