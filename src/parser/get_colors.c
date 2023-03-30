@@ -40,22 +40,23 @@ int	get_rgba(int r, int g, int b, int a)
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-void	set_colors(int *colors, char *rgb)
+static bool	set_colors(int *colors, char *rgb)
 {
 	char	**temp;
 
 	temp = ft_split(rgb, ',');
 	free(rgb);
 	if (!temp)
-		ft_error("malloc failed", 1);
+		return (false);
 	if (check_intsize(temp) == false)
 	{
 		freesplit(temp);
-		ft_error("color int size is wrong", 3);
+		return (false);
 	}
 	*colors = get_rgba(ft_atoi(temp[0]), ft_atoi(temp[1]), \
 						ft_atoi(temp[2]), 0x000000FF);
 	freesplit(temp);
+	return (true);
 }
 
 void	get_colors(t_vars *vars)
@@ -66,9 +67,11 @@ void	get_colors(t_vars *vars)
 	ceiling = get_color(vars, 'C');
 	if (ceiling == NULL || check_fcdata(ceiling) == false)
 		ft_error("ceiling color error", clean_project(vars, 1));
-	set_colors(&vars->ceiling_rgb, ceiling);
+	if (set_colors(&vars->ceiling_rgb, ceiling) == false)
+		ft_error("Set Colors Failed", clean_project(vars, 1));
 	floor = get_color(vars, 'F');
 	if (floor == NULL || check_fcdata(floor) == false)
 		ft_error("ceiling color error", clean_project(vars, 1));
-	set_colors(&vars->floor_rgb, floor);
+	if (set_colors(&vars->floor_rgb, floor) == false)
+		ft_error("Set Colors Failed", clean_project(vars, 1));
 }

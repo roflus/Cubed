@@ -6,13 +6,13 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/10 14:55:06 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/30 09:11:35 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/30 12:07:13 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	gettexture(char **mapdata, mlx_texture_t **cardinal, \
+static bool	gettexture(char **mapdata, mlx_texture_t **cardinal, \
 						char first, char second)
 {
 	char	*path;
@@ -36,26 +36,31 @@ static void	gettexture(char **mapdata, mlx_texture_t **cardinal, \
 	*cardinal = mlx_load_png(trimmed);
 	free(trimmed);
 	if (*cardinal == NULL)
-		ft_error("Can't load texture", 1);
+		return (false);
+	return (true);
 }
 
 void	get_textures(t_vars *vars)
 {
-	gettexture(vars->map.data, &vars->walls.north_t, 'N', 'O');
+	if (gettexture(vars->map.data, &vars->walls.north_t, 'N', 'O') == false)
+		ft_error("Can't load texture", clean_project(vars, 1));
 	vars->walls.north_img = \
 		mlx_texture_to_image(vars->mlx, vars->walls.north_t);
 	if (!vars->walls.north_img)
 		ft_error("Can't convert texture to image", 1);
-	gettexture(vars->map.data, &vars->walls.east_t, 'E', 'A');
+	if (gettexture(vars->map.data, &vars->walls.east_t, 'E', 'A') == false)
+		ft_error("Can't load texture", clean_project(vars, 1));
 	vars->walls.east_img = mlx_texture_to_image(vars->mlx, vars->walls.east_t);
 	if (!vars->walls.east_img)
 		ft_error("Can't convert texture to image", 1);
-	gettexture(vars->map.data, &vars->walls.south_t, 'S', 'O');
+	if (gettexture(vars->map.data, &vars->walls.south_t, 'S', 'O') == false)
+		ft_error("Can't convert texture to image", 1);
 	vars->walls.south_img = \
 		mlx_texture_to_image(vars->mlx, vars->walls.south_t);
 	if (!vars->walls.south_img)
 		ft_error("Can't convert texture to image", 1);
-	gettexture(vars->map.data, &vars->walls.west_t, 'W', 'E');
+	if (gettexture(vars->map.data, &vars->walls.west_t, 'W', 'E') == false)
+		mlx_texture_to_image(vars->mlx, vars->walls.south_t);
 	vars->walls.west_img = mlx_texture_to_image(vars->mlx, vars->walls.west_t);
 	if (!vars->walls.west_img)
 		ft_error("Can't convert texture to image", 1);

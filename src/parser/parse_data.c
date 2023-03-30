@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/26 18:19:31 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/30 11:27:08 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/30 12:30:33 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	get_data(t_vars *vars)
 			if (k == 5)
 			{
 				free(temp1);
-				vars->map.data[6] = "\0";
+				vars->map.data[6] = NULL;
 				return ;
 			}
 			k++;
@@ -38,5 +38,5 @@ void	get_data(t_vars *vars)
 		temp1 = get_next_line(vars->map.fd);
 	}
 	free(temp1);
-	vars->map.data[k] = "\0";
+	vars->map.data[k] = NULL;
 }
