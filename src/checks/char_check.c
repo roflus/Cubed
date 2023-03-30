@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/26 17:56:21 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/22 14:08:18 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/30 11:22:58 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ bool	check_char_map(t_vars *vars)
 		i++;
 	}
 	if (vars->playercount != 1)
-		ft_error("Player Count incorrect", 2);
+		ft_error("Player Count incorrect", clean_project(vars, 2));
 	return (true);
 }
 

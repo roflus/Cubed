@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   parse_data.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rharing <rharing@student.42.fr>              +#+                     */
+/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/26 18:19:31 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/15 12:28:54 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/30 11:27:08 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	get_data(t_vars *vars)
 	k = 0;
 	temp1 = get_next_line(vars->map.fd);
 	if (temp1 == NULL)
-		ft_error("File is empty", 1);
+		ft_error("File is empty", clean_project(vars, 1));
 	while (temp1)
 	{
 		if (ft_strncmp(temp1, "\n", 1) != 0)

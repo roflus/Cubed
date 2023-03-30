@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 13:05:43 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/30 10:51:53 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/30 11:21:39 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int	main(int argc, char **argv)
 	set_direction(&vars);
 	mlx_loop_hook(vars.mlx, &hook, &vars);
 	mlx_loop(vars.mlx);
-	//mlx_terminate(vars.mlx);
 	clean_project(&vars, EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/26 18:20:29 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/30 09:28:24 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/30 11:27:35 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ static void	create_map(t_vars *vars, char *mapline)
 	temptrim = ft_strtrim(mapline, "\n");
 	free(mapline);
 	if (check_empty_line_map(temptrim) == false)
-		ft_error("File is not correct", 1);
+		ft_error("File is not correct", clean_project(vars, 1));
 	vars->map.array_count = nlcount(temptrim);
 	vars->map.map = ft_split(temptrim, '\n');
 	free(temptrim);
 	if (vars->map.map == NULL)
-		ft_error("Malloc map failed", 1);
+		ft_error("Malloc map failed", clean_project(vars, 1));
 }
 
 char	*get_map_utils(t_vars *vars)
@@ -73,7 +73,7 @@ void	get_map(t_vars *vars)
 
 	mapline = get_map_utils(vars);
 	if (mapline == NULL)
-		ft_error("no map", 2);
+		ft_error("no map", clean_project(vars, 2));
 	while (mapline)
 	{
 		temp = get_next_line(vars->map.fd);

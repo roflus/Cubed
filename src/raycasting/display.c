@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   display.c                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rharing <rharing@student.42.fr>              +#+                     */
+/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/02 16:47:54 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/10 18:33:47 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/30 11:27:43 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	setup_display(t_vars *vars)
 	mlx_delete_image(vars->mlx, vars->display);
 	vars->display = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 	if (!vars->display)
-		ft_error("failed to allocate image", 4);
+		ft_error("failed to allocate image", clean_project(vars, 4));
 	draw_background(vars->display, HEIGHT / 2, 0, vars->ceiling_rgb);
 	draw_background(vars->display, HEIGHT, HEIGHT / 2, vars->floor_rgb);
 }

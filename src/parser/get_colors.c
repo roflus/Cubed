@@ -65,10 +65,10 @@ void	get_colors(t_vars *vars)
 
 	ceiling = get_color(vars, 'C');
 	if (ceiling == NULL || check_fcdata(ceiling) == false)
-		ft_error("ceiling color error", 1);
+		ft_error("ceiling color error", clean_project(vars, 1));
 	set_colors(&vars->ceiling_rgb, ceiling);
 	floor = get_color(vars, 'F');
 	if (floor == NULL || check_fcdata(floor) == false)
-		ft_error("ceiling color error", 1);
+		ft_error("ceiling color error", clean_project(vars, 1));
 	set_colors(&vars->floor_rgb, floor);
 }
