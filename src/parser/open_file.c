@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:40:40 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/31 15:44:51 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/31 16:10:58 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	init(t_vars *vars)
 	vars->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
 	if (!vars->mlx)
 		exit(EXIT_FAILURE);
+	vars->use_mouse = false;
 }
 
 void	open_file(t_vars *vars, char *map)

@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 15:42:11 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/22 14:08:34 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/31 16:17:50 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,14 @@ void	keyhook(t_vars *vars)
 		move_forward(vars);
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_S))
 		move_backwards(vars);
+	if (mlx_is_mouse_down(vars->mlx, MLX_MOUSE_BUTTON_LEFT))
+	{
+		if (vars->use_mouse == false)
+			vars->use_mouse = true;
+	}
+	if (mlx_is_mouse_down(vars->mlx, MLX_MOUSE_BUTTON_RIGHT))
+	{
+		if (vars->use_mouse == true)
+			vars->use_mouse = false;
+	}
 }

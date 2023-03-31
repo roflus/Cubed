@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   hooks.c                                            :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rharing <rharing@student.42.fr>              +#+                     */
+/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 15:42:11 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/15 13:34:21 by rharing       ########   odam.nl         */
+/*   Updated: 2023/03/31 16:09:34 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	hook(void *param)
 
 	vars = param;
 	keyhook(vars);
-	mousehook(vars);
+	if (vars->use_mouse == true)
+		mousehook(vars);
 	raycaster(vars);
 }

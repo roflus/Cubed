@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/31 10:59:14 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/31 16:05:19 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ typedef struct s_vars
 	int			ceiling_rgb;
 	int			floor_rgb;
 	char		wallside;
+	bool		use_mouse;
 	mlx_t		*mlx;
 	mlx_image_t	*display;
 	t_walls		walls;
