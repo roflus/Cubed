@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/30 13:07:51 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/03/30 14:04:59 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/31 10:44:10 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*get_color(t_vars *vars, char c)
 
 	i = 0;
 	string = NULL;
-	while (vars->map.data[i] != '\0')
+	while (vars->map.data[i] != NULL)
 	{
 		if (vars->map.data[i][0] == c && vars->map.data[i][1] == ' ')
 		{

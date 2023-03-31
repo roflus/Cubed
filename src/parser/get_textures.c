@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/10 14:55:06 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/30 12:07:13 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/31 10:44:23 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static bool	gettexture(char **mapdata, mlx_texture_t **cardinal, \
 
 	i = 0;
 	path = NULL;
-	while (mapdata[i] != '\0')
+	while (mapdata[i] != NULL)
 	{
 		if (mapdata[i][0] == first && mapdata[i][1] == second)
 		{
