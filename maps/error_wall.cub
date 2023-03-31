@@ -1,0 +1,13 @@
+NO ./textures/redbrick.png
+SO ./textures/redbrick.png
+WE ./textures/eagle.png
+EA ./textures/eagle.png
+
+F 0,120,180
+C 170,30,20
+
+111111111
+101000001
+1010N0100
+100000101
+111111111

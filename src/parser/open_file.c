@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:40:40 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/31 14:53:23 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/31 15:44:51 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 static void	init(t_vars *vars)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	
 	ft_memset(vars, 0, sizeof(vars));
 	vars->map.data = (char **)malloc(7 * sizeof(char *));
 	if (vars->map.data == NULL)
@@ -26,7 +25,7 @@ static void	init(t_vars *vars)
 	{
 		vars->map.data[i] = NULL;
 		i++;
-	} 	
+	}
 	vars->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
 	if (!vars->mlx)
 		exit(EXIT_FAILURE);

@@ -6,39 +6,43 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/26 18:19:31 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/31 14:56:10 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/31 15:50:29 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+static void	get_data_end(t_vars *vars, char *temp, int end)
+{
+	free(temp);
+	vars->map.data[end] = ft_strdup("\0");
+}
+
 void	get_data(t_vars *vars)
 {
-	char	*temp1;
+	char	*temp;
 	int		k;
 
 	k = 0;
-	temp1 = get_next_line(vars->map.fd);
-	if (temp1 == NULL)
+	temp = get_next_line(vars->map.fd);
+	if (temp == NULL)
 		ft_error("File is empty", clean_project(vars, 1));
-	while (temp1)
+	while (temp)
 	{
-		if (ft_strncmp(temp1, "\n", 1) != 0)
+		if (ft_strncmp(temp, "\n", 1) != 0)
 		{
-			vars->map.data[k] = ft_strdup(temp1);
+			vars->map.data[k] = ft_strdup(temp);
 			if (k == 5)
 			{
-				free(temp1);
-				vars->map.data[6] = ft_strdup("\0");
+				get_data_end(vars, temp, 6);
 				return ;
 			}
 			k++;
 		}
-		free(temp1);
-		temp1 = get_next_line(vars->map.fd);
-		if (temp1 == NULL)
+		free(temp);
+		temp = get_next_line(vars->map.fd);
+		if (temp == NULL)
 			ft_error("File is incomplete", clean_project(vars, 1));
 	}
-	free(temp1);
-	vars->map.data[k] = ft_strdup("\0");
+	get_data_end(vars, temp, k);
 }
