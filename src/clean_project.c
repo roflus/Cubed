@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   clean_project.c                                    :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
+/*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/30 09:53:45 by qfrederi      #+#    #+#                 */
-/*   Updated: 2023/03/30 12:19:13 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/31 12:31:50 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

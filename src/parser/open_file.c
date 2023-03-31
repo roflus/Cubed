@@ -3,14 +3,25 @@
 /*                                                        ::::::::            */
 /*   open_file.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
+/*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:40:40 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/30 11:27:00 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/31 12:31:51 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static void	init(t_vars *vars)
+{
+	ft_memset(vars, 0, sizeof(vars));
+	vars->map.data = (char **)malloc(7 * sizeof(char *));
+	if (vars->map.data == NULL)
+		ft_error("Malloc failed", 1);
+	vars->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
+	if (!vars->mlx)
+		exit(EXIT_FAILURE);
+}
 
 void	open_file(t_vars *vars, char *map)
 {
@@ -19,7 +30,8 @@ void	open_file(t_vars *vars, char *map)
 	i = 0;
 	vars->map.fd = open(map, O_RDONLY);
 	if (vars->map.fd < 0)
-		ft_error("Can't open file", clean_project(vars, 1));
+		ft_error("Can't open file", 1);
+	init(vars);
 	get_data(vars);
 	if (check_data(vars->map.data) == false)
 		ft_error("Cardinal Data not valid", clean_project(vars, 1));
