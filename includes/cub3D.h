@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:16:12 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/30 14:14:50 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/31 10:59:14 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,17 +108,6 @@ typedef struct s_vars
 	t_minimap	minimap;
 }	t_vars;
 
-/*-------------------------------open_file.c----------------------------*/
-
-void	get_colors(t_vars *vars);
-bool	check_intsize(char **colors);
-
-/**
- * @brief Get the textures object for every cardinal.
- *
- * @param vars
- */
-void	get_textures(t_vars *vars);
 /*-------------------------------open_file.c----------------------------*/
 
 /**
@@ -322,9 +311,9 @@ void	keyhook(t_vars *vars);
 
 void	hook(void	*param);
 
-/*----------------------------Utilities Raycasting-----------------------*/
+/*----------------------------UTILITIES-----------------------*/
 
-void	raycaster(t_vars *vars);
+void	get_textures(t_vars *vars);
 
 void	draw_background(mlx_image_t *display, \
 		int height, int start, int color);
@@ -332,6 +321,10 @@ void	draw_background(mlx_image_t *display, \
 void	create_minimap(t_vars *vars);
 
 void	set_direction(t_vars *vars);
+
+void	get_colors(t_vars *vars);
+
+bool	check_intsize(char **colors);
 
 /*-------------------------------Free/Clean Project--------------------------*/
 

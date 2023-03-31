@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/08 11:43:21 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/30 14:09:17 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/31 10:49:19 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ void	raycaster(t_vars *vars)
 		x++;
 	}
 	create_minimap(vars);
-	mlx_image_to_window(vars->mlx, vars->display, 0, 0);
+	if (mlx_image_to_window(vars->mlx, vars->display, 0, 0) == -1)
+		ft_error("Display Failed", clean_project(vars, 1));
 }

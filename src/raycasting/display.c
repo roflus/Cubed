@@ -6,35 +6,11 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/02 16:47:54 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/30 14:06:34 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/03/31 10:50:14 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-//static void	setcolor(char side, int *color)
-//{
-//	if (side == 'N')
-//		*color = 0xFF8D00FF;
-//	else if (side == 'S')
-//		*color = 0xFF0000FF;
-//	else if (side == 'W')
-//		*color = 0x00FF00FF;
-//	else if (side == 'E')
-//		*color = 0x0000FFFF;
-//}
-
-//static void	draw_vertical_line(t_vars *vars, int x, int color)
-//{
-//	int	i;
-
-//	i = vars->ray.drawstart;
-//	while (i < vars->ray.drawend)
-//	{
-//		mlx_put_pixel(vars->display, x, i, color);
-//		i++;
-//	}
-//}
 
 void	get_vertical_line_height(t_vars *vars)
 {
