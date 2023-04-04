@@ -6,7 +6,7 @@
 /*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:40:40 by rharing       #+#    #+#                 */
-/*   Updated: 2023/04/04 15:44:38 by rharing       ########   odam.nl         */
+/*   Updated: 2023/04/04 15:47:41 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 static void	init(t_vars *vars)
 {
-	int	i;
-
-	i = 0;
 	ft_memset(vars, 0, sizeof(vars));
 	vars->map.data = ft_calloc(7, sizeof(char *));
 	vars->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
