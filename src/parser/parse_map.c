@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/26 18:20:29 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/30 11:27:35 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/04/05 11:08:11 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void	get_map(t_vars *vars)
 			break ;
 		newmapline = mapline;
 		mapline = ft_strjoin(newmapline, temp);
+		if (!mapline)
+			ft_error("Malloc Failed", clean_project(vars, 1));
 		free(newmapline);
 		free(temp);
 	}

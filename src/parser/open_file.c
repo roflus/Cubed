@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   open_file.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rharing <rharing@student.42.fr>              +#+                     */
+/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/11 14:40:40 by rharing       #+#    #+#                 */
-/*   Updated: 2023/04/04 15:47:41 by rharing       ########   odam.nl         */
+/*   Updated: 2023/04/05 11:04:14 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ static void	init(t_vars *vars)
 {
 	ft_memset(vars, 0, sizeof(vars));
 	vars->map.data = ft_calloc(7, sizeof(char *));
+	if (!vars->map.data)
+		ft_error("Map Data is NULL", clean_project(vars, 1));
 	vars->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
 	if (!vars->mlx)
-		exit(EXIT_FAILURE);
+		ft_error("MLX Failed", clean_project(vars, 1));
 	vars->use_mouse = false;
 }
 

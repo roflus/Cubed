@@ -6,16 +6,23 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/26 18:19:31 by rharing       #+#    #+#                 */
-/*   Updated: 2023/03/31 15:50:29 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/04/05 11:03:57 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	get_data_end(t_vars *vars, char *temp, int end)
+static void	get_data_end(t_vars *vars, char *temp, int pos, bool must_free)
 {
-	free(temp);
-	vars->map.data[end] = ft_strdup("\0");
+	if (must_free == true)
+	{
+		free(temp);
+		vars->map.data[pos] = ft_strdup("\0");
+	}
+	else
+		vars->map.data[pos] = ft_strdup(temp);
+	if (!vars->map.data[pos])
+		ft_error("Malloc Failed", clean_project(vars, 1));
 }
 
 void	get_data(t_vars *vars)
@@ -31,10 +38,10 @@ void	get_data(t_vars *vars)
 	{
 		if (ft_strncmp(temp, "\n", 1) != 0)
 		{
-			vars->map.data[k] = ft_strdup(temp);
+			get_data_end(vars, temp, k, false);
 			if (k == 5)
 			{
-				get_data_end(vars, temp, 6);
+				get_data_end(vars, temp, 6, true);
 				return ;
 			}
 			k++;
@@ -44,5 +51,5 @@ void	get_data(t_vars *vars)
 		if (temp == NULL)
 			ft_error("File is incomplete", clean_project(vars, 1));
 	}
-	get_data_end(vars, temp, k);
+	get_data_end(vars, temp, k, true);
 }
