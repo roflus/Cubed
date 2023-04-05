@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   parse_map.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
+/*   By: rharing <rharing@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/26 18:20:29 by rharing       #+#    #+#                 */
-/*   Updated: 2023/04/05 11:08:11 by qfrederi      ########   odam.nl         */
+/*   Updated: 2023/04/05 11:11:11 by rharing       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static void	create_map(t_vars *vars, char *mapline)
 
 	temptrim = ft_strtrim(mapline, "\n");
 	free(mapline);
+	if (!temptrim)
+		ft_error("Malloc failed", clean_project(vars, 1));
 	if (check_empty_line_map(temptrim) == false)
 		ft_error("File is not correct", clean_project(vars, 1));
 	vars->map.array_count = nlcount(temptrim);
@@ -81,11 +83,11 @@ void	get_map(t_vars *vars)
 			break ;
 		newmapline = mapline;
 		mapline = ft_strjoin(newmapline, temp);
-		if (!mapline)
-			ft_error("Malloc Failed", clean_project(vars, 1));
 		free(newmapline);
 		free(temp);
 	}
+	if (!mapline)
+		ft_error("Malloc Failed", clean_project(vars, 1));
 	create_map(vars, mapline);
 	free(temp);
 }
